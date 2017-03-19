@@ -1,0 +1,582 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    
+
+    <title>看板非板 看板有板 看板限板 —— 看板方法的是是非非 | Tao Zhang&#39;s Blog</title>
+    <meta name="author" content="Tao Zhang">
+    
+    <meta name="description" content="第一次接触到看板这个词，还是在今年8月2日敏捷开发模式交流的技术沙龙上。听质量团队的同事在台上侃侃而谈，我觉得看板应该是一个比较不错的敏捷开发模式；虽然有心学而应用之，但苦于目前的项目并不适用于敏捷，因此听完也就完了，并没有打算立刻进行深入的研究。但是没过几天，在读《软技能:代码之外的生存指南》（Sonmez，2014）这本书时，又看到作者在”我的私房‘生产力提升计划’”（My personal productivity plan）这一章中又提到了Kanban（即看板1），于是下决心打算仔细学习一下看板方法。即使现在暂时用不到项目上，但是没准可以应用到自己的工作学习中；而且谁知道以后有没有可能带敏捷的项目呢？知识嘛，达时可兼济天下，穷时可独善己身，就是这个道理。">
+    
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta property="og:title" content="看板非板 看板有板 看板限板 —— 看板方法的是是非非"/>
+    <meta property="og:site_name" content="Tao Zhang&#39;s Blog"/>
+
+    
+    <meta property="og:image" content="undefined"/>
+    
+
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="alternate" href="/atom.xml" title="Tao Zhang&#39;s Blog" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/lib/materialize.min.css">
+    <link rel="stylesheet" href="/css/lib/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+
+    
+        <link rel="stylesheet" href="/css/lib/prettify-tomorrow-night-eighties.css" type="text/css">
+    
+    <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+
+
+<body>
+    <img src="/weixin_favicon.png" style="position: absolute; left: -9999px; opacity: 0; filter: alpha(opacity=0);">
+
+    <nav class="blue darken-4">
+    <div class="nav-wrapper">
+        <a href="#" data-activates="main-menu" class="button-collapse">
+            <i class="fa fa-navicon"></i>
+        </a>
+        <div class="">
+            <a href="/" class="brand-logo hide-on-med-and-down">Tao Zhang&#39;s Blog</a>
+            <ul class="right hide-on-med-and-down">
+                
+                    <li>
+                        <a class="menu-home " href="/" >
+                            <i class="fa fa-home "></i>
+                            
+                            首页
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-archive " href="/archives" >
+                            <i class="fa fa-archive "></i>
+                            
+                            归档
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-category category-menu" href="javascript:;" data-activates="category-menu" >
+                            <i class="fa fa-bookmark "></i>
+                            
+                            分类
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-about " href="/about" >
+                            <i class="fa fa-user "></i>
+                            
+                            关于
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-search modal-trigger " href="#search" >
+                            <i class="fa fa-search "></i>
+                            
+                            搜索
+                        </a>
+                    </li>
+                
+            </ul>
+            <div>
+    <ul class="side-nav blue darken-4" id="main-menu">
+        
+        <li class="side-user">
+            <div class="row">
+                <div class="col s4 no-padding">
+                    <img class="avatar-image circle responsive-img" src="http://ww2.sinaimg.cn/large/53aa8487jw1e436g8svuzj205005074e.jpg" alt="User Avatar">
+                </div>
+                <div class="info col s8 valign-wrapper no-padding">
+                    <div class="valign">
+                        <p class="name">Tao Zhang / 张涛</p>
+                        <p class="desc">数据处理专家/系统架构师/项目经理</p>
+                    </div>
+                </div>
+            </div>
+        </li>
+        
+
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-home " href="/" >
+                    <i class="fa fa-home "></i>
+                    
+                    首页
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-archive " href="/archives" >
+                    <i class="fa fa-archive "></i>
+                    
+                    归档
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-category category-menu" href="javascript:;" data-activates="category-menu" >
+                    <i class="fa fa-bookmark "></i>
+                    
+                    分类
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-about " href="/about" >
+                    <i class="fa fa-user "></i>
+                    
+                    关于
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-search modal-trigger " href="#search" >
+                    <i class="fa fa-search "></i>
+                    
+                    搜索
+                </a>
+            </li>
+        
+    </ul>
+
+    <ul class="side-nav blue darken-4" id="category-menu">
+    
+
+            
+
+    </ul>
+</div>
+
+        </div>
+    </div>
+</nav>
+
+<div id="search" class="modal search-modal">
+    <div class="row">
+        <div class="input-field col s12">
+              <input id="search-input" type="text">
+              <label for="search-input">搜索</label>
+        </div>
+
+    </div>
+    <div id="search-result" class="search-result col s12">
+
+    </div>
+</div>
+
+
+    <main>
+        <div class="container main-container">
+    <nav class="page-nav hide-on-small-only">
+    <div class="nav-wrapper blue darken-4">
+        <span class="breadcrumb">当前位置（分类目录）</span>
+        
+            
+
+        
+
+        
+    </div>
+</nav>
+
+<article>
+    <div class="card">
+        <div class="card-content">
+            
+
+            <div class="article-title">
+                
+    
+        <h1>看板非板 看板有板 看板限板 —— 看板方法的是是非非</h1>
+    
+
+
+            </div>
+            <time class="deep-orange-link-context" datetime="2016-10-01T12:41:19.000Z"><a href="/2016/10/01/Kanban-Yes-And-No/">2016-10-01</a></time>
+
+            
+
+            <div class="toc deep-orange-link-context hide-on-med-and-down">
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#1-引入看板方法的是与非"><span class="section table-of-contents-text">1. 引入看板方法的是与非</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#2-看板方法原则的是与非"><span class="section table-of-contents-text">2. 看板方法原则的是与非</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#2-1-看板非板-——-看板方法的缘起"><span class="section table-of-contents-text">2.1 看板非板 —— 看板方法的缘起</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#2-2-看板有板-——-看板方法的实现"><span class="section table-of-contents-text">2.2 看板有板 —— 看板方法的实现</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#2-3-看板限板-——-看板方法的原则"><span class="section table-of-contents-text">2.3 看板限板 —— 看板方法的原则</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#3-看板方法实践的是与非"><span class="section table-of-contents-text">3. 看板方法实践的是与非</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#3-1-敏捷不是实施看板方法的前提"><span class="section table-of-contents-text">3.1 敏捷不是实施看板方法的前提</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#3-2-成熟的员工是实施看板方法的前提"><span class="section table-of-contents-text">3.2 成熟的员工是实施看板方法的前提</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#4-结语"><span class="section table-of-contents-text">4. 结语</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#尾注"><span class="section table-of-contents-text">尾注</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#参考文献"><span class="section table-of-contents-text">参考文献</span></a></li></ol>
+</div>
+
+
+            <div class="entry deep-orange-link-context">
+                <p>第一次接触到看板这个词，还是在今年8月2日敏捷开发模式交流的技术沙龙上。听质量团队的同事在台上侃侃而谈，我觉得看板应该是一个比较不错的敏捷开发模式；虽然有心学而应用之，但苦于目前的项目并不适用于敏捷，因此听完也就完了，并没有打算立刻进行深入的研究。但是没过几天，在读《软技能:代码之外的生存指南》（Sonmez，2014）这本书时，又看到作者在”我的私房‘生产力提升计划’”（My personal productivity plan）这一章中又提到了Kanban（即看板<sup><a href="#note1">1</a></sup>），于是下决心打算仔细学习一下看板方法。即使现在暂时用不到项目上，但是没准可以应用到自己的工作学习中；而且谁知道以后有没有可能带敏捷的项目呢？知识嘛，达时可兼济天下，穷时可独善己身，就是这个道理。<a id="more"></a></p>
+<p>很快找到相关书籍，一读之下才发现自己对看板方法的很多理解都是错的。就拿看板这个名字来说吧，看板中的板居然不是我们一直认为的白板……惊讶之余，不禁好奇：难道只是自己对看板方法理解有误吗？在中文互联网中搜索了一下，发现与我犯同样望文生义错误的人还不在少数。于是打算就看板方法写两句，以复看板本义。</p>
+<h1 id="1-引入看板方法的是与非"><a href="#1-引入看板方法的是与非" class="headerlink" title="1. 引入看板方法的是与非"></a>1. 引入看板方法的是与非</h1><p>未深入研究之前，我原来一直以为看板方法是为了让软件开发更加敏捷、快速、高效而设计出来的。但是，在看板方法的圣经——大卫•J•安德森<sup><a href="#note1">2</a></sup>所著的《看板方法:科技企业渐进变革成功之道》——的第一章”解决敏捷项目经理的困境”中就赫然写到，安德森将看板方法引入软件开发行业，是为了：</p>
+<ul>
+<li>保护团队免受无穷尽需求的困扰（protect team from the incessant demands）</li>
+<li>实现一种可持续发展的节奏（achieve a sustainable pace）</li>
+</ul>
+<p>没错，这就是大卫•安德森将看板方法引入软件开发的初衷，也是看板方法的终极目标。</p>
+<p>要理解这个目标，我们还需要回到看板方法的起点。</p>
+<h1 id="2-看板方法原则的是与非"><a href="#2-看板方法原则的是与非" class="headerlink" title="2. 看板方法原则的是与非"></a>2. 看板方法原则的是与非</h1><h2 id="2-1-看板非板-——-看板方法的缘起"><a href="#2-1-看板非板-——-看板方法的缘起" class="headerlink" title="2.1 看板非板 —— 看板方法的缘起"></a>2.1 看板非板 —— 看板方法的缘起</h2><p>看板方法源于日本制造业，目的是降低不必要的库存、实现按需制造。为了让读者理解看板的含义同时避免过多使用制造业术语，安德森在书中用他在日本游览皇居东御苑公园的经历给看板方法最核心的思想做了一个简单的类比介绍。</p>
+<p>那是一年的樱花季，去御苑公园的人很多。安德森与众人一起排队入园。在入园的时候，工作人员交给他一张小塑料卡片；待安德森离开时，又有工作人员管他收走了那张卡片。没有人向安德森解释这张卡片是干什么的。这肯定不是为了查票，因为公园是免费的。安德森忽然意识到，这是一个简单的看板系统。这个小卡片，是用来限制公园接待游人数量的。当游人数未达预先设定的接待能力上限（即卡片数量）时，游人可以随来随进；但达上限后，只有当一个游人离开公园归还卡片后，下一个等待入园的游人才能持此卡片入园。</p>
+<p>安德森原来就了解制造业的看板方法，但从来没想过在软件行业进行应用。御苑公园的游览经历让安德森看到了看板方法在其他行业中应用的可能。所以，就有了我们现在讨论的看板方法。</p>
+<p>至此，我们可知：所谓看板（Kanban）<sup><a href="#note3">3</a></sup>，是源于日语的一个词汇，在这里指的是那个塑料卡片。从此不难看出，看板更接近于计算机术语中的令牌，而不是我们一般理解的白板（board）。</p>
+<p>所以我们说”看板非板”。</p>
+<p>那为什么我们又说”看板有板”呢？这里，我们要从看板方法的实现说起。</p>
+<h2 id="2-2-看板有板-——-看板方法的实现"><a href="#2-2-看板有板-——-看板方法的实现" class="headerlink" title="2.2 看板有板 —— 看板方法的实现"></a>2.2 看板有板 —— 看板方法的实现</h2><p>在使用看板方法前，需要先构建适用于本项目的看板系统<sup><a href="#note4">4</a></sup>：</p>
+<p>1）定义看板方法所控制的范围，定出起点与终点<br>在我们一般软件开发工作中，一般以接到需求为起点，投产上线为重点</p>
+<p>2）按照工序，画出各工序的泳道图<br>这里给大家画一个简单的示意图：<br><img src="/images/KanbanYN_KanbanSample01.png" alt="看板示意图01"></p>
+<p>3）定义各工序的在制品上限<br>“在制品”是从制造业中借用的词汇，其英文为Work In Process（WIP），也主旨就是我们上文介绍的看板令牌。</p>
+<p>我们按最简单的每人WIP为1计算，那么当需求分析有1人、开发有4人、测试有2人时，需求分析、开发、测试的WIP分别就为1、4、2。</p>
+<p>好了，最简单的看板系统已经构建好了，那么我们可以让该看板系统流转起来了：</p>
+<p>1）业务人员提了6个业务需求，每一个需求分配了一个看板令牌：</p>
+<p><img src="/images/KanbanYN_KanbanSample02.png" alt="看板示意图02"></p>
+<p>2）需求分析人员看到自己的WIP未达上限，从需求队列中取一个需求（看板令牌）过来，其他工序人员由于前序工序的产出队列中没有交付品，因此暂且等待：</p>
+<p><img src="/images/KanbanYN_KanbanSample03.png" alt="看板示意图03"> </p>
+<p>3）需求分析人员分析完成后，将看板令牌从”分析中”队列放到”完成”队列中，开发员看到后，立刻将其拉入其”开发中”队列；需求分析人员见自己的WIP又低于上限了，就又从需求队列拉进来一个需求：</p>
+<p><img src="/images/KanbanYN_KanbanSample04.png" alt="看板示意图04"></p>
+<p>4）上述工作不断循环直到如下场景：</p>
+<p><img src="/images/KanbanYN_KanbanSample05.png" alt="看板示意图05"></p>
+<p>需求分析员将第五个需求分析完了，放入其”完成”队列。但这时开发员还都未能完成开发工作，其WIP已达上限4，因此不会从需求分析-完成队列中再拉走需求了。所以需求分析人员的WIP因此也不会归零。所以呢，虽然还有一个需求待处理，但是需求分析人员先不用去接该需求，可以享受一点点闲暇了（slack）… </p>
+<p>虽然我们并没有将此看板系统流转完，但是聪明的读者朋友应该已经可以从上面的介绍中了解其构建、运转的大致方式了。</p>
+<p>我们可以看出：承载上述泳道图的白板是看板方法的流转核心。因此，我们说”看板有板”。</p>
+<p>至此，聪明的读者还会有一个疑问：这样处理，确实可以保护开发人员不受过度需求的困扰，但是，这样做（限制WIP，自我管理，产生闲暇）真的好吗？开发员不会偷懒吗？你没在骗我吧？</p>
+<p>看板方法确实如上所述，让我们仔细看一下看板方法的原则——“看板限板”。</p>
+<h2 id="2-3-看板限板-——-看板方法的原则"><a href="#2-3-看板限板-——-看板方法的原则" class="headerlink" title="2.3 看板限板 —— 看板方法的原则"></a>2.3 看板限板 —— 看板方法的原则</h2><p>在《看板方法:科技企业渐进变革成功之道》中，大卫•安德森提出了看板方法的五条原则<sup><a href="#note5">5</a></sup>。但作为一篇简介文章，我更喜欢引用《看板实战》（马库斯•哈马伯格，2014）中提到的三条原则（毕竟更精简些，且其本质与安德森的原则完全一致）：</p>
+<ol>
+<li>可视化（Visualize）</li>
+<li>限制在制品数量（Limit Work-In-Process）</li>
+<li>管理流程（Manage Flow）</li>
+</ol>
+<p>其中：”可视化”指的就是”看板有板”；”管理流程”是看板方法实施中的一些具体措施，我们在此篇简介中并不赘述；而”限制在制品数量”，即”看板限板”，在我看来才是看板方法的最核心最精髓的本质。</p>
+<p>安德森在其著作中承认”看板的价值是反直觉的”（the value of Kanban is counter-intuitive），但在书中他并没有解释清楚为什么这种反直觉的处理（限制WIP，自我管理，产生闲暇）反而能起到激励开发员，促进生产效率的原因。通过仔细拜读安德森的这本《看板方法》、查询相关资料，也通过我几十年从事软件开发业的切身体会，我觉得这要从程序员这一特殊群体本身出发寻找原因。</p>
+<p>程序员群体基本符合管理学开创者、”现代管理学之父”彼得 • 德鲁克在其著作《明天的里程碑》（Landmarks of Tomorrow）中对”知识型员工”的定义：”那些掌握和运用符号和概念，利用知识或信息工作的人”（Drucker, P. F. 2011）。</p>
+<p>在诸多论著中，管理学家及相关从业者都认为”高自主性”是知识型员工最具代表性的特征之一。</p>
+<p>中国人民大学工商管理学院市场营销系系主任江林在其论文《知识型员工的特点与管理》就指出：”知识型员工更倾向于拥有宽松的、高度自主的工作环境，注重强调工作中的自我引导和自我管理，而不愿如流水线上的操作工人一样被动地适应机器设备的运转，受制于物化条件的约束”（江林，2002）。</p>
+<p>在中文互联网技术圈影响力颇大的丁香园前CTO冯大辉也在其最近一篇文章中写道：”程序员们希望拥有自主的工作环境…不喜欢条条框框和各种流程制度。程序员们不希望工作过程被监控，也不希望工作环境里有个监工。程序员们需要信任。管理者应该对有想法的技术人员做足够的授权，让他们自己去决定一些事情，多数情况下，他们会做的很棒。公司在进行重大决策的时候，有必要邀请资深工程师参与”（冯大辉，2016）。</p>
+<p>此文读者应该都是IT技术从业人员吧？在此，请大家做代入式设想：</p>
+<p>作为一个开发员<sup><a href="#note6">6</a></sup>，谁不喜欢自己可以在一定程度上掌控工作内容，自己可以决定去”拉”哪个需求<sup><a href="#note7">7</a></sup>，而不是被业务部门硬”推/堆”一脸的需求呢？</p>
+<p>作为一个开发员，谁不喜欢限制WIP所带来的节奏感呢？有了WIP限制的保护，开发员还能较清晰地预知后续的工作内容与工作压力并做好调整。试想，如果没有WIP的保护，在你刚刚拼了老命加班加点几个月搞完一个政治任务时，领导一脸歉然或一脸正气地对你说，”刚才行办会上行长定下来了，XXX需求今年11月一定要投产，咱们再加加油，争取一下”。你会不会陷入一种深渊般的无力感而不由自主地懈怠下去呢？</p>
+<p>作为一个开发员，谁又没有点小自尊小骄傲呢？项目组所有人都能从看板墙上一眼看出自己是当前瓶颈所在，别人都因为自己不能及时完成工作而无所事事。那么，用不着领导发话，你自己怎么可能不去拼一拼呢？</p>
+<p>等等……</p>
+<p>所以，我认为看板方法能在软件开发业中起到神奇的反直觉的作用，恰恰是因为看板方法暗合程序员的”自主管理”的需求。</p>
+<h1 id="3-看板方法实践的是与非"><a href="#3-看板方法实践的是与非" class="headerlink" title="3. 看板方法实践的是与非"></a>3. 看板方法实践的是与非</h1><p>看板方法能在什么样的项目中应用呢？我们这篇文章的最后一个”是与非”就来介绍一下实践看板方法的前提条件。</p>
+<h2 id="3-1-敏捷不是实施看板方法的前提"><a href="#3-1-敏捷不是实施看板方法的前提" class="headerlink" title="3.1 敏捷不是实施看板方法的前提"></a>3.1 敏捷不是实施看板方法的前提</h2><p>安德森在《看板方法》中”什么是看板方法”章节直接写道，”看板方法并不是一种软件开发生命周期的方法学，也不是一种项目管理的方法”（Kanban is not a software development lifecycle methodology or an approach to project management）。</p>
+<p>所以，敏捷不是实施看板方法的前提。</p>
+<p>在安德森看来，只要项目实施中遵循了前面提到的看板诸原则，那么这个项目就实施了看板方法。为此，安德森特意提出了”Yes We Kanban”的口号，并以丰田汽车看板系统创建者大野耐一的头像设计了相关海报。在这里，安德森想强调：”你有尝试看板的权力，你有修改自身过程的权力，你有保持与众不同的权力；你的环境是独特的，因此你应该根据自己的业务领域、价值流、需要管理的风险、团队技能和客户需求，进行裁剪、适配和优化，开发一种独特的过程定义”（Anderson, D. J.，2010）。只要你遵循了看板原则，无论你将开发过程定义得多么独特，那你都可以骄傲地宣称：”Yes We Kanban”！</p>
+<p><img src="/images/KanbanYN_YesWeKanban.png" alt="Yes We Kanban"></p>
+<h2 id="3-2-成熟的员工是实施看板方法的前提"><a href="#3-2-成熟的员工是实施看板方法的前提" class="headerlink" title="3.2 成熟的员工是实施看板方法的前提"></a>3.2 成熟的员工是实施看板方法的前提</h2><p>但是，同样的，我也不认为看板方法适用于任何一个项目。看板方法也有其适用前提。在我看来，项目组由成熟的员工构成，是看板方法在该项目中得以完美开展的前提。我这里所谓的”成熟”指什么呢？年纪大？技术能力强？项目经验丰富？情商高？在进一步解释这个”成熟”的含义前，我先给大家讲一个真实的故事。</p>
+<p>在我近期带的一个项目中有一个合作公司的员工，70后，计算机系科班出身，毕业后一直从事软件开发工作。要说他，开发经验非常丰富，行里的各种软件知识考试轻易就能拿到高分，私下里无论对软件设计、项目管理工作的见解都比较到位；但是在其实际工作中，经常看到完全有悖于其能力的现象：遇到问题先琢磨怎么凑合怎么糊弄，编个工作计划则紧张得完全不合理。有一次，实在忍不住了，我生气的质问他，为什么要制定这样的计划；这样的计划推行下去，要么不断延期根本实现不了，要么累死几个开发员。他无奈的回答我：”我知道，但是公司就这么要求的，我胳膊拧不过大腿呀”。我继续追问他：”那你就应该把这个人力资源安排和项目时间表扔到你们领导脸上，说爱谁干谁干，反正我干不了。你作为项目经理的职业素养到哪里去了？你作为程序员的骄傲到哪里去了？”。他痛苦地看着我说：”我首先得活着呀”……事后了解到，他因为上大学时未能通过英语4级考试而没有大本文凭，找工作相当困难；所以，无论公司提出什么样的不合理要求，他只能默默接受，难说一个”不”字。</p>
+<p>这个员工是一个很好的开发员，但在这个公司工作的他绝不适合采用看板方法。</p>
+<p>我们从前面阐述中可以看出来，程序员”自我管理自我实现”的需求是看板方法起作用的核心原因。</p>
+<p>那么，好了，管理者们，让我们复习一下马洛斯的需求层级理论吧。</p>
+<p><img src="/images/KanbanYN_HierarchyOfNeeds.png" alt="马洛斯需求层级理论"></p>
+<p>上面提到的那个开发员虽然要知识有知识、要经验有经验，但如果他当前最迫切的需求还是”生理需求”与”安全需求”时，他肯定无法将”被解雇”的顾虑放到一边，而去追求”自我管理自我实现”的。那些对他放弃”职业素养”与”程序员骄傲”的指责，无疑于”何不食肉糜”。</p>
+<p>所以，我们说，只有当一个已经”成熟”到不再为底层需求所困扰的程序员，才能去”自我管理自我实现”，才能在外界压力下保持专业态度，才能将看板方法贯彻下去。而一个企业想要实现看板方法，则必须帮助其员工解决其生存、安全的后顾之忧，保护其员工使之不要面对“保证质量与进度而被累死”VS“放弃质量或进度而活下来”的两难选择的时候，才能使其员工”成熟”到看板方法所需的层次。</p>
+<h1 id="4-结语"><a href="#4-结语" class="headerlink" title="4. 结语"></a>4. 结语</h1><p>看板墙/白板确实是看板方法中必不可少的组成部分，但看板方法的核心在于限制WIP（看板令牌）以实现技术人员在一定条件限制下的自我管理。</p>
+<p>看板方法的应用，对技术人员，特别技术人员所在的企业提出了更加成熟的要求。</p>
+<hr>
+<h1 id="尾注"><a href="#尾注" class="headerlink" title="尾注"></a>尾注</h1><ol><br>    <li id="note1">Kanban是看板的英文单词，不是汉语拼音。其源后文有述。</li><br>    <li id="note2">大卫•J•安德森（David J. Anderson），是公认的将看板方法引入软件开发行业的第一人。他的相关论著指导着后续看板方法的实施与演进（Wikipedia Kanban (development)）。</li><br>    <li id="note3">看板，在日文中就是”看板”两字（Wikipedia Kanban）。</li><br>    <li id="note4">这里指的不是电子化系统，而是一套工作方式。</li><br>    <li id="note5">安德森在其最新论述中，将其扩充为6条。</li><br>    <li id="note6">这里虽然为了文章通顺仅写了开发员，但实际上这里描述的是一切IT技术从业人员，包括需求分析人员、测试员、应用管理员、系统管理员、项目经理、架构师等，的共同需求。</li><br>    <li id="note7">看板方法有相关class of service机制来保障不同工作的优先级；开发员一定程度上的自主，不会导致业务需求不能按照优先级来处理。本简介文章不展开讲解看板方法的细节。感兴趣的同学可以参阅《看板方法:科技企业渐进变革成功之道》（Kanban: successful evolutionary change for your technology business）或《看板实战》（Kanban in action）等书。</li><br></ol>
+
+<hr>
+<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><ol>
+<li>Anderson, D. J. (2010). Kanban: successful evolutionary change for your technology business. Blue Hole Press.</li>
+<li>Drucker, P. F. (2011). Landmarks of Tomorrow: A Report on the New. Transaction Publishers.</li>
+<li>Hammarberg, M., &amp; Sunden, J. (2014). Kanban in action. Manning Publications Co..</li>
+<li>Sonmez, J. Z. (2014). Soft Skills.</li>
+<li>Wikipedia. Kanban. <a href="https://en.m.wikipedia.org/wiki/Kanban" target="_blank" rel="external">https://en.m.wikipedia.org/wiki/Kanban</a></li>
+<li>Wikipedia. Kanban (development). <a href="https://en.m.wikipedia.org/wiki/Kanban_" target="_blank" rel="external">https://en.m.wikipedia.org/wiki/Kanban_</a> (development).</li>
+<li>冯大辉. (2016). 程序员们希望怎样被管理? 微信公众号-小道消息.</li>
+<li>江林. (2002). 知识型员工的特点与管理. 经济理论与经济管理, (9), 58-62.</li>
+</ol>
+
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+</div>
+
+        <div class="fixed-action-btn float-sitemap">
+    <a class="btn-floating btn-large deep-orange">
+      <i class="fa fa-caret-square-o-up"></i>
+    </a>
+    <ul>
+      <li><a class="btn-return-top btn-floating waves-effect green" title="回到顶部"><i class="fa fa-arrow-circle-o-up"></i></a></li>
+      <li><a class="btn-floating waves-effect button-collapse yellow darken-1"  data-activates="main-menu" title="menu"><i class="fa fa-navicon"></i></a></li>
+    </ul>
+  </div>
+
+    </main>
+    <footer class="page-footer blue darken-4 darken-1">
+    
+    <div class="container">
+        <div class="row">
+            
+            <div class="social-group col m3 s12">
+                <h5 class="white-text">社交</h5>
+                
+                    <a class="social-link" href="http://weibo.com/1403683975" target="_blank">
+                        <i class="fa fa-2x fa-weibo"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://github.com/zhangtao75" target="_blank">
+                        <i class="fa fa-2x fa-github"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://plus.google.com/u/0/108922458003185062440" target="_blank">
+                        <i class="fa fa-2x fa-google-plus"></i>
+                    </a>
+                
+            </div>
+            
+
+            
+            <div class="col m9 s12">
+                <h5 class="white-text">友情链接</h5>
+                
+                    <a class="social-link" href="http://raytaylorlin.com/" target="_blank">raytaylorism主题作者的技术博客</a>
+                
+                    <a class="social-link" href="https://github.com/raytaylorlin" target="_blank">Github地址（测试友情链接）</a>
+                
+            </div>
+            
+        </div>
+    </div>
+    
+
+    <div class="footer-copyright deep-orange-link-context">
+        <div class="container">
+            © 2016 example.com, All rights reserved.
+            <p class="right" style="margin-top: 0;">本博客由 <a href="https://hexo.io">Hexo</a> 强力驱动 | 主题 <a href="https://github.com/raytaylorlin/hexo-theme-raytaylorism">raytaylorism</a></p>
+        </div>
+    </div>
+</footer>
+
+
+    <noscript>
+    <div class="noscript">
+        <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+    </div>
+</noscript>
+<div class="noscript">
+    <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+</div>
+
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/materialize.min.js"></script>
+
+<script>
+    (function($) {
+        $(document).ready(function() {
+            // 隐藏禁用javascript（针对微信内置浏览器）的提示
+            $('.noscript').hide();
+
+            // 图片缩放效果
+            var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
+
+            // 给图片加上点击放大效果（materialbox插件）
+            $imgs.addClass('materialboxed').each(function(i, el) {
+                $(this).attr('data-caption', $(this).attr('alt') || ' ');
+            }).materialbox();
+
+            // 优化表格的显示
+            $('table').each(function() {
+                var $table = $(this);
+                // 除去多行代码的情况
+                if ($table.find('pre').length == 0) {
+                    $table.addClass('responsive-table striped bordered');
+                }
+            });
+
+            // 首页幻灯片
+            $('.slider').slider({indicators: true, full_width: true, interval: 8000});
+
+            $(".button-collapse").sideNav();
+            $(".category-menu").sideNav();
+
+            // 针对gallery post
+            $('.carousel').carousel({full_width: true});
+            $('.carousel-control.prev').click(function() {
+                $('.carousel').carousel('prev');
+            });
+            $('.carousel-control.next').click(function() {
+                $('.carousel').carousel('next');
+            });
+
+            // 文章目录
+            $('article').not('.simple-article').find('h1').add('h2').add('h3').add('h4').add('h5').add('h6').scrollSpy();
+            // 修正文章目录的left-border颜色
+            var color = $('.table-of-contents-text').css('color');
+            $('.table-of-contents-link').css('border-left-color', color);
+
+            // 针对移动端做的优化：FAB按钮点击一下收回
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                $('.fixed-action-btn').addClass('click-to-toggle');
+            }
+            // 回到顶部
+            $('.btn-return-top').click(function() {
+                $('body, html').animate({
+                    scrollTop: 0
+                }, 500);
+            });
+
+            // 重置读书页面的Tab标签页的颜色
+            $('li.tab a').hover(function() {
+                $(this).toggleClass('text-lighten-4');
+            });
+            $('.indicator').addClass('deep-orange lighten-2');
+
+            
+            // 添加new标签
+            $('').append('<span class="new badge deep-orange"></span>');
+            
+
+            // 搜索功能
+            $('.modal-trigger').leanModal({
+                // 打开搜索框时自动聚焦
+                ready: function() {
+                    if ($('#search').is(":visible")) {
+                        $('#search-input').focus();
+                    }
+                }
+            });
+            var searchXml = "";
+            if (searchXml.length == 0) {
+             	searchXml = "search.xml";
+            }
+            var searchPath = "/" + searchXml;
+            initSearch(searchPath, 'search-input', 'search-result');
+        });
+
+        // 初始化搜索与匹配函数
+        var initSearch = function(path, search_id, content_id) {
+            'use strict';
+            $.ajax({
+                url: path,
+                dataType: "xml",
+                success: function(xmlResponse) {
+                    // get the contents from search data
+                    var datas = $("entry", xmlResponse).map(function() {
+                        return {
+                            title: $("title", this).text(),
+                            content: $("content", this).text(),
+                            url: $("url", this).text()
+                        };
+                    }).get();
+                    var $input = document.getElementById(search_id);
+                    var $resultContent = document.getElementById(content_id);
+                    $input.addEventListener('input', function() {
+                        var str = '<ul class=\"search-result-list\">';
+                        var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                        $resultContent.innerHTML = "";
+                        if (this.value.trim().length <= 0) {
+                            return;
+                        }
+                        // perform local searching
+                        datas.forEach(function(data) {
+                            var isMatch = true;
+                            var content_index = [];
+                            var data_title = data.title.trim().toLowerCase();
+                            var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                            var data_url = data.url;
+                            var index_title = -1;
+                            var index_content = -1;
+                            var first_occur = -1;
+                            // only match artiles with not empty titles and contents
+                            if (data_title != '' && data_content != '') {
+                                keywords.forEach(function(keyword, i) {
+                                    index_title = data_title.indexOf(keyword);
+                                    index_content = data_content.indexOf(keyword);
+                                    if (index_title < 0 && index_content < 0) {
+                                        isMatch = false;
+                                    } else {
+                                        if (index_content < 0) {
+                                            index_content = 0;
+                                        }
+                                        if (i == 0) {
+                                            first_occur = index_content;
+                                        }
+                                    }
+                                });
+                            }
+                            // show search results
+                            if (isMatch) {
+                                keywords.forEach(function(keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    data_title = data_title.replace(regS, "<span class=\"search-keyword deep-orange lighten-2\">" + keyword + "</span>");
+                                });
+
+                                str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                                var content = data.content.trim().replace(/<[^>]+>/g, "");
+                                if (first_occur >= 0) {
+                                    // cut out 100 characters
+                                    var start = first_occur - 20;
+                                    var end = first_occur + 80;
+                                    if (start < 0) {
+                                        start = 0;
+                                    }
+                                    if (start == 0) {
+                                        end = 100;
+                                    }
+                                    if (end > content.length) {
+                                        end = content.length;
+                                    }
+                                    var match_content = content.substring(start, end);
+                                    // highlight all keywords
+                                    keywords.forEach(function(keyword) {
+                                        var regS = new RegExp(keyword, "gi");
+                                        match_content = match_content.replace(regS, "<span class=\"search-keyword deep-orange lighten-2\">" + keyword + "</span>");
+                                    });
+
+                                    str += "<p class=\"search-result\">..." + match_content + "...</p>"
+                                }
+                                str += "</li>";
+                            }
+                        });
+                        str += "</ul>";
+                        $resultContent.innerHTML = str;
+                    });
+                }
+            });
+        }
+    })(jQuery);
+</script>
+
+
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("pre").addClass("prettyprint");
+        prettyPrint();
+    });
+</script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript" async
+  src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+
+</body>
+</html>

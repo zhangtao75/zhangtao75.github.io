@@ -1,0 +1,604 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    
+
+    <title>如何使用Sublime2编辑Markdown文件 | Tao Zhang&#39;s Blog</title>
+    <meta name="author" content="Tao Zhang">
+    
+    <meta name="description" content="1. 我为什么要使用Sublime来编辑Markdown文件Markdown文件编辑器有三种选择
+
+使用现有的文本编辑器，安装相应插件 
+使用浏览器作为编辑器，安装相应插件
+使用专门的Markdown文件编辑器">
+    
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta property="og:title" content="如何使用Sublime2编辑Markdown文件"/>
+    <meta property="og:site_name" content="Tao Zhang&#39;s Blog"/>
+
+    
+    <meta property="og:image" content="undefined"/>
+    
+
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="alternate" href="/atom.xml" title="Tao Zhang&#39;s Blog" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/lib/materialize.min.css">
+    <link rel="stylesheet" href="/css/lib/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+
+    
+        <link rel="stylesheet" href="/css/lib/prettify-tomorrow-night-eighties.css" type="text/css">
+    
+    <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+
+
+<body>
+    <img src="/weixin_favicon.png" style="position: absolute; left: -9999px; opacity: 0; filter: alpha(opacity=0);">
+
+    <nav class="blue darken-4">
+    <div class="nav-wrapper">
+        <a href="#" data-activates="main-menu" class="button-collapse">
+            <i class="fa fa-navicon"></i>
+        </a>
+        <div class="">
+            <a href="/" class="brand-logo hide-on-med-and-down">Tao Zhang&#39;s Blog</a>
+            <ul class="right hide-on-med-and-down">
+                
+                    <li>
+                        <a class="menu-home " href="/" >
+                            <i class="fa fa-home "></i>
+                            
+                            首页
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-archive " href="/archives" >
+                            <i class="fa fa-archive "></i>
+                            
+                            归档
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-category category-menu" href="javascript:;" data-activates="category-menu" >
+                            <i class="fa fa-bookmark "></i>
+                            
+                            分类
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-about " href="/about" >
+                            <i class="fa fa-user "></i>
+                            
+                            关于
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-search modal-trigger " href="#search" >
+                            <i class="fa fa-search "></i>
+                            
+                            搜索
+                        </a>
+                    </li>
+                
+            </ul>
+            <div>
+    <ul class="side-nav blue darken-4" id="main-menu">
+        
+        <li class="side-user">
+            <div class="row">
+                <div class="col s4 no-padding">
+                    <img class="avatar-image circle responsive-img" src="http://ww2.sinaimg.cn/large/53aa8487jw1e436g8svuzj205005074e.jpg" alt="User Avatar">
+                </div>
+                <div class="info col s8 valign-wrapper no-padding">
+                    <div class="valign">
+                        <p class="name">Tao Zhang / 张涛</p>
+                        <p class="desc">数据处理专家/系统架构师/项目经理</p>
+                    </div>
+                </div>
+            </div>
+        </li>
+        
+
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-home " href="/" >
+                    <i class="fa fa-home "></i>
+                    
+                    首页
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-archive " href="/archives" >
+                    <i class="fa fa-archive "></i>
+                    
+                    归档
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-category category-menu" href="javascript:;" data-activates="category-menu" >
+                    <i class="fa fa-bookmark "></i>
+                    
+                    分类
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-about " href="/about" >
+                    <i class="fa fa-user "></i>
+                    
+                    关于
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-search modal-trigger " href="#search" >
+                    <i class="fa fa-search "></i>
+                    
+                    搜索
+                </a>
+            </li>
+        
+    </ul>
+
+    <ul class="side-nav blue darken-4" id="category-menu">
+    
+
+            
+
+    </ul>
+</div>
+
+        </div>
+    </div>
+</nav>
+
+<div id="search" class="modal search-modal">
+    <div class="row">
+        <div class="input-field col s12">
+              <input id="search-input" type="text">
+              <label for="search-input">搜索</label>
+        </div>
+
+    </div>
+    <div id="search-result" class="search-result col s12">
+
+    </div>
+</div>
+
+
+    <main>
+        <div class="container main-container">
+    <nav class="page-nav hide-on-small-only">
+    <div class="nav-wrapper blue darken-4">
+        <span class="breadcrumb">当前位置（分类目录）</span>
+        
+            
+
+        
+
+        
+    </div>
+</nav>
+
+<article>
+    <div class="card">
+        <div class="card-content">
+            
+
+            <div class="article-title">
+                
+    
+        <h1>如何使用Sublime2编辑Markdown文件</h1>
+    
+
+
+            </div>
+            <time class="deep-orange-link-context" datetime="2016-09-06T16:07:59.000Z"><a href="/2016/09/07/How-to-Use-Sublime-to-Write-Markdown-Files/">2016-09-07</a></time>
+
+            
+
+            <div class="toc deep-orange-link-context hide-on-med-and-down">
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#1-我为什么要使用Sublime来编辑Markdown文件"><span class="section table-of-contents-text">1. 我为什么要使用Sublime来编辑Markdown文件</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#2-为Sublime安装编辑Markdown文件所需插件"><span class="section table-of-contents-text">2. 为Sublime安装编辑Markdown文件所需插件</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#2-1-安装Package-Control"><span class="section table-of-contents-text">2.1 安装Package Control</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#2-2-安装Markdown-Preview"><span class="section table-of-contents-text">2.2 安装Markdown Preview</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#3-使用Sublime编写Markdown文档"><span class="section table-of-contents-text">3. 使用Sublime编写Markdown文档</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#3-1-编辑Markdown文档"><span class="section table-of-contents-text">3.1 编辑Markdown文档</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#语法高亮问题"><span class="section table-of-contents-text">语法高亮问题</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#寻找更加舒适的Markdown主题"><span class="section table-of-contents-text">寻找更加舒适的Markdown主题</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#自己动手修改Sublime主题"><span class="section table-of-contents-text">自己动手修改Sublime主题</span></a></li></ol></li></ol></li></ol>
+</div>
+
+
+            <div class="entry deep-orange-link-context">
+                <h1 id="1-我为什么要使用Sublime来编辑Markdown文件"><a href="#1-我为什么要使用Sublime来编辑Markdown文件" class="headerlink" title="1. 我为什么要使用Sublime来编辑Markdown文件"></a>1. 我为什么要使用Sublime来编辑Markdown文件</h1><p>Markdown文件编辑器有三种选择</p>
+<ol>
+<li>使用现有的文本编辑器，安装相应插件 </li>
+<li>使用浏览器作为编辑器，安装相应插件</li>
+<li>使用专门的Markdown文件编辑器</li>
+</ol>
+<a id="more"></a>
+<p>对于Option2，做研究如下：</p>
+<ul>
+<li>Firefox（我的主力浏览器），目前（2016年9月）能支持Markdown编辑的插件主要有：<ul>
+<li>Markdown Here，该插件主要用于email编辑，并不清楚如何保存为Markdown文件</li>
+<li>MarkDown Editor，该插件最后更新日期为2012年，且用户评价中有不少问题</li>
+</ul>
+</li>
+<li>Chrome，目前能支持Markdown编辑的插件（app）主要有：<ul>
+<li>md everywhere，该插件的最后更新日期为2013年，用户也指出了使用中的一些问题</li>
+<li>Minimalist Markdown Editor，该插件的最后更新日期为2016年5月，而且用户评价颇高。如果不是Chrome在Windows 7下字体渲染的问题没法解决，倒是可以考虑用这个app来试试。<br>至此，由于Firefox下没有合用的插件，放弃Option2。</li>
+</ul>
+</li>
+</ul>
+<p>对于Option3，我一直不想引入过多的软件。因此专心采取Option1（MarkdownPad这软件看上去也不错，等以后有机会试试）。</p>
+<p>对于Option1来说，我现在有的文本编辑器就是Sublime Text 2（以下简称Sublime）；那就找Sublime的插件看看喽（至于我为什么选择Sublime，Sublime/Notepad++/UltraEdit的比较，那需要另外一篇文章来说了）。</p>
+<h1 id="2-为Sublime安装编辑Markdown文件所需插件"><a href="#2-为Sublime安装编辑Markdown文件所需插件" class="headerlink" title="2. 为Sublime安装编辑Markdown文件所需插件"></a>2. 为Sublime安装编辑Markdown文件所需插件</h1><p>Markdown文件实际上就是纯文本文件，所以包括Sublime在内的所有纯文本编辑器都可以用来写作Markdown文件（轻量，这也是Markdown文件为什么这么popular的最重要原因）。</p>
+<p>而所谓Markdown支持插件，按我理解就是让编辑器支持Markdown文件预览的插件。<br>简单搜索之后，知道了要在Sublime里面预览Markdown文件，需要安装一个叫”Markdown Preview”的插件；而为了安装插件，最好先安装一个叫”Package Control”的插件来管理插件（package）。</p>
+<h2 id="2-1-安装Package-Control"><a href="#2-1-安装Package-Control" class="headerlink" title="2.1 安装Package Control"></a>2.1 安装Package Control</h2><p>说实话，安装Package Control很不顺利（不过，也正是这种不顺才让这篇文章有价值 —— 让其他遇到同样困惑的人能了解最后这些问题是怎么解决的）。</p>
+<p>Package Control的官网是：<a href="https://packagecontrol.io/" target="_blank" rel="external">https://packagecontrol.io/</a></p>
+<p>但是打不开。或者准确地说，我在那时一直打不开。</p>
+<p>尝试的操作如下：</p>
+<ol>
+<li>翻墙（这简直成下意识操作了），但是不管用；</li>
+<li>查找packagecontrol.io的真实IP，直接通过IP地址访问，但还是不管用；<br><img src="/images/SubMD_IPPackageControlio.png" alt="Package Control.io的真实IP"></li>
+<li>继续搜索其他各种方法…</li>
+<li>最终在在Github wbond/package_control的repository中搜到了一个帖子<a href="https://github.com/wbond/package_control/issues/1057" target="_blank" rel="external">Outage Status #1057</a>，wbond（package_control的作者）在其中提到他们的网站一直受到DDoS攻击…</li>
+</ol>
+<p>原来我访问不了package_control是这个原因…</p>
+<p>类似遇到”无法访问package_control”、”使用package control时遇There are no packages available for installation”等问题的朋友，你很可能也是遇到了这个问题。你可以：</p>
+<ol>
+<li>通过<a href="http://status.linode.com/" target="_blank" rel="external">http://status.linode.com/</a>网站来检查Linode主机情况（package control的托管主机所在）。</li>
+<li>检查<a href="https://github.com/wbond/package_control/issues" target="_blank" rel="external">pacakge control的issue列表</a>，看看最上面有没有类似”Website outage”、”There are no packages available for installation”的issue提出。</li>
+</ol>
+<p>如果确认是DDoS导致的Website outage问题，那么等等就好了。</p>
+<p>最终，在耐心等待+不断重试后，终于能进入package control官网了：</p>
+<p><img src="/images/SubMD_PackageControlOfficialSite.png" alt="Package Control官网"></p>
+<p>点击右上角的Installation，进入安装界面如下：</p>
+<p><img src="/images/SubMD_PackageControlInstallation.png" alt="Package Control安装方法"></p>
+<p>安装方法就如同此页说的一样：Simple（简单）。</p>
+<p>按Ctrl+~呼唤出Sublime的Console，然后将package control官网提供的Python命令粘贴进去执行即可。</p>
+<p><img src="/images/SubMD_PackageControlInstallation_Sublime.png" alt="Console将在Sublime的底部出现"></p>
+<p><strong>注意：通过搜索，可以找到很多非官方网站/博客上也提供了package control的安装命令（类似刚才我们copy的那一大堆Python命令）。我严重不建议大家使用！因为你不知道这些命令的安全性。别不留神执行了恶意代码。所以，尽管官方有时会出点问题，但是还是耐心等待官网恢复吧（一般几个小时就会好），毕竟安全呀！</strong></p>
+<h2 id="2-2-安装Markdown-Preview"><a href="#2-2-安装Markdown-Preview" class="headerlink" title="2.2 安装Markdown Preview"></a>2.2 安装Markdown Preview</h2><p>安装好Package Control，我们可以通过Ctrl+Shift+P呼唤出Command Palette，输入”install…”来使用它。</p>
+<p><img src="/images/SubMD_UsePackageControlInstall01.png" alt="使用Package Control来安装package"></p>
+<p>选中/发出Install Pacakge命令后，Package Control会在线加载package repository，左下角会有提示：</p>
+<p><img src="/images/SubMD_LoadingPackageRepository.png" alt="加载package repository"></p>
+<p>这时候，如果package control的主机又出现问题无法加载，则会报”There are no packages available for installation”错误。请按上面的说明去检索相关issue说明，如果还是主机的问题，那就等等好了。</p>
+<p>当repository加载完毕后，会出现package列表如下（这里的截图是在安装IMESupport包时的截图，不过意思一致）：</p>
+<p><img src="/images/SubMD_PackageList.png" alt="Package列表"></p>
+<p>选择”Markdown Preview”之后，安装开始，左下角会有提示（这里的截图是在安装IMESupport包时的截图，不过意思一致）：</p>
+<p><img src="/images/SubMD_PackageInstalling.png" alt="Package安装时的提示"></p>
+<p>安装好之后，再选择package control中的List Packages，就能看到安装好的packages列表了：</p>
+<p><img src="/images/SubMD_InstalledPackageList.png" alt="安装好的package列表"></p>
+<p>好啦，安装至此结束，下面我们就可以通过Sublime来编辑Markdown文件啦！</p>
+<h1 id="3-使用Sublime编写Markdown文档"><a href="#3-使用Sublime编写Markdown文档" class="headerlink" title="3. 使用Sublime编写Markdown文档"></a>3. 使用Sublime编写Markdown文档</h1><h2 id="3-1-编辑Markdown文档"><a href="#3-1-编辑Markdown文档" class="headerlink" title="3.1 编辑Markdown文档"></a>3.1 编辑Markdown文档</h2><p>在Sublime里面编辑Markdown文档，就和写普通的TEXT文件或代码一样，直接写就好了。</p>
+<p>咦，不过为啥没有语法高亮呢？没有语法高亮，用Sublime和用Notepad记事本来写Markdown有啥区别呀？</p>
+<p><img src="/images/SubMD_NoSyntaxHighlighted.png" alt="没有语法高亮的Markdown编辑界面"></p>
+<h3 id="语法高亮问题"><a href="#语法高亮问题" class="headerlink" title="语法高亮问题"></a>语法高亮问题</h3><p>祭出GOOGLE/BING大法后，很快找到解决问题的方法：</p>
+<ol>
+<li>安装一个叫MarkdownEditing的Sublime插件，或</li>
+<li>换一个主题</li>
+</ol>
+<p>当然还是怎么简单怎么来。果然换个主题（Mac Classic）语法高亮就出来了。</p>
+<p><img src="/images/SubMD_SyntaxHighlighted.png" alt="出现语法高亮的Markdown编辑界面"></p>
+<p>把所有主题都试了一遍之后发现，支持Markdown语法高亮最好的要算Mac Classic及Eiffel两个主题了。</p>
+<p>不过，人嘛，按照马洛斯的需求层次理论来说，总是在低层次需求满足后，就开始追求高层级的需求了。说文了，就是得陇望蜀；说白了，就是吃到碗里的，就开始惦记锅里的了。</p>
+<p>Mac Classic与Eiffel两主题对Markdown的语法高亮支持虽然很好，但是白白的底色太过刺眼。能不能有更好的解决方案（或配色方案）呢？</p>
+<h3 id="寻找更加舒适的Markdown主题"><a href="#寻找更加舒适的Markdown主题" class="headerlink" title="寻找更加舒适的Markdown主题"></a>寻找更加舒适的Markdown主题</h3><p>继续搜索，发现若干种Sublime配色主题都能对Markdown语法高亮提供很好的支持。</p>
+<p>比如”Monokai Extended”、”Tomorrow”等等:</p>
+<p><img src="/images/SubMD_MonokaiExt.png" alt="Monokai Extended主题"><br><img src="/images/SubMD_Tomorrow.png" alt="Tomorrow-Night-Eighties主题"></p>
+<p>看上去好了很多不是？但列表没有像Mac Class或Eiffel那样高亮，还是有点不开心。</p>
+<h3 id="自己动手修改Sublime主题"><a href="#自己动手修改Sublime主题" class="headerlink" title="自己动手修改Sublime主题"></a>自己动手修改Sublime主题</h3><p>干脆，撕下温情脉脉的面纱，露出程序员彪悍的本来面目，我自己直接修改Sublime主题吧。</p>
+<p>我还是更喜欢Mac Classic的风格，那就以它开刀。在Everything的帮助下，很快定位到Mac Classic主题对应的<code>Mac Classic.tmTheme</code>文件。该文件位于<code>C:\Users\zhexen\AppData\Roaming\Sublime Text 2\Packages\Color Scheme - Default</code>目录中。</p>
+<p>虽然没研究过tmTheme文件的语法，但是还是能凭着程序员的经验，找到要修改的应该是下面代码中的background对应的RGB颜色值。</p>
+<pre><code>&lt;dict&gt;
+    &lt;key&gt;author&lt;/key&gt;
+    &lt;string&gt;Chris Thomas&lt;/string&gt;
+    &lt;key&gt;name&lt;/key&gt;
+    &lt;string&gt;Mac Classic&lt;/string&gt;
+    &lt;key&gt;settings&lt;/key&gt;
+    &lt;array&gt;
+        &lt;dict&gt;
+            &lt;key&gt;settings&lt;/key&gt;
+            &lt;dict&gt;
+                &lt;key&gt;background&lt;/key&gt;
+                &lt;string&gt;#FFFFFF&lt;/string&gt;
+...
+</code></pre><p>将<code>#FFFFFF</code>果断改为<code>#FDF6E3</code>。为啥果断知道是这个值？用PicPick的取色器直接从我喜欢的”Solarized (Light)”主题里取得的呀。</p>
+<p>看看成果：</p>
+<p><img src="/images/SubMD_CustomizedMacClassic.png" alt="修改后的Mac Classic主题"></p>
+<p>不错！满意！</p>
+<p>写点什么吧…于是就有了这篇《如何使用Sublime编辑Markdown文件》。</p>
+
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+</div>
+
+        <div class="fixed-action-btn float-sitemap">
+    <a class="btn-floating btn-large deep-orange">
+      <i class="fa fa-caret-square-o-up"></i>
+    </a>
+    <ul>
+      <li><a class="btn-return-top btn-floating waves-effect green" title="回到顶部"><i class="fa fa-arrow-circle-o-up"></i></a></li>
+      <li><a class="btn-floating waves-effect button-collapse yellow darken-1"  data-activates="main-menu" title="menu"><i class="fa fa-navicon"></i></a></li>
+    </ul>
+  </div>
+
+    </main>
+    <footer class="page-footer blue darken-4 darken-1">
+    
+    <div class="container">
+        <div class="row">
+            
+            <div class="social-group col m3 s12">
+                <h5 class="white-text">社交</h5>
+                
+                    <a class="social-link" href="http://weibo.com/1403683975" target="_blank">
+                        <i class="fa fa-2x fa-weibo"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://github.com/zhangtao75" target="_blank">
+                        <i class="fa fa-2x fa-github"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://plus.google.com/u/0/108922458003185062440" target="_blank">
+                        <i class="fa fa-2x fa-google-plus"></i>
+                    </a>
+                
+            </div>
+            
+
+            
+            <div class="col m9 s12">
+                <h5 class="white-text">友情链接</h5>
+                
+                    <a class="social-link" href="http://raytaylorlin.com/" target="_blank">raytaylorism主题作者的技术博客</a>
+                
+                    <a class="social-link" href="https://github.com/raytaylorlin" target="_blank">Github地址（测试友情链接）</a>
+                
+            </div>
+            
+        </div>
+    </div>
+    
+
+    <div class="footer-copyright deep-orange-link-context">
+        <div class="container">
+            © 2016 example.com, All rights reserved.
+            <p class="right" style="margin-top: 0;">本博客由 <a href="https://hexo.io">Hexo</a> 强力驱动 | 主题 <a href="https://github.com/raytaylorlin/hexo-theme-raytaylorism">raytaylorism</a></p>
+        </div>
+    </div>
+</footer>
+
+
+    <noscript>
+    <div class="noscript">
+        <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+    </div>
+</noscript>
+<div class="noscript">
+    <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+</div>
+
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/materialize.min.js"></script>
+
+<script>
+    (function($) {
+        $(document).ready(function() {
+            // 隐藏禁用javascript（针对微信内置浏览器）的提示
+            $('.noscript').hide();
+
+            // 图片缩放效果
+            var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
+
+            // 给图片加上点击放大效果（materialbox插件）
+            $imgs.addClass('materialboxed').each(function(i, el) {
+                $(this).attr('data-caption', $(this).attr('alt') || ' ');
+            }).materialbox();
+
+            // 优化表格的显示
+            $('table').each(function() {
+                var $table = $(this);
+                // 除去多行代码的情况
+                if ($table.find('pre').length == 0) {
+                    $table.addClass('responsive-table striped bordered');
+                }
+            });
+
+            // 首页幻灯片
+            $('.slider').slider({indicators: true, full_width: true, interval: 8000});
+
+            $(".button-collapse").sideNav();
+            $(".category-menu").sideNav();
+
+            // 针对gallery post
+            $('.carousel').carousel({full_width: true});
+            $('.carousel-control.prev').click(function() {
+                $('.carousel').carousel('prev');
+            });
+            $('.carousel-control.next').click(function() {
+                $('.carousel').carousel('next');
+            });
+
+            // 文章目录
+            $('article').not('.simple-article').find('h1').add('h2').add('h3').add('h4').add('h5').add('h6').scrollSpy();
+            // 修正文章目录的left-border颜色
+            var color = $('.table-of-contents-text').css('color');
+            $('.table-of-contents-link').css('border-left-color', color);
+
+            // 针对移动端做的优化：FAB按钮点击一下收回
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                $('.fixed-action-btn').addClass('click-to-toggle');
+            }
+            // 回到顶部
+            $('.btn-return-top').click(function() {
+                $('body, html').animate({
+                    scrollTop: 0
+                }, 500);
+            });
+
+            // 重置读书页面的Tab标签页的颜色
+            $('li.tab a').hover(function() {
+                $(this).toggleClass('text-lighten-4');
+            });
+            $('.indicator').addClass('deep-orange lighten-2');
+
+            
+            // 添加new标签
+            $('').append('<span class="new badge deep-orange"></span>');
+            
+
+            // 搜索功能
+            $('.modal-trigger').leanModal({
+                // 打开搜索框时自动聚焦
+                ready: function() {
+                    if ($('#search').is(":visible")) {
+                        $('#search-input').focus();
+                    }
+                }
+            });
+            var searchXml = "";
+            if (searchXml.length == 0) {
+             	searchXml = "search.xml";
+            }
+            var searchPath = "/" + searchXml;
+            initSearch(searchPath, 'search-input', 'search-result');
+        });
+
+        // 初始化搜索与匹配函数
+        var initSearch = function(path, search_id, content_id) {
+            'use strict';
+            $.ajax({
+                url: path,
+                dataType: "xml",
+                success: function(xmlResponse) {
+                    // get the contents from search data
+                    var datas = $("entry", xmlResponse).map(function() {
+                        return {
+                            title: $("title", this).text(),
+                            content: $("content", this).text(),
+                            url: $("url", this).text()
+                        };
+                    }).get();
+                    var $input = document.getElementById(search_id);
+                    var $resultContent = document.getElementById(content_id);
+                    $input.addEventListener('input', function() {
+                        var str = '<ul class=\"search-result-list\">';
+                        var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                        $resultContent.innerHTML = "";
+                        if (this.value.trim().length <= 0) {
+                            return;
+                        }
+                        // perform local searching
+                        datas.forEach(function(data) {
+                            var isMatch = true;
+                            var content_index = [];
+                            var data_title = data.title.trim().toLowerCase();
+                            var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                            var data_url = data.url;
+                            var index_title = -1;
+                            var index_content = -1;
+                            var first_occur = -1;
+                            // only match artiles with not empty titles and contents
+                            if (data_title != '' && data_content != '') {
+                                keywords.forEach(function(keyword, i) {
+                                    index_title = data_title.indexOf(keyword);
+                                    index_content = data_content.indexOf(keyword);
+                                    if (index_title < 0 && index_content < 0) {
+                                        isMatch = false;
+                                    } else {
+                                        if (index_content < 0) {
+                                            index_content = 0;
+                                        }
+                                        if (i == 0) {
+                                            first_occur = index_content;
+                                        }
+                                    }
+                                });
+                            }
+                            // show search results
+                            if (isMatch) {
+                                keywords.forEach(function(keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    data_title = data_title.replace(regS, "<span class=\"search-keyword deep-orange lighten-2\">" + keyword + "</span>");
+                                });
+
+                                str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                                var content = data.content.trim().replace(/<[^>]+>/g, "");
+                                if (first_occur >= 0) {
+                                    // cut out 100 characters
+                                    var start = first_occur - 20;
+                                    var end = first_occur + 80;
+                                    if (start < 0) {
+                                        start = 0;
+                                    }
+                                    if (start == 0) {
+                                        end = 100;
+                                    }
+                                    if (end > content.length) {
+                                        end = content.length;
+                                    }
+                                    var match_content = content.substring(start, end);
+                                    // highlight all keywords
+                                    keywords.forEach(function(keyword) {
+                                        var regS = new RegExp(keyword, "gi");
+                                        match_content = match_content.replace(regS, "<span class=\"search-keyword deep-orange lighten-2\">" + keyword + "</span>");
+                                    });
+
+                                    str += "<p class=\"search-result\">..." + match_content + "...</p>"
+                                }
+                                str += "</li>";
+                            }
+                        });
+                        str += "</ul>";
+                        $resultContent.innerHTML = str;
+                    });
+                }
+            });
+        }
+    })(jQuery);
+</script>
+
+
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("pre").addClass("prettyprint");
+        prettyPrint();
+    });
+</script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript" async
+  src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+
+</body>
+</html>
