@@ -7,13 +7,15 @@
 
     
 
-    <title>归档 | Tao Zhang&#39;s Blog</title>
+    <title>Python grid布局的简介与细节进阶 （1） | Tao Zhang&#39;s Blog</title>
     <meta name="author" content="Tao Zhang">
+    
+    <meta name="description" content="0. 背景使用Python tkinter编写GUI程序有一段时间了，期间也遇到并解决了一些问题。为此，将相关心得与这些值得注意的地方总结记录下来，供（未来的）自己及同行参考。">
     
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    
+    <meta property="og:title" content="Python grid布局的简介与细节进阶 （1）"/>
     <meta property="og:site_name" content="Tao Zhang&#39;s Blog"/>
 
     
@@ -175,69 +177,138 @@
 
     <main>
         <div class="container main-container">
-    
-
-<nav class="page-nav hide-on-small-only">
+    <nav class="page-nav hide-on-small-only">
     <div class="nav-wrapper blue darken-4">
-        <span class="breadcrumb">当前位置（归档）</span>
+        <span class="breadcrumb">当前位置（分类目录）</span>
+        
+            
+
         
 
         
     </div>
 </nav>
 
+<article>
+    <div class="card">
+        <div class="card-content">
+            
+
+            <div class="article-title">
+                
+    
+        <h1>Python grid布局的简介与细节进阶 （1）</h1>
+    
 
 
-    <ul class="collapsible mt-0" data-collapsible="accordion">
-        
-        
-            <li>
-                <div class="collapsible-header active">
-                    <i class="fa fa-archive"></i>2017
-                </div>
-                <div class="collapsible-body">
-                    <div class="collection">
-                        
-                            <a href="/2017/04/23/Python-grid-layout-101/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-04-23T14:49:41.000Z">2017-04-23</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                Python grid布局的简介与细节进阶 （1）
-                            </a>
-                        
-                    </div>
-                </div>
-            </li>
-        
-            <li>
-                <div class="collapsible-header ">
-                    <i class="fa fa-archive"></i>2016
-                </div>
-                <div class="collapsible-body">
-                    <div class="collection">
-                        
-                            <a href="/2016/11/13/ODM-Integration/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2016-11-12T16:42:19.000Z">2016-11-13</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                ODM规则引擎在银行中的整合应用
-                            </a>
-                        
-                            <a href="/2016/10/01/Kanban-Yes-And-No/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2016-10-01T12:41:19.000Z">2016-10-01</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                看板非板 看板有板 看板限板 —— 看板方法的是是非非
-                            </a>
-                        
-                            <a href="/2016/09/07/How-to-Use-Sublime-to-Write-Markdown-Files/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2016-09-06T16:07:59.000Z">2016-09-07</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                如何使用Sublime2编辑Markdown文件
-                            </a>
-                        
-                    </div>
-                </div>
-            </li>
-        
-    </ul>
+            </div>
+            <time class="deep-orange-link-context" datetime="2017-04-23T14:49:41.000Z"><a href="/2017/04/23/Python-grid-layout-101/">2017-04-23</a></time>
+
+            
+
+            <div class="toc deep-orange-link-context hide-on-med-and-down">
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#0-背景"><span class="section table-of-contents-text">0. 背景</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#1-Python-tkinter布局简介"><span class="section table-of-contents-text">1. Python tkinter布局简介</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#2-一般情况下推荐使用grid布局"><span class="section table-of-contents-text">2. 一般情况下推荐使用grid布局</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#3-grid的基本概念与使用"><span class="section table-of-contents-text">3. grid的基本概念与使用</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#3-1-布局的基本概念"><span class="section table-of-contents-text">3.1 布局的基本概念</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#3-2-如何指定行列"><span class="section table-of-contents-text">3.2 如何指定行列</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#3-3-列宽与行高"><span class="section table-of-contents-text">3.3 列宽与行高</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#3-4-合并单元格-扩展行列"><span class="section table-of-contents-text">3.4 合并单元格/扩展行列</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#尾注"><span class="section table-of-contents-text">尾注</span></a></li></ol>
+</div>
+
+
+            <div class="entry deep-orange-link-context">
+                <h1 id="0-背景"><a href="#0-背景" class="headerlink" title="0. 背景"></a>0. 背景</h1><p>使用Python tkinter编写GUI程序有一段时间了，期间也遇到并解决了一些问题。为此，将相关心得与这些值得注意的地方总结记录下来，供（未来的）自己及同行参考。<a id="more"></a></p>
+<p>了解Python tkinter基本概念或已经使用过tkinter的读者，会从本系列博文中收获最多；有Python编程基础的读者，也可以籍此文初窥到Python GUI编程（特别是grid布局）的简洁。</p>
+<p>原以为本文不会太长，没想到拉拉杂杂写下来才发现：要想把相关概念、细节将清楚，并配上足够的示例图片的话，篇幅远远超过一次愉悦阅读的长度。为此，本文也变为一系列博文了。</p>
+<p>本系列博文包括以下内容：</p>
+<ol>
+<li>介绍在tkinter库（Python标准GUI库）下的grid布局的基本概念；</li>
+<li>通过一个样例程序，讲述我们常用的一些细节的设置，包括grid与frame的配合使用，grid_propagate方法，主窗口frame的相关设置；</li>
+<li>继续上面的例子，讲述grid方法padx/pady与ipadx/ipady选项的设置；</li>
+<li>继续上面的例子，讲述grid方法sticky选项的设置；附：1）学习tkinter及grid布局的推荐资源，2）本程序在GitHub上的地址。</li>
+</ol>
+<p>聪明的读者自然知道本系列博文会按照以上列表分为对应的4篇。</p>
+<p>本系列博文不包括以下内容：</p>
+<ol>
+<li>Python 语法解释；</li>
+<li>Python GUI编程的完整介绍。</li>
+</ol>
+<h1 id="1-Python-tkinter布局简介"><a href="#1-Python-tkinter布局简介" class="headerlink" title="1. Python tkinter布局简介"></a>1. Python tkinter布局简介</h1><p>布局是GUI程序的重要概念，它决定了屏幕上每一个部件（widget）的位置。<br>Python标准GUI库tkinter支持三种布局方式：</p>
+<ul>
+<li><strong>pack</strong> - 采用<strong>堆砌法</strong>来组织部件，程序需指定部件与部件之间的相对位置</li>
+<li><strong>place</strong> - 采用<strong>位置法</strong>来组织部件，程序需明确指定部件要被显示的坐标</li>
+<li><strong>grid</strong> - 采用<strong>表格法</strong>来组织部件，系统把屏幕（frame）视为一个二维表格，程序需指定某部件要显示在哪一个单元格中</li>
+</ul>
+<p>这三种布局方式实现的功能是一致的<sup><a href="#user-content-note1">1</a></sup>，每一种布局方式都可以让程序员：</p>
+<ul>
+<li>管理部件的位置</li>
+<li>管理部件与其相关处理的注册</li>
+<li>在屏幕上显示部件</li>
+</ul>
+<p><strong>注意：这三种布局方式互不兼容，因此不要在同一窗口中混用！</strong></p>
+<h1 id="2-一般情况下推荐使用grid布局"><a href="#2-一般情况下推荐使用grid布局" class="headerlink" title="2. 一般情况下推荐使用grid布局"></a>2. 一般情况下推荐使用grid布局</h1><p>一般说来，在这三种布局方式中，pack最简单粗旷，place最精细复杂，而grid在这两者之间最为平衡：既不失简洁又足够控制部件出现在你想要的位置上。因此grid布局获得了很多人的推荐：</p>
+<ul>
+<li><p><a href="http://infohost.nmt.edu/tcc/help/pubs/tkinter/web/index.html" target="_blank" rel="external">Tkinter 8.5 reference: a GUI for Python</a>提到：</p>
+<blockquote>
+<p>Although there are three different “geometry managers” in Tkinter, the author strongly prefers the .grid() geometry manager for pretty much everything. </p>
+</blockquote>
+</li>
+<li><p><a href="http://www.effbot.org/tkinterbook/grid.htm" target="_blank" rel="external">The Tkinter Grid Geometry Manager</a>是这么说的：</p>
+<blockquote>
+<p>The grid manager is the most flexible of the geometry managers in Tkinter. If you don’t want to learn how and when to use all three managers, you should at least make sure to learn this one.</p>
+</blockquote>
+</li>
+<li><p><a href="http://www.python-course.eu/tkinter_layout_management.php" target="_blank" rel="external">Python Course - Layout Managers / Geometry Manager</a>总结到：</p>
+<blockquote>
+<p>Grid is in many cases the best choice for general use. While pack is sometimes not sufficient for changing details in the layout, place gives you complete control of positioning each element, but this makes it a lot more complex than pack and grid. </p>
+</blockquote>
+</li>
+</ul>
+<p>既然大家都说好，那么赶紧用起来吧！</p>
+<h1 id="3-grid的基本概念与使用"><a href="#3-grid的基本概念与使用" class="headerlink" title="3. grid的基本概念与使用"></a>3. grid的基本概念与使用</h1><h2 id="3-1-布局的基本概念"><a href="#3-1-布局的基本概念" class="headerlink" title="3.1 布局的基本概念"></a>3.1 布局的基本概念</h2><p>为了便于大家理解，我们先看看最熟悉的EXCEL。EXCEL的工作表虽是一张二维表，但是通过行列的组合，我们可以用其实现复杂的排版：</p>
+<ul>
+<li>样例1 - 账单：</li>
+</ul>
+<p><img src="/images/grid_EXCEL_example01.png" alt="EXCEL示例"></p>
+<ul>
+<li>样例2 - 日历：</li>
+</ul>
+<p><img src="/images/grid_EXCEL_example02.png" alt="EXCEL示例"></p>
+<p>tkinter grid布局的工作方式与EXCEL一样：</p>
+<ul>
+<li>程序指定某个部件位于哪个单元格中；</li>
+<li>出于排版的需要，可以将若干个单元格合并以容纳某个部件（比如上面<em>EXCEL样例1-账单</em>中的<em>实际客户名称</em>就将被放置于21行的C、D、E合并单元格中）</li>
+</ul>
+<h2 id="3-2-如何指定行列"><a href="#3-2-如何指定行列" class="headerlink" title="3.2 如何指定行列"></a>3.2 如何指定行列</h2><p>首先在grid布局中，程序不需要（也不能）在放置部件前先指定本屏幕（frame）中到底有多少行多少列。grid不关心行列总数，你直接放置部件就好了。</p>
+<ul>
+<li>grid默认你从第0行第0列放置第一个部件：</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">widget.grid()</div></pre></td></tr></table></figure>
+<ul>
+<li>同大家的直觉一致，grid的第1列在第0列右侧，第1行在第0行下方，其它行列依此类推；</li>
+<li>如果不指定行列，grid将把下一个部件放到当前行的下一列中，这也意味着你一直用<code>widget.grid()</code>放部件，所有部件都会出现在一行中；</li>
+<li>你可以通过row与column选项告知grid某部件应该被放置到哪一行列：</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">widget.grid(row=<span class="number">1</span>, column=<span class="number">0</span>)</div></pre></td></tr></table></figure>
+<h2 id="3-3-列宽与行高"><a href="#3-3-列宽与行高" class="headerlink" title="3.3 列宽与行高"></a>3.3 列宽与行高</h2><p>grid布局与流行的网页bootstrap布局不一样，其列宽与行高不是固定的：</p>
+<ul>
+<li>grid某列的列宽是由该列中容纳的最宽部件所决定的；</li>
+<li>grid某行的高度是由该行中容纳的最高部件所决定的。</li>
+<li>程序无法直接指定grid的列宽与行高。</li>
+</ul>
+<p>所以，请不要说『<strong>右边这个部件比左边的宽，我们用两列来容纳它</strong>』这种话吧！</p>
+<h2 id="3-4-合并单元格-扩展行列"><a href="#3-4-合并单元格-扩展行列" class="headerlink" title="3.4 合并单元格/扩展行列"></a>3.4 合并单元格/扩展行列</h2><p>我们上面说过，合并单元格的目的是为了“排版的需要”；比如上面EXCEL的两个样例演示的那样。后续的博文中，我们会给出实际的例子。这里我们先看看基本代码如何实现：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 部件1占据第0行第0、1格（列扩展）</span></div><div class="line">widget1.grid(row=<span class="number">0</span>, column=<span class="number">0</span>, columnspan=<span class="number">2</span>)</div><div class="line"></div><div class="line"><span class="comment"># 部件2占据第1、2行第0格（行扩展）</span></div><div class="line">widget2.grid(row=<span class="number">1</span>, column=<span class="number">0</span>, rowspan=<span class="number">2</span>)</div><div class="line"></div><div class="line"><span class="comment"># 部件3占据第3、4行第0、1格（行列同时扩展）</span></div><div class="line">widget3.grid(row=<span class="number">3</span>, column=<span class="number">0</span>, columnspan=<span class="number">2</span>, rowspan=<span class="number">2</span>)</div></pre></td></tr></table></figure>
+<p>用EXCEL来示意，这几个部件的位置应该如下图所示：</p>
+<p><img src="/images/grid_EXCEL_example03.png" alt="用EXCEL示意widget位置"></p>
+<p><strong>注意：没有widget4与widget5，widget2是没有必要扩展到两行的。当然，widget3也是一样，只不过图上省略了其他widget而已。</strong></p>
+<p>grid布局的基本概念与使用就先介绍到这里吧，后续博文会通过样例程序继续讲解grid的进阶使用。</p>
+<hr>
+<h1 id="尾注"><a href="#尾注" class="headerlink" title="尾注"></a>尾注</h1><ol><br>    <li id="note1">虽然每一种布局方式都能实现GUI，但不同布局方式的控制方式有所区别，在细微之处无法完全互相替代。</li><br></ol>
+
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
 
 
 </div>
