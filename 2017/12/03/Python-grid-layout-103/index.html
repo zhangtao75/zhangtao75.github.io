@@ -7,15 +7,20 @@
 
     
 
-    <title>Python grid布局的简介与细节进阶 （1） | Tao Zhang&#39;s Blog</title>
+    <title>Python grid布局的简介与细节进阶 （3） | Tao Zhang&#39;s Blog</title>
     <meta name="author" content="Tao Zhang">
     
-    <meta name="description" content="0. 背景使用Python tkinter编写GUI程序有一段时间了，期间也遇到并解决了一些问题。为此，将过程中的心得与某些值得注意的地方总结记录下来，供（未来的）自己及同行参考。">
+    <meta name="description" content="前两节我们：
+
+介绍了tkinter库（Python标准GUI库）grid布局的基本概念
+通过一个样例程序，讲解了grid布局与frame部件的配合使用技巧
+
+接下来，我们继续演示grid布局相关的一些有用设置。">
     
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <meta property="og:title" content="Python grid布局的简介与细节进阶 （1）"/>
+    <meta property="og:title" content="Python grid布局的简介与细节进阶 （3）"/>
     <meta property="og:site_name" content="Tao Zhang&#39;s Blog"/>
 
     
@@ -197,109 +202,78 @@
             <div class="article-title">
                 
     
-        <h1>Python grid布局的简介与细节进阶 （1）</h1>
+        <h1>Python grid布局的简介与细节进阶 （3）</h1>
     
 
 
             </div>
-            <time class="deep-orange-link-context" datetime="2017-04-23T14:49:41.000Z"><a href="/2017/04/23/Python-grid-layout-101/">2017-04-23</a></time>
+            <time class="deep-orange-link-context" datetime="2017-12-03T14:30:00.000Z"><a href="/2017/12/03/Python-grid-layout-103/">2017-12-03</a></time>
 
             
 
             <div class="toc deep-orange-link-context hide-on-med-and-down">
-    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#0-背景"><span class="section table-of-contents-text">0. 背景</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#1-Python-tkinter布局简介"><span class="section table-of-contents-text">1. Python tkinter布局简介</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#2-一般情况下推荐使用grid布局"><span class="section table-of-contents-text">2. 一般情况下推荐使用grid布局</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#3-grid的基本概念与使用"><span class="section table-of-contents-text">3. grid的基本概念与使用</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#3-1-布局的基本概念"><span class="section table-of-contents-text">3.1 布局的基本概念</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#3-2-grid方法简介"><span class="section table-of-contents-text">3.2 grid方法简介</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#3-3-如何指定行列"><span class="section table-of-contents-text">3.3 如何指定行列</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#3-4-列宽与行高"><span class="section table-of-contents-text">3.4 列宽与行高</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#3-5-合并单元格-扩展行列"><span class="section table-of-contents-text">3.5 合并单元格/扩展行列</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#尾注"><span class="section table-of-contents-text">尾注</span></a></li></ol>
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#1-Frame的宽高设置以及grid-propagate-方法"><span class="section table-of-contents-text">1. Frame的宽高设置以及grid_propagate()方法</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#1-1-Frame的宽高设置"><span class="section table-of-contents-text">1.1 Frame的宽高设置</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#1-2-grid-propagate-设置"><span class="section table-of-contents-text">1.2 grid_propagate()设置</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#2-grid-方法的pad-ipad设置与部件的pad属性"><span class="section table-of-contents-text">2. grid()方法的pad/ipad设置与部件的pad属性</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#2-1-pad与ipad简介"><span class="section table-of-contents-text">2.1 pad与ipad简介</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#2-2-grid-方法的pad-ipad设置"><span class="section table-of-contents-text">2.2 grid()方法的pad/ipad设置</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#2-3-部件的pad属性"><span class="section table-of-contents-text">2.3 部件的pad属性</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#2-4-样例程序，以及grid-方法pad-ipad设置与部件pad属性的配合使用"><span class="section table-of-contents-text">2.4 样例程序，以及grid()方法pad/ipad设置与部件pad属性的配合使用</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#2-4-1-原始程序"><span class="section table-of-contents-text">2.4.1 原始程序</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#2-4-2-设置Label的内边距"><span class="section table-of-contents-text">2.4.2 设置Label的内边距</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#2-4-3-设置Label的外边距"><span class="section table-of-contents-text">2.4.3 设置Label的外边距</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#2-4-3-内外边距配合使用"><span class="section table-of-contents-text">2.4.3 内外边距配合使用</span></a></li></ol></li></ol></li></ol>
 </div>
 
 
             <div class="entry deep-orange-link-context">
-                <h1 id="0-背景"><a href="#0-背景" class="headerlink" title="0. 背景"></a>0. 背景</h1><p>使用Python tkinter编写GUI程序有一段时间了，期间也遇到并解决了一些问题。为此，将过程中的心得与某些值得注意的地方总结记录下来，供（未来的）自己及同行参考。<a id="more"></a></p>
-<p>了解Python tkinter基本概念或已经使用过tkinter的读者，会从本系列博文中收获最多；有Python编程基础的读者，也可以籍此文初窥Python GUI编程（特别是grid布局）的简洁。</p>
-<p>原以为本文不会太长，没想到拉拉杂杂写下来才发现：要想把相关概念、细节讲清楚，并配上足够的示例图片的话，篇幅就太长了。为了保证读者阅读得舒适，本文只好扩展为一系列博文。</p>
-<p>本系列博文包括以下4篇内容：</p>
+                <p>前两节我们：</p>
 <ol>
-<li>介绍tkinter库（Python标准GUI库）grid布局的基本概念；</li>
-<li>通过一个样例程序，讲解grid布局的一些常用设置，包括grid与frame的配合使用，grid_propagate方法；</li>
-<li>继续上面的例子，讲述grid方法padx/pady与ipadx/ipady选项的设置；</li>
-<li>继续上面的例子，讲述grid方法sticky选项的设置；附：1）学习tkinter及grid布局的推荐资源，2）本程序在GitHub上的地址。</li>
+<li>介绍了<a href="https://zhangtao75.github.io/2017/04/23/Python-grid-layout-101/" target="_blank" rel="external">tkinter库（Python标准GUI库）grid布局的基本概念</a></li>
+<li>通过一个样例程序，讲解了<a href="https://zhangtao75.github.io/2017/04/23/Python-grid-layout-102/" target="_blank" rel="external">grid布局与frame部件的配合使用技巧</a></li>
 </ol>
-<p>本系列博文不包括以下内容：</p>
+<p>接下来，我们继续演示grid布局相关的一些有用设置。<a id="more"></a></p>
+<h1 id="1-Frame的宽高设置以及grid-propagate-方法"><a href="#1-Frame的宽高设置以及grid-propagate-方法" class="headerlink" title="1. Frame的宽高设置以及grid_propagate()方法"></a>1. Frame的宽高设置以及grid_propagate()方法</h1><h2 id="1-1-Frame的宽高设置"><a href="#1-1-Frame的宽高设置" class="headerlink" title="1.1 Frame的宽高设置"></a>1.1 Frame的宽高设置</h2><p>假如说，我们想让主界面稍微大一些，就算285像素宽210像素高吧。看起来，实现这一点只需要修改一下frm_root的属性即可：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">frm_root = tk.Frame(width=<span class="number">285</span>, height=<span class="number">210</span>)</div></pre></td></tr></table></figure>
+<p>但程序执行起来的结果和没有设置前毫无变化。主窗口的长宽与我们指定的值并不一致。这是为什么呢？</p>
+<h2 id="1-2-grid-propagate-设置"><a href="#1-2-grid-propagate-设置" class="headerlink" title="1.2 grid_propagate()设置"></a>1.2 grid_propagate()设置</h2><p>这是因为frame等容器类部件有一个grid_propagate的设置，其缺省设置为1（enabled）：</p>
+<ul>
+<li>当该设置enabled时（widget.grid_propagate(1)）：frame的大小将随其中容纳的所有部件的大小而变化，即frame的大小保证刚好能装下所有部件，frame部件本身的长宽设置不再起作用；</li>
+<li>当该设置disabled时（widget.grid_propagate(0)）： frame的大小遵从其自身的长宽设置，不再考虑内部容纳部件的大小。</li>
+</ul>
+<p>因此，我们只需disable掉frm_root的grid_propagate设置即可：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">frm_root = tk.Frame(width=<span class="number">285</span>, height=<span class="number">210</span>)</div><div class="line">frm_root.grid_propagate(<span class="number">0</span>)</div></pre></td></tr></table></figure>
+<p>通过运行结果可见，新的主界面确实比原来大了：</p>
+<p><img src="/images/tmp04.png" alt="修改了大小及grid_propagate的主界面"></p>
+<p>但现在所有部件还都紧紧地挤在一起，堆在主界面的右上角。看来通过修改frame大小，并不能很好地改善我们的布局。</p>
+<p>下面，我们通过grid()方法的pad（外部间距）与ipad（内部间距）设置，以及部件的pad（内部间距）属性来进一步调节各个部件的位置。</p>
+<h1 id="2-grid-方法的pad-ipad设置与部件的pad属性"><a href="#2-grid-方法的pad-ipad设置与部件的pad属性" class="headerlink" title="2. grid()方法的pad/ipad设置与部件的pad属性"></a>2. grid()方法的pad/ipad设置与部件的pad属性</h1><h2 id="2-1-pad与ipad简介"><a href="#2-1-pad与ipad简介" class="headerlink" title="2.1 pad与ipad简介"></a>2.1 pad与ipad简介</h2><p>无论是grid()方法的pad/ipad设置，还是部件的pad属性，都是用来调整部件间距的。</p>
+<p>这里我们借用HTML/CSS中的margin（外部间距）/padding（内部间距）来理解一下：</p>
+<p><img src="/images/CSS_Border_Margin_Padding.png" alt="HTML &amp; CSS - Design and Build Websites中关于Border、Margin和Padding的图示说明"></p>
+<p>不用过多解释，这幅图已经很好地解释了什么是margin（外部间距），什么是padding（内部间距）。</p>
+<p>上图摘自Jon Duckett所著<em>HTML &amp; CSS - Design and Build Websites</em>的第13章 Boxes。顺便强力推荐一波，这本书不仅将HTML/CSS相关概念讲得非常清晰有条理，而且其排版更是干净、漂亮，宛如一尊精致的工艺品（下面是两段样张）：</p>
+<p><img src="/images/HTMLCSS_DesignAndBuildWebsites001.png" alt="HTML &amp; CSS - Design and Build Websites样页1"></p>
+<p><img src="/images/HTMLCSS_DesignAndBuildWebsites002.png" alt="HTML &amp; CSS - Design and Build Websites样页2"></p>
+<h2 id="2-2-grid-方法的pad-ipad设置"><a href="#2-2-grid-方法的pad-ipad设置" class="headerlink" title="2.2 grid()方法的pad/ipad设置"></a>2.2 grid()方法的pad/ipad设置</h2><p>grid()方法中的pad分为padx、pady，分别用以设置控件<strong>外部</strong>的横向间距与纵向间距，对应上述HTML/CSS中的margin；ipad同样分为ipadx、ipady，用以设置控件<strong>内部</strong>的横向间距与纵向间距，对应上述HTML/CSS中的padding。</p>
+<p>使用方法为：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">widget.grid(padx=<span class="number">5</span>, pady=<span class="number">10</span>, ipadx=<span class="number">15</span>, ipady=<span class="number">20</span>)</div></pre></td></tr></table></figure></p>
+<p>如果左右边距或上下边距需要设置为不一致的值，我们可以将一个包含两个值的tuple传给相关属性，如：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">widget.grid(padx=(<span class="number">5</span>, <span class="number">10</span>), pady=<span class="number">10</span>, ipadx=<span class="number">15</span>, ipady=<span class="number">20</span>)</div></pre></td></tr></table></figure></p>
+<h2 id="2-3-部件的pad属性"><a href="#2-3-部件的pad属性" class="headerlink" title="2.3 部件的pad属性"></a>2.3 部件的pad属性</h2><p>部件的pad属性同样分为padx、pady，分别用以设置控件<strong>内部</strong>的横向间距与纵向间距，对应HTML/CSS中的padding。<br>使用方法为（以Label为例）：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">lbl_tags = tkinter.Label(frm_root, padx=<span class="number">5</span>, pady=<span class="number">10</span>)</div></pre></td></tr></table></figure></p>
+<p><strong>注意：</strong></p>
 <ol>
-<li>Python 语法解释；</li>
-<li>Python GUI编程的完整介绍。</li>
+<li>部件的pad属性不支持tuple赋值，即不支持左右边距或上下边距不一致</li>
+<li>部件没有ipad属性</li>
 </ol>
-<h1 id="1-Python-tkinter布局简介"><a href="#1-Python-tkinter布局简介" class="headerlink" title="1. Python tkinter布局简介"></a>1. Python tkinter布局简介</h1><p>布局是GUI程序的重要概念，它决定了屏幕上每一个部件（widget）的位置。<br>Python标准GUI库tkinter支持三种布局方式：</p>
+<h2 id="2-4-样例程序，以及grid-方法pad-ipad设置与部件pad属性的配合使用"><a href="#2-4-样例程序，以及grid-方法pad-ipad设置与部件pad属性的配合使用" class="headerlink" title="2.4 样例程序，以及grid()方法pad/ipad设置与部件pad属性的配合使用"></a>2.4 样例程序，以及grid()方法pad/ipad设置与部件pad属性的配合使用</h2><p>我们用最简单的界面（主界面上只有一个Label）来演示相关效果。同时为了看清楚内外间距，我们特意把Label的border描出来了。</p>
+<h3 id="2-4-1-原始程序"><a href="#2-4-1-原始程序" class="headerlink" title="2.4.1 原始程序"></a>2.4.1 原始程序</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> tkinter <span class="keyword">as</span> tk</div><div class="line"></div><div class="line"><span class="comment"># main window</span></div><div class="line">frm_root = tk.Frame()</div><div class="line">frm_root.grid()</div><div class="line"></div><div class="line"><span class="comment"># tags row - label</span></div><div class="line">lbl_tags = tk.Label(frm_root,  borderwidth=<span class="number">1</span>, relief=<span class="string">"solid"</span>,</div><div class="line">                    text=<span class="string">"foobarfoobarfoobarfoobar"</span>)</div><div class="line">lbl_tags.grid(row=<span class="number">0</span>, column=<span class="number">0</span>)</div><div class="line"></div><div class="line">frm_root.mainloop()</div></pre></td></tr></table></figure>
+<p>运行结果：</p>
+<p><img src="/images/pads_no_pads.png" alt="未设置任何pad/ipad选项时的小程序界面"></p>
+<h3 id="2-4-2-设置Label的内边距"><a href="#2-4-2-设置Label的内边距" class="headerlink" title="2.4.2 设置Label的内边距"></a>2.4.2 设置Label的内边距</h3><p>我们只需要改创建lbl_tags对象的语句：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">lbl_tags = tk.Label(frm_root,  borderwidth=<span class="number">1</span>, relief=<span class="string">"solid"</span>, padx=<span class="number">15</span>, pady=<span class="number">15</span>,</div><div class="line">                    text=<span class="string">"foobarfoobarfoobarfoobar"</span>)</div></pre></td></tr></table></figure></p>
+<p>运行结果：</p>
+<p><img src="/images/pads_Labelpad.png" alt="设置Label的pad属性时的小程序界面"></p>
+<h3 id="2-4-3-设置Label的外边距"><a href="#2-4-3-设置Label的外边距" class="headerlink" title="2.4.3 设置Label的外边距"></a>2.4.3 设置Label的外边距</h3><p>由于部件自身没有ipad属性，因此我们需要设置其grid()方法中的pad设置：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">lbl_tags.grid(row=<span class="number">0</span>, column=<span class="number">0</span>, padx=<span class="number">15</span>, pady=<span class="number">15</span>)</div></pre></td></tr></table></figure></p>
+<p>运行结果：</p>
+<p><img src="/images/pads_bothpad.png" alt="设置Label的pad属性以及其grid()方法中pad设置后的小程序界面"></p>
+<h3 id="2-4-3-内外边距配合使用"><a href="#2-4-3-内外边距配合使用" class="headerlink" title="2.4.3 内外边距配合使用"></a>2.4.3 内外边距配合使用</h3><p>一般来说，我们：</p>
 <ul>
-<li><strong>pack</strong> - 采用<strong>堆砌法</strong>来组织部件，程序需指定部件与部件之间的相对位置</li>
-<li><strong>place</strong> - 采用<strong>位置法</strong>来组织部件，程序需明确指定部件要被显示的坐标</li>
-<li><strong>grid</strong> - 采用<strong>表格法</strong>来组织部件，系统把屏幕（frame）视为一个二维表格，程序需指定某部件要显示在哪一个单元格中</li>
+<li>通过部件本身的pad属性，设置内部边距；</li>
+<li>通过部件grid()方法的pad设置，设置其外部边距</li>
 </ul>
-<p>这三种布局方式实现的功能是一致的<sup><a href="#user-content-note1">1</a></sup>，每一种布局方式都可以让程序员：</p>
-<ul>
-<li>管理部件的位置</li>
-<li>管理部件与其相关处理的关联注册关系</li>
-<li>在屏幕上显示部件</li>
-</ul>
-<p><strong>注意：这三种布局方式互不兼容，因此不要在同一窗口中混用！</strong></p>
-<h1 id="2-一般情况下推荐使用grid布局"><a href="#2-一般情况下推荐使用grid布局" class="headerlink" title="2. 一般情况下推荐使用grid布局"></a>2. 一般情况下推荐使用grid布局</h1><p>一般说来，在这三种布局方式中，pack最简单粗旷，place最精细复杂，而grid在这两者之间最为平衡：既不失简洁又足以控制部件出现在你想要的位置上。因此grid布局获得了很多人的推荐：</p>
-<ul>
-<li><p><a href="http://infohost.nmt.edu/tcc/help/pubs/tkinter/web/index.html" target="_blank" rel="external">Tkinter 8.5 reference: a GUI for Python</a>提到：</p>
-<blockquote>
-<p>Although there are three different “geometry managers” in Tkinter, the author strongly prefers the .grid() geometry manager for pretty much everything. </p>
-</blockquote>
-</li>
-<li><p><a href="http://www.effbot.org/tkinterbook/grid.htm" target="_blank" rel="external">The Tkinter Grid Geometry Manager</a>是这么说的：</p>
-<blockquote>
-<p>The grid manager is the most flexible of the geometry managers in Tkinter. If you don’t want to learn how and when to use all three managers, you should at least make sure to learn this one.</p>
-</blockquote>
-</li>
-<li><p><a href="http://www.python-course.eu/tkinter_layout_management.php" target="_blank" rel="external">Python Course - Layout Managers / Geometry Manager</a>总结到：</p>
-<blockquote>
-<p>Grid is in many cases the best choice for general use. While pack is sometimes not sufficient for changing details in the layout, place gives you complete control of positioning each element, but this makes it a lot more complex than pack and grid. </p>
-</blockquote>
-</li>
-</ul>
-<p>既然大家都说好，那么赶紧用起来吧！</p>
-<h1 id="3-grid的基本概念与使用"><a href="#3-grid的基本概念与使用" class="headerlink" title="3. grid的基本概念与使用"></a>3. grid的基本概念与使用</h1><h2 id="3-1-布局的基本概念"><a href="#3-1-布局的基本概念" class="headerlink" title="3.1 布局的基本概念"></a>3.1 布局的基本概念</h2><p>为了便于大家理解，我们先看看最熟悉的EXCEL。EXCEL的工作表虽是一张二维表，但是通过行列的组合，我们可以用其实现复杂的排版：</p>
-<ul>
-<li>样例1 - 账单：</li>
-</ul>
-<p><img src="/images/grid_EXCEL_example01.png" alt="EXCEL示例"></p>
-<ul>
-<li>样例2 - 日历：</li>
-</ul>
-<p><img src="/images/grid_EXCEL_example02.png" alt="EXCEL示例"></p>
-<p>tkinter grid布局的工作方式与EXCEL一样（或者更精确地说，和HTML的table标签一样）：</p>
-<ul>
-<li>程序指定某个部件位于哪个单元格中；</li>
-<li>出于排版的需要，可以将若干个单元格合并以容纳某个部件（比如上面<em>EXCEL样例1-账单</em>中的<em>实际客户名称</em>就将被放置于21行的C、D、E合并单元格中）</li>
-</ul>
-<h2 id="3-2-grid方法简介"><a href="#3-2-grid方法简介" class="headerlink" title="3.2 grid方法简介"></a>3.2 grid方法简介</h2><p>grid布局中最重要的内容就是grid()方法。tkinter中所有标准部件都支持grid()法。通过调用grid()方法，每个部件得以获取其布局位置，并在屏幕上显示出来。</p>
-<p>grid方法的基本形式为：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">widget.grid()</div></pre></td></tr></table></figure></p>
-<h2 id="3-3-如何指定行列"><a href="#3-3-如何指定行列" class="headerlink" title="3.3 如何指定行列"></a>3.3 如何指定行列</h2><p>与HTML的table标签一样，grid布局不需要（也不能）预先指定本屏幕（frame）中到底有多少行多少列。grid随着你的使用而自动增加行列。</p>
-<ul>
-<li>grid默认你从第0行第0列放置第一个部件（widget）：</li>
-<li>如果不指定行列，grid将把当前部件放到当前行的下一列中（从第0行第0列开始），这也意味着你一直用<code>widget.grid()</code>放部件，所有部件都会出现在一行中；</li>
-<li>同大家的直觉一致，grid的第1列在第0列右侧，第1行在第0行下方，其它行列依此类推；</li>
-<li>你可以通过row与column选项告知grid某部件应该被放置到哪一行列：</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">widget.grid(row=<span class="number">1</span>, column=<span class="number">0</span>)</div></pre></td></tr></table></figure>
-<ul>
-<li>上述语句将widget放置在grid布局的第1行（第0行下方）的第0列（最左侧）</li>
-</ul>
-<h2 id="3-4-列宽与行高"><a href="#3-4-列宽与行高" class="headerlink" title="3.4 列宽与行高"></a>3.4 列宽与行高</h2><p>grid布局与流行的网页bootstrap布局不一样，其列宽与行高不是固定的：</p>
-<ul>
-<li>grid某列的列宽是由该列中容纳的最宽部件所决定的；</li>
-<li>grid某行的高度是由该行中容纳的最高部件所决定的。</li>
-<li>程序无法直接指定grid的列宽与行高。</li>
-</ul>
-<h2 id="3-5-合并单元格-扩展行列"><a href="#3-5-合并单元格-扩展行列" class="headerlink" title="3.5 合并单元格/扩展行列"></a>3.5 合并单元格/扩展行列</h2><p>我们上面说过，合并单元格的目的是为了“排版的需要”；比如上面EXCEL的两个样例演示的那样。后续的博文中，我们会给出实际的例子。这里我们先看看基本代码如何实现：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 部件1占据第0行第0、1列（列扩展）</span></div><div class="line">widget1.grid(row=<span class="number">0</span>, column=<span class="number">0</span>, columnspan=<span class="number">2</span>)</div><div class="line"></div><div class="line"><span class="comment"># 部件2占据第1、2行第0列（行扩展）</span></div><div class="line">widget2.grid(row=<span class="number">1</span>, column=<span class="number">0</span>, rowspan=<span class="number">2</span>)</div><div class="line"></div><div class="line"><span class="comment"># 部件3占据第3、4行第0、1列（行列同时扩展）</span></div><div class="line">widget3.grid(row=<span class="number">3</span>, column=<span class="number">0</span>, columnspan=<span class="number">2</span>, rowspan=<span class="number">2</span>)</div></pre></td></tr></table></figure>
-<p>用EXCEL来示意，这几个部件的位置应该如下图所示：</p>
-<p><img src="/images/grid_EXCEL_example03.png" alt="用EXCEL示意widget位置"></p>
-<p><strong>注意：没有widget4与widget5，widget2是没有必要扩展到两行的（为什么？你应该能想明白）；当然，widget3也是一样，只不过实例代码与Excel示意图上都省略了其他widget而已。</strong></p>
-<p>grid布局的基本概念与使用就先介绍到这里吧，后续博文会通过样例程序继续讲解grid的进阶使用。</p>
-<hr>
-<h1 id="尾注"><a href="#尾注" class="headerlink" title="尾注"></a>尾注</h1><ol><br>    <li id="user-content-note1">虽然每一种布局方式都能实现GUI，但不同布局方式的控制方式有所区别，在细微之处无法完全互相替代。</li><br></ol>
+<p>理论上，部件的外部边距也可以被视为其所在Frame的内部边距，但由于grid()方法的ipad设置在某些场景下会出现问题，所以并不推荐这么使用。</p>
+<p>举一个例子，我们按照这个思路改写一下程序：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> tkinter <span class="keyword">as</span> tk</div><div class="line"></div><div class="line"><span class="comment"># main window</span></div><div class="line">frm_root = tk.Frame()</div><div class="line">frm_root.grid(ipadx=<span class="number">15</span>, ipady=<span class="number">15</span>)</div><div class="line"></div><div class="line"><span class="comment"># tags row - label</span></div><div class="line">lbl_tags = tk.Label(frm_root,  borderwidth=<span class="number">1</span>, relief=<span class="string">"solid"</span>, padx=<span class="number">15</span>, pady=<span class="number">15</span>,</div><div class="line">                    text=<span class="string">"foobarfoobarfoobarfoobar"</span>)</div><div class="line">lbl_tags.grid(row=<span class="number">0</span>, column=<span class="number">0</span>)</div><div class="line"></div><div class="line">frm_root.mainloop()</div></pre></td></tr></table></figure>
+<p>其运行结果就比较诡异了：</p>
+<p><img src="/images/pads_invalid_ipad.png" alt="设置Frame的grid()方法中ipad后的小程序界面"></p>
+<p>这里tkinter似乎知道要去设置frame的内部边距（即label的外部边距），但是却阴差阳错设置错了。所以，一般来说，没有特殊需要，我们不使用grid()方法的ipad设置。</p>
 
             </div>
         </div>

@@ -7,13 +7,15 @@
 
     
 
-    <title>归档 | Tao Zhang&#39;s Blog</title>
+    <title>Python grid布局的简介与细节进阶 （2） | Tao Zhang&#39;s Blog</title>
     <meta name="author" content="Tao Zhang">
+    
+    <meta name="description" content="上一节我们介绍了tkinter库（Python标准GUI库）grid布局的基本概念。从本节开始，我们用一个很简单的样例程序，来演示grid布局的使用以及一些有意思的细节。">
     
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    
+    <meta property="og:title" content="Python grid布局的简介与细节进阶 （2）"/>
     <meta property="og:site_name" content="Tao Zhang&#39;s Blog"/>
 
     
@@ -175,87 +177,92 @@
 
     <main>
         <div class="container main-container">
-    
-
-<nav class="page-nav hide-on-small-only">
+    <nav class="page-nav hide-on-small-only">
     <div class="nav-wrapper blue darken-4">
-        <span class="breadcrumb">当前位置（归档）</span>
+        <span class="breadcrumb">当前位置（分类目录）</span>
+        
+            
+
         
 
         
     </div>
 </nav>
 
+<article>
+    <div class="card">
+        <div class="card-content">
+            
+
+            <div class="article-title">
+                
+    
+        <h1>Python grid布局的简介与细节进阶 （2）</h1>
+    
 
 
-    <ul class="collapsible mt-0" data-collapsible="accordion">
-        
-        
-            <li>
-                <div class="collapsible-header active">
-                    <i class="fa fa-archive"></i>2017
-                </div>
-                <div class="collapsible-body">
-                    <div class="collection">
-                        
-                            <a href="/2017/12/03/Python-grid-layout-104/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-12-03T15:00:00.000Z">2017-12-03</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                Python grid布局的简介与细节进阶 （4）
-                            </a>
-                        
-                            <a href="/2017/12/03/Python-grid-layout-103/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-12-03T14:30:00.000Z">2017-12-03</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                Python grid布局的简介与细节进阶 （3）
-                            </a>
-                        
-                            <a href="/2017/12/03/Python-grid-layout-102/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-12-03T14:00:00.000Z">2017-12-03</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                Python grid布局的简介与细节进阶 （2）
-                            </a>
-                        
-                            <a href="/2017/04/23/Python-grid-layout-101/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2017-04-23T14:49:41.000Z">2017-04-23</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                Python grid布局的简介与细节进阶 （1）
-                            </a>
-                        
-                    </div>
-                </div>
-            </li>
-        
-            <li>
-                <div class="collapsible-header ">
-                    <i class="fa fa-archive"></i>2016
-                </div>
-                <div class="collapsible-body">
-                    <div class="collection">
-                        
-                            <a href="/2016/11/13/ODM-Integration/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2016-11-12T16:42:19.000Z">2016-11-13</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                ODM规则引擎在银行中的整合应用
-                            </a>
-                        
-                            <a href="/2016/10/01/Kanban-Yes-And-No/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2016-10-01T12:41:19.000Z">2016-10-01</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                看板非板 看板有板 看板限板 —— 看板方法的是是非非
-                            </a>
-                        
-                            <a href="/2016/09/07/How-to-Use-Sublime-to-Write-Markdown-Files/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2016-09-06T16:07:59.000Z">2016-09-07</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                如何使用Sublime2编辑Markdown文件
-                            </a>
-                        
-                    </div>
-                </div>
-            </li>
-        
-    </ul>
+            </div>
+            <time class="deep-orange-link-context" datetime="2017-12-03T14:00:00.000Z"><a href="/2017/12/03/Python-grid-layout-102/">2017-12-03</a></time>
+
+            
+
+            <div class="toc deep-orange-link-context hide-on-med-and-down">
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#1-样例程序简介"><span class="section table-of-contents-text">1. 样例程序简介</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#1-1-样例程序说明"><span class="section table-of-contents-text">1.1 样例程序说明</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#1-2-样例程序GUI设计"><span class="section table-of-contents-text">1.2 样例程序GUI设计</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#2-整体布局-grid与frame的配合使用"><span class="section table-of-contents-text">2. 整体布局 - grid与frame的配合使用</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#2-1-frame简介"><span class="section table-of-contents-text">2.1 frame简介</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#2-2-frame与grid的配合使用"><span class="section table-of-contents-text">2.2 frame与grid的配合使用</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#尾注"><span class="section table-of-contents-text">尾注</span></a></li></ol>
+</div>
+
+
+            <div class="entry deep-orange-link-context">
+                <p>上一节我们介绍了<a href="https://zhangtao75.github.io/2017/04/23/Python-grid-layout-101/" target="_blank" rel="external">tkinter库（Python标准GUI库）grid布局的基本概念</a>。从本节开始，我们用一个很简单的样例程序，来演示grid布局的使用以及一些有意思的细节。<a id="more"></a></p>
+<h1 id="1-样例程序简介"><a href="#1-样例程序简介" class="headerlink" title="1. 样例程序简介"></a>1. 样例程序简介</h1><h2 id="1-1-样例程序说明"><a href="#1-1-样例程序说明" class="headerlink" title="1.1 样例程序说明"></a>1.1 样例程序说明</h2><p>这个样例程序（CreateTagFiles）的功能很简单：在指定目录下创建若干以指定短语为文件名的空文件。<br>这些空文件可以被视为该目录的标签，能够很方便地被Everything等文件搜索工具检索到。比如，你在某CD音频文件目录下创建了“古典音乐”，“交响曲”，“海顿”，“卡拉扬”，“柏林爱乐”等空文件，那么当你用Everything检索“海顿”的时候，就能一下子找到包含这个目录在内的、所有放置了“海顿”标签文件的文件夹了。</p>
+<h2 id="1-2-样例程序GUI设计"><a href="#1-2-样例程序GUI设计" class="headerlink" title="1.2 样例程序GUI设计"></a>1.2 样例程序GUI设计</h2><p>从上面的需求可见，GUI上需包括如下组件：</p>
+<ul>
+<li>用户输入：需要指定特定目录、指定若干短语 —— 简单起见，使用两个文本输入框就好了；</li>
+<li>用户确定：确定生成这些这些文件 —— 需要一个“Create”按钮；</li>
+<li>完成退出 —— 需要一个“Close”按钮；</li>
+</ul>
+<p>因此，界面设计简图如下：</p>
+<p><img src="/images/TagCreator_GUIDesign01.png" alt="TagCreator 界面设计"></p>
+<p>按照这个设计，我们很可以自然地看出，屏幕上半部每行要容纳三个组件（文本提示、文字输入框、滚动条），而下半部每行要容纳两个组件（两个按钮）。</p>
+<p>如果我们将整个屏幕作为一个grid来设计的话，grid至少要有3列。但是，3列的排版又会让下面的两个按钮难以排列整齐。有什么好办法吗？</p>
+<h1 id="2-整体布局-grid与frame的配合使用"><a href="#2-整体布局-grid与frame的配合使用" class="headerlink" title="2. 整体布局 - grid与frame的配合使用"></a>2. 整体布局 - grid与frame的配合使用</h1><p>当屏幕不同位置需要不同数量的行列时，frame能起到很大作用。</p>
+<h2 id="2-1-frame简介"><a href="#2-1-frame简介" class="headerlink" title="2.1 frame简介"></a>2.1 frame简介</h2><p>一个frame就是屏幕上的一块矩形区域，frame虽然是一种部件（widget），但一般总是被用来容纳、组织其他部件的。</p>
+<p><strong>注意：frame是部件（widget）的一种，部件是出现在屏幕上的一个具体物；grid是布局（layout）的一种，是部件如何被组织的一种体系、方法。两者完全不同。</strong></p>
+<p>在tkinter中，主窗口本身就是一个frame。</p>
+<p>tkinter主窗口的常规写法是：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> tkinter</div><div class="line">top = tkinter.Tk()</div><div class="line">top.mainloop()</div></pre></td></tr></table></figure>
+<p>但我更喜欢按照一般部件的方法来创建frame，即：</p>
+<ol>
+<li>创建部件</li>
+<li>放置部件</li>
+</ol>
+<p>代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> tkinter</div><div class="line">frm_root = tkinter.Frame()</div><div class="line">frm_root.grid()</div><div class="line">frm_root.mainloop()</div></pre></td></tr></table></figure>
+<p>grid()方法的简介可以参见上一节<a href="https://zhangtao75.github.io/2017/04/23/Python-grid-layout-101/" target="_blank" rel="external">Python grid布局的简介与细节 （1）</a>。</p>
+<h2 id="2-2-frame与grid的配合使用"><a href="#2-2-frame与grid的配合使用" class="headerlink" title="2.2 frame与grid的配合使用"></a>2.2 frame与grid的配合使用</h2><p>frame之所以常常被用来与grid配合使用，是因为每一个frame都可以有自己特定的grid布局（即不同的行列数）。</p>
+<p>这样，在样例程序中，我们可以在主frame上放置两个子frame：上面的子frame有2行3列，下面的子frame是1行2列。而这两个子frame在主frame中则是2行1列。</p>
+<p>这部分代码<sup><a href="#user-content-note1">1</a></sup>如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> tkinter <span class="keyword">as</span> tk</div><div class="line"></div><div class="line"><span class="comment"># 主窗口</span></div><div class="line">frm_root = tk.Frame()</div><div class="line">frm_root.grid()</div><div class="line"></div><div class="line"><span class="comment"># 主窗口第0行第0列 - 用户输入frame</span></div><div class="line">frm_input = tk.Frame(frm_root)</div><div class="line">frm_input.grid(row=<span class="number">0</span>)</div><div class="line"></div><div class="line"><span class="comment"># 主窗口第1行第0列 - 用户按钮frame</span></div><div class="line">frm_button = tk.Frame(frm_root)</div><div class="line">frm_button.grid(row=<span class="number">1</span>)</div><div class="line"></div><div class="line"><span class="comment"># 启动界面</span></div><div class="line">frm_root.mainloop()</div></pre></td></tr></table></figure></p>
+<p>执行<sup><a href="#user-content-note2">2</a></sup>上述代码，结果如下：</p>
+<p><img src="/images/tmp01.png" alt="只有空框架的主界面"></p>
+<p>我们仅仅放置了几个空frame，既没有在其中放置其他部件，也没有指定frame的长、宽，所以屏幕上自然什么都看不到。</p>
+<p>我们按照前面的设计，在“用户输入frame（主窗口第0行第0列 ）”中填入相关部件：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 用户输入frame内容</span></div><div class="line"><span class="comment"># 用户输入frame的第0行第0列 - Tags标签</span></div><div class="line">lbl_tags = tk.Label(frm_input, text=<span class="string">"Tags"</span>)</div><div class="line">lbl_tags.grid(row=<span class="number">0</span>, column=<span class="number">0</span>)</div><div class="line"><span class="comment"># 用户输入frame的第0行第1列 - Tags输入框</span></div><div class="line">txt_tags = tk.Text(frm_input, width=<span class="number">27</span>, height=<span class="number">10</span>)</div><div class="line">txt_tags.grid(row=<span class="number">0</span>, column=<span class="number">1</span>)</div><div class="line"><span class="comment"># 用户输入frame的第0行第2列 - Tags输入框的滚动条</span></div><div class="line">srb_tags = tk.Scrollbar(frm_input)</div><div class="line">srb_tags.grid(row=<span class="number">0</span>, column=<span class="number">2</span>)</div><div class="line"><span class="comment"># 用户输入frame的第1行第0列 - Path标签</span></div><div class="line">lbl_path = tk.Label(frm_input, text=<span class="string">"Directory"</span>)</div><div class="line">lbl_path.grid(row=<span class="number">1</span>, column=<span class="number">0</span>)</div><div class="line"><span class="comment"># 用户输入frame的第1行第1、2列 - Path输入框</span></div><div class="line">etr_path = tk.Entry(frm_input, width=<span class="number">30</span>)</div><div class="line">etr_path.grid(row=<span class="number">1</span>, column=<span class="number">1</span>, columnspan=<span class="number">2</span>)</div></pre></td></tr></table></figure>
+<p>然后再在“按钮frame（主窗口第1行第0列）”中填入相关部件（这两段向frames中填充部件的代码放到主程序的frm_root.mainloop()语句之前即可）：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 按钮frame内容</span></div><div class="line"><span class="comment"># 按钮frame的第0行第0列 - “Create”按钮</span></div><div class="line">btn_create = tk.Button(frm_button, text=<span class="string">'Create'</span>, width=<span class="number">5</span>)</div><div class="line">btn_create.grid(row=<span class="number">0</span>, column=<span class="number">0</span>)</div><div class="line"><span class="comment"># 按钮frame的第0行第1列 - “Close”按钮</span></div><div class="line">btn_close = tk.Button(frm_button, text=<span class="string">'Close'</span>, width=<span class="number">5</span>)</div><div class="line">btn_close.grid(row=<span class="number">0</span>, column=<span class="number">1</span>)</div></pre></td></tr></table></figure>
+<p>执行上述代码，结果如下：</p>
+<p><img src="/images/tmp02.png" alt="填充了所有部件的主界面"></p>
+<p>不错，现在所有的部件都已经差不多就位了，剩下一些精细的调整，我们下一篇再说。</p>
+<hr>
+<h1 id="尾注"><a href="#尾注" class="headerlink" title="尾注"></a>尾注</h1><ol><br>    <li id="user-content-note1">本系列博文中代码使用的Python版本为3.6.3</li><br>    <li id="user-content-note2">本系列博文中代码运行的操作系统为Windows 7 Ultimate SP1</li><br></ol>
+
+
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
 
 
 </div>
