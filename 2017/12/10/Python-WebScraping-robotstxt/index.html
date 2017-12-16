@@ -7,13 +7,17 @@
 
     
 
-    <title>归档：2016/11 | Tao Zhang&#39;s Blog</title>
+    <title>Python网络爬取与robots.txt协议 | Tao Zhang&#39;s Blog</title>
     <meta name="author" content="Tao Zhang">
+    
+    <meta name="description" content="0. 背景现在很多Python入门的教程、书籍，都是以网络爬虫程序为例；其普及之广直追大学里人人都写过的『图书馆管理系统』了。但是这些教程一般都只强调Python程序的简单、第三方库的强大，但很少有教程认真讲讲robots.txt协议（顺便提一句的都很少）。
+爬取网络信息而不遵守甚至不知道robots.txt协议 —— 说轻了，是闹个左刀右叉的礼仪笑话；说重了，有可能在不知不觉间就吃了官司呢1。
+那我们今天就来讲讲什么是robots.txt协议，以及在Python中怎么使用robots.txt。">
     
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    
+    <meta property="og:title" content="Python网络爬取与robots.txt协议"/>
     <meta property="og:site_name" content="Tao Zhang&#39;s Blog"/>
 
     
@@ -175,40 +179,158 @@
 
     <main>
         <div class="container main-container">
-    
-
-<nav class="page-nav hide-on-small-only">
+    <nav class="page-nav hide-on-small-only">
     <div class="nav-wrapper blue darken-4">
-        <span class="breadcrumb">当前位置（标签）</span>
+        <span class="breadcrumb">当前位置（分类目录）</span>
+        
+            
+
         
 
         
     </div>
 </nav>
 
+<article>
+    <div class="card">
+        <div class="card-content">
+            
+
+            <div class="article-title">
+                
+    
+        <h1>Python网络爬取与robots.txt协议</h1>
+    
 
 
-    <ul class="collapsible mt-0" data-collapsible="accordion">
+            </div>
+            <time class="deep-orange-link-context" datetime="2017-12-10T11:00:00.000Z"><a href="/2017/12/10/Python-WebScraping-robotstxt/">2017-12-10</a></time>
+
+            
+    <div class="tags-row">
         
+            <a href="/tags/Python/" class="chip deep-orange">Python</a>
         
-            <li>
-                <div class="collapsible-header active">
-                    <i class="fa fa-archive"></i>2016
-                </div>
-                <div class="collapsible-body">
-                    <div class="collection">
-                        
-                            <a href="/2016/11/13/ODM-Integration/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2016-11-12T16:42:19.000Z">2016-11-13</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                ODM规则引擎在银行中的整合应用
-                            </a>
-                        
-                    </div>
-                </div>
-            </li>
+            <a href="/tags/Web-scraping/" class="chip deep-orange">Web scraping</a>
         
-    </ul>
+            <a href="/tags/网络爬取/" class="chip deep-orange">网络爬取</a>
+        
+    </div>
+
+
+            <div class="toc deep-orange-link-context hide-on-med-and-down">
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#0-背景"><span class="section table-of-contents-text">0. 背景</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#1-robots-txt协议简介"><span class="section table-of-contents-text">1. robots.txt协议简介</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#2-robots-txt的写法及含义"><span class="section table-of-contents-text">2. robots.txt的写法及含义</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#2-1-一些例子"><span class="section table-of-contents-text">2.1 一些例子</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#3-Python如何处理robots-txt文件"><span class="section table-of-contents-text">3. Python如何处理robots.txt文件</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#相关网站"><span class="section table-of-contents-text">相关网站</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#尾注"><span class="section table-of-contents-text">尾注</span></a></li></ol>
+</div>
+
+
+            <div class="entry deep-orange-link-context">
+                <h1 id="0-背景"><a href="#0-背景" class="headerlink" title="0. 背景"></a>0. 背景</h1><p>现在很多Python入门的教程、书籍，都是以网络爬虫程序为例；其普及之广直追大学里人人都写过的『图书馆管理系统』了。但是这些教程一般都只强调Python程序的简单、第三方库的强大，但很少有教程认真讲讲robots.txt协议（顺便提一句的都很少）。</p>
+<p>爬取网络信息而不遵守甚至不知道robots.txt协议 —— 说轻了，是闹个左刀右叉的礼仪笑话；说重了，有可能在不知不觉间就吃了官司呢<sup><a href="#user-content-note1">1</a></sup>。</p>
+<p>那我们今天就来讲讲什么是robots.txt协议，以及在Python中怎么使用robots.txt。<a id="more"></a></p>
+<h1 id="1-robots-txt协议简介"><a href="#1-robots-txt协议简介" class="headerlink" title="1. robots.txt协议简介"></a>1. robots.txt协议简介</h1><p>robots.txt协议的官方名称为Robots Exclusion Protocol（中译：网络爬虫排除标准）。此协议可以让网站告诉各方爬虫程序：该网站的哪些页面可以抓取，哪些页面不能抓取。</p>
+<p>首先需要说明的是，这个robots.txt协议并不是ISO、W3C这种行业垄断组织协商一致、强制推行的协议或标准。robots.txt协议是由荷兰软件工程师Martijn Koster（网络搜索引擎先驱之一）在1994年提出来的。提出之后，该协议很快就成为业界的<strong>事实</strong>标准；绝大多数搜索引擎，如Ask、AOL、Baidu、Bing、DuckDuckGo、Google、Yahoo!、Yandex等，都遵从这个事实协议。</p>
+<p>robots.txt协议基本内容如下：</p>
+<ol>
+<li>如果某网站想要阻止爬虫程序爬取其某些网页，则可以在该网站的根目录下放置一个名为robots.txt（文件名全部为小写字母）的ASCII纯文本说明文件（写法及含义见后续说明）；</li>
+<li>如果该网站没有放置robots.txt文件，则该网站对爬虫程序没有任何限制；</li>
+<li>robots.txt文件是大小写敏感的；</li>
+<li>robots.txt文件仅仅是一个指示性文件，并没有绝对的强制效力，爬虫程序可以忽略该文件；因此，敏感数据不能依靠robots.txt来保护。</li>
+</ol>
+<h1 id="2-robots-txt的写法及含义"><a href="#2-robots-txt的写法及含义" class="headerlink" title="2. robots.txt的写法及含义"></a>2. robots.txt的写法及含义</h1><p><a href="http://www.robotstxt.org" target="_blank" rel="external">官方网站（www.robotstxt.org）</a>的说明自然最为权威。</p>
+<p>我们这里简单总结一下：</p>
+<p>标准robots.txt文件中，只有三种语句：</p>
+<ol>
+<li><p>注释语句。形如：<code># bala bala</code></p>
+</li>
+<li><p>User-agent语句。形如：<code>User-agent: agent-name</code>，指明其后Disallow语句所针对的爬虫程序的名字。常见的爬虫程序有：google机器人：<code>Googlebot</code>、百度蜘蛛：<code>Baiduspider</code>、yahoo爬虫：<code>Yahoo!slurp</code>、alexa爬虫：<code>ia_archiver</code>等。通配符（*）指代所有爬虫程序。</p>
+</li>
+<li><p>Disallow语句。形如：<code>Disallow: /path-name/</code>，指明<strong>不</strong>希望哪个目录下的内容（或匹配的内容）被爬虫程序访问。</p>
+</li>
+</ol>
+<p>在robots.txt文件中，User-agent和Disallow语句组成一个或多个如下的段落：</p>
+<blockquote>
+<p>User-agent: agent-name<br>Disallow: /path1/<br>Disallow: /path2/</p>
+</blockquote>
+<p>从语句含义可知，每段针对一种爬虫程序，告诉该爬虫程序不要爬取本站的哪些内容。</p>
+<p><code>User-agent: *</code>段最多只应出现一次，且应是文件的最后一段。<strong>我们自己编写的爬虫程序，通常应受<code>User-agent: *</code>段约束</strong>。</p>
+<h2 id="2-1-一些例子"><a href="#2-1-一些例子" class="headerlink" title="2.1 一些例子"></a>2.1 一些例子</h2><ul>
+<li>允许所有的爬虫程序访问整个网站：</li>
+</ul>
+<blockquote>
+<p>User-agent: *<br>Disallow:</p>
+</blockquote>
+<ul>
+<li>禁止所有的爬虫程序访问：</li>
+</ul>
+<blockquote>
+<p>User-agent: *<br>Disallow: /</p>
+</blockquote>
+<ul>
+<li>禁止某个爬虫程序（BadBot）访问特定目录，但允许其他爬虫程序访问整个网站：</li>
+</ul>
+<blockquote>
+<p>User-agent: BadBot<br>Disallow: /private/</p>
+<p>User-agent: *<br>Disallow:</p>
+</blockquote>
+<ul>
+<li>2017年12月16日<a href="https://baike.baidu.com/robots.txt" target="_blank" rel="external">百度百科的robots.txt文件（部分）</a>，允许一些特定的爬虫程序访问某些内容，但禁止其他爬虫程序访问</li>
+</ul>
+<blockquote>
+<p>…<br>User-agent: EasouSpider<br>Disallow: /update<br>Disallow: /history<br>Disallow: /usercard<br>Disallow: /usercenter<br>Disallow: /client/<br>Disallow: /divideload/<br>Disallow: /edit/<br>Disallow: /l/</p>
+<p>User-agent: *<br>Disallow: /</p>
+</blockquote>
+<ul>
+<li>2017年12月16日<a href="http://www.australia.gov.au/robots.txt" target="_blank" rel="external">澳大利亚政府（www.australia.gov.au）的robots.xt文件（部分）</a></li>
+</ul>
+<blockquote>
+<p># This file is to prevent the crawling and indexing of certain parts<br># of your site by web crawlers and spiders run by sites like Yahoo!<br># and Google. By telling these “robots” where not to go on your site,<br># you save bandwidth and server resources.</p>
+<p>User-agent: *<br>Crawl-delay: 10<br># Directories<br>Disallow: /includes/<br>Disallow: /misc/<br>Disallow: /modules/<br>Disallow: /profiles/<br>Disallow: /content/<br># Files<br>Disallow: /CHANGELOG.txt<br># Paths (clean URLs)<br>Disallow: /admin/<br># Paths (no clean URLs)<br>Disallow: /?q=search/</p>
+</blockquote>
+<p>由于robots.txt并非业界强制性标准，因此还有一些非标准扩展，如Crawl-delay（两次爬取之间需等待的秒数）、sitemap（网站地图，指导爬虫程序爬取）等等，大家可以自行google。这里就不多说了。</p>
+<h1 id="3-Python如何处理robots-txt文件"><a href="#3-Python如何处理robots-txt文件" class="headerlink" title="3. Python如何处理robots.txt文件"></a>3. Python如何处理robots.txt文件</h1><p>Python标准库urllib就有处理robots.txt的模块：urllib.robotparser</p>
+<p>使用urllib.robotparser很简单，常用步骤/语句如下：</p>
+<ol>
+<li><p>import</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> urllib.robotparser</div></pre></td></tr></table></figure>
+</li>
+<li><p>创建一个robots.txt文件的解析器（parser）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rp = urllib.robotparser.RobotFileParser()</div></pre></td></tr></table></figure>
+</li>
+<li><p>告诉解析器，你要检查哪个网站的robots.txt协议</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rp.set_url(<span class="string">"http://www.australia.gov.au/robots.txt"</span>)</div></pre></td></tr></table></figure>
+</li>
+<li><p>让解析器读取该robots.txt协议</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rp.read()</div></pre></td></tr></table></figure>
+</li>
+<li><p>询问解析器，某网页按照robots.txt协议是否可以爬取</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">rp.can_fetch(<span class="string">"*"</span>, <span class="string">"http://www.australia.gov.au/information-and-services/benefits-and-payments"</span>)</div><div class="line">rp.can_fetch(<span class="string">"*"</span>, <span class="string">"http://www.australia.gov.au/content/index.html"</span>)</div></pre></td></tr></table></figure>
+</li>
+<li><p>robotparser还支持Crawl-delay</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rp.crawl_delay(<span class="string">""</span>)</div></pre></td></tr></table></figure>
+</li>
+<li><p>打印robots.txt协议内容</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">print(rp)</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>上述若干语句的运行结果：</p>
+<p><img src="/images/robotparser_example01.png" alt="上述语句的运行结果"></p>
+<p>咦，别的语句工作得都非常正常，怎么print(rp)啥都没打印出来呀？说实话，我也不知道怎么回事。似乎这个版本（3.6.3）的robotparser无法打印出<code>User-agent: *</code>节。<strong>但好在这不影响rp.can_fetch()的使用</strong>。另外，其他指定User-agent节可以被正常print()。以百度百科为例：</p>
+<p><img src="/images/robotparser_baidubaike.png" alt="robotparser打印出的百度百科robots.txt"></p>
+<p>Python中处理robots.txt就是这么简单！希望大家以后在爬取网站的时候，注意遵守robots.txt协议，做个文明人～～～</p>
+<h1 id="相关网站"><a href="#相关网站" class="headerlink" title="相关网站"></a>相关网站</h1><p><a href="http://www.robotstxt.org" target="_blank" rel="external">官方网站（www.robotstxt.org）</a></p>
+<p><a href="https://zh.wikipedia.org/wiki/Robots.txt" target="_blank" rel="external">中文维基 - robots.txt</a></p>
+<p><a href="https://en.wikipedia.org/wiki/Robots_exclusion_standard" target="_blank" rel="external">英文维基 - Robots exclusion standard</a></p>
+<p><a href="http://www.cnblogs.com/sddai/p/6820415.html" target="_blank" rel="external">赏月斋 - Robots协议（爬虫协议、机器人协议）</a></p>
+<hr>
+<h1 id="尾注"><a href="#尾注" class="headerlink" title="尾注"></a>尾注</h1><ol><br>    <li id="user-content-note1">著名的robots.txt协议相关官司包括：<br>        <ul><br>            <li><a href="http://tech.qq.com/a/20140807/060393.htm" target="_blank" rel="external">360违反Robots协议被判不正当竞争 赔偿百度70万</a></li><br>            <li><a href="http://www.internetlibrary.com/cases/lib_case249.cfm" target="_blank" rel="external">Ebay Inc. v. Bidder’s Edge, Inc.</a></li><br>        </ul><br>    </li><br></ol>
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
 
 
 </div>
