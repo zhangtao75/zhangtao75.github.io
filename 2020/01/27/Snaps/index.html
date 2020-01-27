@@ -7,13 +7,19 @@
 
     
 
-    <title>归档：2020 | Tao Zhang&#39;s Blog</title>
+    <title>Snap简介 | Tao Zhang&#39;s Blog</title>
     <meta name="author" content="Tao Zhang">
+    
+    <meta name="description" content="Snap在 techopedia 上的定义是这样的：
+
+Ubuntu Snappy is a package manager originally created by Canonical for the Ubuntu Phone distribution. Packages are called “snaps” and are designed to work across different Linux distributions, not just Ubuntu.
+
+Ubuntu tutorials提供了 Basic snap usages 介绍。本文基本上是基于这个简介的提炼。">
     
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    
+    <meta property="og:title" content="Snap简介"/>
     <meta property="og:site_name" content="Tao Zhang&#39;s Blog"/>
 
     
@@ -175,46 +181,138 @@
 
     <main>
         <div class="container main-container">
-    
-
-<nav class="page-nav hide-on-small-only">
+    <nav class="page-nav hide-on-small-only">
     <div class="nav-wrapper blue darken-4">
-        <span class="breadcrumb">当前位置（归档）</span>
+        <span class="breadcrumb">当前位置（分类目录）</span>
+        
+            
+
         
 
         
     </div>
 </nav>
 
+<article>
+    <div class="card">
+        <div class="card-content">
+            
+
+            <div class="article-title">
+                
+    
+        <h1>Snap简介</h1>
+    
 
 
-    <ul class="collapsible mt-0" data-collapsible="accordion">
+            </div>
+            <time class="deep-orange-link-context" datetime="2020-01-27T08:02:00.000Z"><a href="/2020/01/27/Snaps/">2020-01-27</a></time>
+
+            
+    <div class="tags-row">
         
+            <a href="/tags/ubuntu/" class="chip deep-orange">ubuntu</a>
         
-            <li>
-                <div class="collapsible-header active">
-                    <i class="fa fa-archive"></i>2020
-                </div>
-                <div class="collapsible-body">
-                    <div class="collection">
-                        
-                            <a href="/2020/01/27/Snaps/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2020-01-27T08:02:00.000Z">2020-01-27</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                Snap简介
-                            </a>
-                        
-                            <a href="/2020/01/26/How-to-Use-Sublime-to-Write-Markdown-Files-02/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2020-01-26T07:56:00.000Z">2020-01-26</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                如何使用Sublime编辑Markdown文件 (续 - 本地图片预览)
-                            </a>
-                        
-                    </div>
-                </div>
-            </li>
+            <a href="/tags/snap/" class="chip deep-orange">snap</a>
         
-    </ul>
+    </div>
+
+
+            <div class="toc deep-orange-link-context hide-on-med-and-down">
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#1-开始"><span class="section table-of-contents-text">1. 开始</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#1-1-安装-snapd-服务"><span class="section table-of-contents-text">1.1 安装 snapd 服务</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#2-安装与运行-snap"><span class="section table-of-contents-text">2. 安装与运行 snap</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#2-1-搜索一个-snap"><span class="section table-of-contents-text">2.1 搜索一个 snap</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#2-2-安装与运行"><span class="section table-of-contents-text">2.2 安装与运行</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#安装一个-snap"><span class="section table-of-contents-text">安装一个 snap</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#运行一个-snap"><span class="section table-of-contents-text">运行一个 snap</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#2-3-列出已安装的-snaps"><span class="section table-of-contents-text">2.3 列出已安装的 snaps</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#2-4-更新"><span class="section table-of-contents-text">2.4 更新</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#3-snap-的更多特性"><span class="section table-of-contents-text">3. snap 的更多特性</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#3-1-snap-能提供一个或多个命令"><span class="section table-of-contents-text">3.1 snap 能提供一个或多个命令</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#3-2-snap-能提供服务"><span class="section table-of-contents-text">3.2 snap 能提供服务</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#3-3-卸载-snap"><span class="section table-of-contents-text">3.3 卸载 snap</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#4-snap-的不同版本"><span class="section table-of-contents-text">4. snap 的不同版本</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#4-1-切换其他版本"><span class="section table-of-contents-text">4.1 切换其他版本</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#4-2-退回"><span class="section table-of-contents-text">4.2 退回</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#5-其他资源"><span class="section table-of-contents-text">5. 其他资源</span></a></li></ol>
+</div>
+
+
+            <div class="entry deep-orange-link-context">
+                <p>Snap在 <a href="https://www.techopedia.com/definition/31316/ubuntu-snappy" target="_blank" rel="external">techopedia</a> 上的定义是这样的：</p>
+<blockquote>
+<p>Ubuntu Snappy is a package manager originally created by Canonical for the Ubuntu Phone distribution. Packages are called “snaps” and are designed to work across different Linux distributions, not just Ubuntu.</p>
+</blockquote>
+<p>Ubuntu tutorials提供了 <a href="https://tutorials.ubuntu.com/tutorial/basic-snap-usage" target="_blank" rel="external">Basic snap usages</a> 介绍。本文基本上是基于这个简介的提炼。<a id="more"></a></p>
+<h1 id="1-开始"><a href="#1-开始" class="headerlink" title="1. 开始"></a>1. 开始</h1><h2 id="1-1-安装-snapd-服务"><a href="#1-1-安装-snapd-服务" class="headerlink" title="1.1 安装 snapd 服务"></a>1.1 安装 snapd 服务</h2><p><strong>snapd</strong> 是管理snap的服务，支持很多Linux：</p>
+<ul>
+<li>ubuntu</li>
+<li>debian</li>
+<li>suse</li>
+<li>等等</li>
+</ul>
+<p>对于Ubuntu来说，16.04 LTS及以后版本都已自带 <strong>snapd</strong> 服务。之前的版本可以用如下方法进行安装：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo apt install snapd</div></pre></td></tr></table></figure>
+<h1 id="2-安装与运行-snap"><a href="#2-安装与运行-snap" class="headerlink" title="2. 安装与运行 snap"></a>2. 安装与运行 snap</h1><h2 id="2-1-搜索一个-snap"><a href="#2-1-搜索一个-snap" class="headerlink" title="2.1 搜索一个 snap"></a>2.1 搜索一个 snap</h2><p>语法: </p>
+<blockquote>
+<p>$ snap find <em>part-of-snap-name</em></p>
+</blockquote>
+<p>比如说我们想搜索一个含有”hello”的snap：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">$ snap find hello</div><div class="line">hello-node-snap       1.0.2        bhdouglass      -    A simple hello world <span class="built_in">command</span></div><div class="line">hello-mdeslaur        2.10  mdeslaur    -   GNU Hello, the <span class="string">"hello world"</span> snap</div><div class="line">hello-snap      0.01    muhammad    -   GNU hello-snap, the <span class="string">"Hello, Snap!"</span> snap</div><div class="line">hello           2.10    canonical       -   GNU Hello, the <span class="string">"hello world"</span> snap</div><div class="line">hello-world     6.3     canonical       -   The <span class="string">'hello-world'</span> of snaps</div><div class="line">hello-sergiusens      1.0   sergiusens      -   hello world example</div><div class="line">hello-gabriell  0.1     gabriell    -   Qt Hello World example</div><div class="line">hello-bluet     0.1     bluet       -   Qt Hello World example</div><div class="line">so-hello-world  0.2     shadowen    -   the old classic</div><div class="line">hello-huge      1.0     noise       -   a really big snap</div></pre></td></tr></table></figure>
+<p>搜索的返回结果包括：snap名字，版本号，作者，简述</p>
+<h2 id="2-2-安装与运行"><a href="#2-2-安装与运行" class="headerlink" title="2.2 安装与运行"></a>2.2 安装与运行</h2><h3 id="安装一个-snap"><a href="#安装一个-snap" class="headerlink" title="安装一个 snap"></a>安装一个 snap</h3><p>语法：</p>
+<blockquote>
+<p>$ sudo snap install _snap_full<em>name</em></p>
+</blockquote>
+<p>例：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ sudo snap install hello</div><div class="line"></div><div class="line">hello (stable) 2.10 from <span class="string">'canonical'</span> installed</div></pre></td></tr></table></figure></p>
+<p>注意，第一次安装 snap 的时候，snapd 会下载系统所需的 base snap，这会多消耗一些时间；后续再装其他 snaps 就快了。</p>
+<h3 id="运行一个-snap"><a href="#运行一个-snap" class="headerlink" title="运行一个 snap"></a>运行一个 snap</h3><p>语法：</p>
+<blockquote>
+<p>$ _snap_full<em>name</em></p>
+</blockquote>
+<p>例：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ hello</div><div class="line">Hello, world!</div></pre></td></tr></table></figure></p>
+<h2 id="2-3-列出已安装的-snaps"><a href="#2-3-列出已安装的-snaps" class="headerlink" title="2.3 列出已安装的 snaps"></a>2.3 列出已安装的 snaps</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ snap list</div><div class="line">Name                Version Rev  Developer   Notes</div><div class="line">hello               2.10    20   canonical   -</div><div class="line">core        16.04.1 423  canonical   -</div></pre></td></tr></table></figure>
+<p>注意，上面列出的那个 core snap 就是上文中提到的 base snap。</p>
+<h2 id="2-4-更新"><a href="#2-4-更新" class="headerlink" title="2.4 更新"></a>2.4 更新</h2><p>实际上 snaps 会每天在后台自动更新。当然你也可以手动刷新：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ sudo snap refresh hello</div><div class="line">error: cannot refresh <span class="string">"hello"</span>: snap <span class="string">"hello"</span> has no updates available</div><div class="line"></div><div class="line">$ sudo snap refresh</div><div class="line">core updated</div><div class="line">hello 64.75 MB [=====================================&gt;___]   12s</div></pre></td></tr></table></figure>
+<h1 id="3-snap-的更多特性"><a href="#3-snap-的更多特性" class="headerlink" title="3. snap 的更多特性"></a>3. snap 的更多特性</h1><h2 id="3-1-snap-能提供一个或多个命令"><a href="#3-1-snap-能提供一个或多个命令" class="headerlink" title="3.1 snap 能提供一个或多个命令"></a>3.1 snap 能提供一个或多个命令</h2><p>当安装了一个 snap_example 的时候，我们可以用 <code>snap_example.sub_command_name</code> 来使用其提供的各种命令</p>
+<h2 id="3-2-snap-能提供服务"><a href="#3-2-snap-能提供服务" class="headerlink" title="3.2 snap 能提供服务"></a>3.2 snap 能提供服务</h2><p>服务就是长时间运行的命令。</p>
+<p>比如你安装了 <code>shout</code> 这个 snap，那么你就可以通过 <a href="http://localhost:9000" target="_blank" rel="external">http://localhost:9000</a> 来与此服务交互</p>
+<h2 id="3-3-卸载-snap"><a href="#3-3-卸载-snap" class="headerlink" title="3.3 卸载 snap"></a>3.3 卸载 snap</h2><p>语法：</p>
+<blockquote>
+<p>$ snap remove _snap_full<em>name</em></p>
+</blockquote>
+<p>例：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ sudo snap remove hello-world</div><div class="line"></div><div class="line">hello-world removed</div></pre></td></tr></table></figure></p>
+<p>snap 及其依赖、相关联的用户数据，都将被清理干净。如果 snap 是一个服务，则该服务先被停止然后清除。</p>
+<h1 id="4-snap-的不同版本"><a href="#4-snap-的不同版本" class="headerlink" title="4. snap 的不同版本"></a>4. snap 的不同版本</h1><p>与其他软件一样，各个开发队伍对其 snap 也提供以下几种版本：</p>
+<ul>
+<li><code>stable</code> 为稳定版；</li>
+<li><code>candidate</code> 为尝鲜版，一般在稳定版发布前几日推出，以便用户可以尝鲜并测试；</li>
+<li><code>beta</code> 为未完全完成但已达到某些里程碑节点的版本；</li>
+<li><code>edge</code> 为刚刚开发出来的最前沿版本，仅通过冒烟测试，尚未充分测试</li>
+</ul>
+<p>默认安装 <code>stable</code> 版。</p>
+<h2 id="4-1-切换其他版本"><a href="#4-1-切换其他版本" class="headerlink" title="4.1 切换其他版本"></a>4.1 切换其他版本</h2><p>强制切换其他版本的命令如下：</p>
+<p>语法：</p>
+<blockquote>
+<p>$ sudo snap refresh _snap_full<em>name</em> –channel=_channel<em>name</em></p>
+</blockquote>
+<p>或</p>
+<blockquote>
+<p>sudo snap install _snap_full<em>name</em> –_channel<em>name</em></p>
+</blockquote>
+<p>例：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ sudo snap refresh hello --channel=beta</div><div class="line"></div><div class="line">hello (beta) 2.10.1 from <span class="string">'canonical'</span> refreshed</div></pre></td></tr></table></figure></p>
+<p>这时，再调用 hello，执行的就是 beta 版的 hello 了<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ hello</div><div class="line">Hello, snap padawan!</div></pre></td></tr></table></figure></p>
+<h2 id="4-2-退回"><a href="#4-2-退回" class="headerlink" title="4.2 退回"></a>4.2 退回</h2><p>如果发现某一个版本有问题，snap 支持退回一个版本。</p>
+<p>语法：</p>
+<blockquote>
+<p>$ sudo snap revert _snap_full<em>name</em></p>
+</blockquote>
+<p>例：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ sudo snap revert hello</div><div class="line"></div><div class="line">hello reverted to 2.10</div><div class="line">$ hello</div><div class="line">Hello, world!</div></pre></td></tr></table></figure></p>
+<h1 id="5-其他资源"><a href="#5-其他资源" class="headerlink" title="5. 其他资源"></a>5. 其他资源</h1><ul>
+<li><p><a href="https://tutorials.ubuntu.com/tutorial/advanced-snap-usage" target="_blank" rel="external">Advanced snap usage</a></p>
+</li>
+<li><p><a href="https://tutorials.ubuntu.com/tutorial/create-your-first-snap" target="_blank" rel="external">Creating your first snap</a></p>
+</li>
+<li><p><a href="https://forum.snapcraft.io/" target="_blank" rel="external">snapcraft forum</a></p>
+</li>
+<li><p><a href="http://snapcraft.io/docs/" target="_blank" rel="external">Snapcraft.io documentation</a></p>
+</li>
+</ul>
+
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
 
 
 </div>
