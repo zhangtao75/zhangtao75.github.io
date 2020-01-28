@@ -7,13 +7,15 @@
 
     
 
-    <title>Tao Zhang&#39;s Blog</title>
+    <title>Ubuntu 常用 snap 介绍 - 1 | Tao Zhang&#39;s Blog</title>
     <meta name="author" content="Tao Zhang">
+    
+    <meta name="description" content="Snap 是一种全新的软件包管理方式，其灵感来自容器；它类似一个容器拥有一个应用程序所需的所有文件和库，各个 snap 应用程序之间完全独立。 这种新的封装格式允许开发人员为运行于 Ubuntu 长期支持版本(LTS)之上的应用程序发布更新。这就可以让用户虽然运行着稳定版本的操作系统，但却能够让应用程序保持最新的状态。（ubuntu 使用snap包，Ubuntu 的 snap 软件包封装真的安全吗？）">
     
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    
+    <meta property="og:title" content="Ubuntu 常用 snap 介绍 - 1"/>
     <meta property="og:site_name" content="Tao Zhang&#39;s Blog"/>
 
     
@@ -174,40 +176,32 @@
 
 
     <main>
+        <div class="container main-container">
+    <nav class="page-nav hide-on-small-only">
+    <div class="nav-wrapper blue darken-4">
+        <span class="breadcrumb">当前位置（分类目录）</span>
+        
+            
+
         
 
-<div class="slider">
-    <ul class="slides">
-    
-       <li>
-           <a href="/">
-               <img class="slider-image" src="http://ww2.sinaimg.cn/large/53aa8487gw1f8dw3vzfz3j21e00dwwjd.jpg">
-               <div class="caption center-align">
-                 <h4>Tao Zhang&#39;s Blog</h3>
-                 <h5 class="light grey-text text-lighten-3">Data is power</h5>
-               </div>
-           </a>
-       </li>
-    
-   </ul>
- </div>
+        
+    </div>
+</nav>
 
-
-
-<div id="article-list" class="container main-container">
-    
-        <article class="simple-article">
+<article>
     <div class="card">
         <div class="card-content">
+            
+
             <div class="article-title">
                 
     
-        <h1 class="indigo-link-context"><a href="/2020/01/28/Ubuntu-snaps-intro-1/">Ubuntu 常用 snap 介绍 - 1</a></h1>
+        <h1>Ubuntu 常用 snap 介绍 - 1</h1>
     
 
 
             </div>
-
             <time class="deep-orange-link-context" datetime="2020-01-28T14:50:00.000Z"><a href="/2020/01/28/Ubuntu-snaps-intro-1/">2020-01-28</a></time>
 
             
@@ -220,372 +214,77 @@
     </div>
 
 
-
-            
-                <div class="entry deep-orange-link-context">
-                    <p>Snap 是一种全新的软件包管理方式，其灵感来自容器；它类似一个容器拥有一个应用程序所需的所有文件和库，各个 snap 应用程序之间完全独立。 这种新的封装格式允许开发人员为运行于 Ubuntu 长期支持版本(LTS)之上的应用程序发布更新。这就可以让用户虽然运行着稳定版本的操作系统，但却能够让应用程序保持最新的状态。（<a href="https://www.bboy.app/2017/11/15/ubuntu%20%E4%BD%BF%E7%94%A8snap%E5%8C%85/" title="ubuntu 使用snap包 ">ubuntu 使用snap包</a>，<a href="https://linux.cn/article-7397-1.html" title="Ubuntu 的 snap 软件包封装真的安全吗？">Ubuntu 的 snap 软件包封装真的安全吗？</a>）
-                </div>
-            
-        </div>
-
-        
-        <div class="card-action deep-orange-link-context">
-            <a href="/2020/01/28/Ubuntu-snaps-intro-1/">READ MORE</a>
-        </ div>
-        
-    </div>
-</article>
-
-    
-        <article class="simple-article">
-    <div class="card">
-        <div class="card-content">
-            <div class="article-title">
-                
-    
-        <h1 class="indigo-link-context"><a href="/2020/01/27/Snaps/">Snap简介</a></h1>
-    
+            <div class="toc deep-orange-link-context hide-on-med-and-down">
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#1-microk8s"><span class="section table-of-contents-text">1. microk8s</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#2-nextcloud"><span class="section table-of-contents-text">2. nextcloud</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#3-wekan"><span class="section table-of-contents-text">3. wekan</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#4-kata-containers"><span class="section table-of-contents-text">4. kata-containers</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#5-docker"><span class="section table-of-contents-text">5. docker</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#6-canonicall-livepatch"><span class="section table-of-contents-text">6. canonicall-livepatch</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#7-rocketchat-server"><span class="section table-of-contents-text">7. rocketchat-server</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#8-mosquitto"><span class="section table-of-contents-text">8. mosquitto</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#待续"><span class="section table-of-contents-text">待续</span></a></li></ol>
+</div>
 
 
-            </div>
-
-            <time class="deep-orange-link-context" datetime="2020-01-27T08:02:00.000Z"><a href="/2020/01/27/Snaps/">2020-01-27</a></time>
-
-            
-    <div class="tags-row">
-        
-            <a href="/tags/ubuntu/" class="chip deep-orange">ubuntu</a>
-        
-            <a href="/tags/snap/" class="chip deep-orange">snap</a>
-        
-    </div>
-
-
-
-            
-                <div class="entry deep-orange-link-context">
-                    <p>Snap在 <a href="https://www.techopedia.com/definition/31316/ubuntu-snappy">techopedia</a> 上的定义是这样的：</p>
-<blockquote>
-<p>Ubuntu Snappy is a package manager originally created by Canonical for the Ubuntu Phone distribution. Packages are called “snaps” and are designed to work across different Linux distributions, not just Ubuntu.</p>
-</blockquote>
-<p>Ubuntu tutorials提供了 <a href="https://tutorials.ubuntu.com/tutorial/basic-snap-usage">Basic snap usages</a> 介绍。本文基本上是基于这个简介的提炼。
-                </div>
-            
-        </div>
-
-        
-        <div class="card-action deep-orange-link-context">
-            <a href="/2020/01/27/Snaps/">READ MORE</a>
-        </ div>
-        
-    </div>
-</article>
-
-    
-        <article class="simple-article">
-    <div class="card">
-        <div class="card-content">
-            <div class="article-title">
-                
-    
-        <h1 class="indigo-link-context"><a href="/2020/01/26/How-to-Use-Sublime-to-Write-Markdown-Files-02/">如何使用Sublime编辑Markdown文件 (续 - 本地图片预览)</a></h1>
-    
-
+            <div class="entry deep-orange-link-context">
+                <p>Snap 是一种全新的软件包管理方式，其灵感来自容器；它类似一个容器拥有一个应用程序所需的所有文件和库，各个 snap 应用程序之间完全独立。 这种新的封装格式允许开发人员为运行于 Ubuntu 长期支持版本(LTS)之上的应用程序发布更新。这就可以让用户虽然运行着稳定版本的操作系统，但却能够让应用程序保持最新的状态。（<a href="https://www.bboy.app/2017/11/15/ubuntu%20%E4%BD%BF%E7%94%A8snap%E5%8C%85/" title="ubuntu 使用snap包 " target="_blank" rel="external">ubuntu 使用snap包</a>，<a href="https://linux.cn/article-7397-1.html" title="Ubuntu 的 snap 软件包封装真的安全吗？" target="_blank" rel="external">Ubuntu 的 snap 软件包封装真的安全吗？</a>）<a id="more"></a></p>
+<p>Snap 软件包的另外一个优势是应用与系统的其它部分是隔离的。这意味着如果你改变了 snap 软件包的一些东西，它不会影响到系统的其它部分。这也可以防止其它的应用访问你的隐私信息，从而使骇客根据难以获取你的数据。（<a href="https://linux.cn/article-7397-1.html" title="Ubuntu 的 snap 软件包封装真的安全吗？" target="_blank" rel="external">Ubuntu 的 snap 软件包封装真的安全吗？</a>）</p>
+<p>Snap 的一些基本使用方法，可以参见 <a href="https://zhangtao75.github.io/2020/01/27/Snaps/" title="Snap 简介" target="_blank" rel="external">Snap 简介</a> 一文。</p>
+<p>Ubuntu server 18.04.3 安装时就带了很多 snap，下面逐一做一个简单的介绍，以方便大家在安装时进行取舍。</p>
+<h1 id="1-microk8s"><a href="#1-microk8s" class="headerlink" title="1. microk8s"></a>1. microk8s</h1><p><strong>简介</strong></p>
+<p>MicroK8s 是一个小型、快速、安全、单节点的 Kubernetes，适用于任何 Linux。 其供应商为：Zero-ops Kubernetes。 </p>
+<p><img src="https://dashboard.snapcraft.io/site_media/appmedia/2018/11/m2.png" alt="MicroK8s 截图"></p>
+<p><img src="https://assets.ubuntu.com/v1/4b663a6c-certified-kubernetes-logo.svg" alt="cretified k8s logo"></p>
+<p><strong>是否为 Ubuntu server 安装时默认安装的 snap</strong>：是</p>
+<p><strong>官方snap网页</strong>：<a href="https://snapcraft.io/microk8s" target="_blank" rel="external">https://snapcraft.io/microk8s</a></p>
+<p><strong>官方网站</strong>：<a href="https://microk8s.io/" target="_blank" rel="external">https://microk8s.io/</a></p>
+<h1 id="2-nextcloud"><a href="#2-nextcloud" class="headerlink" title="2. nextcloud"></a>2. nextcloud</h1><p><strong>简介</strong></p>
+<p>nextcloud 是一个私有云盘服务，可以支持桌面或移动设备访问，支持与外部 FTP 服务器、dropbox 及 私有 NAS 的同步。</p>
+<p><img src="https://dashboard.snapcraft.io/site_media/appmedia/2018/10/Screenshot_from_2018-10-26_09-49-46.png" alt="nextcloud 截图"></p>
+<p><strong>是否为 Ubuntu server 安装时默认安装的 snap</strong>：是</p>
+<p><strong>官方snap网页</strong>：<a href="https://snapcraft.io/nextcloud" target="_blank" rel="external">https://snapcraft.io/nextcloud</a></p>
+<p><strong>官方网站</strong>：<a href="https://nextcloud.com/" target="_blank" rel="external">https://nextcloud.com/</a></p>
+<h1 id="3-wekan"><a href="#3-wekan" class="headerlink" title="3. wekan"></a>3. wekan</h1><p><strong>简介</strong></p>
+<p>Wekan 是一个开源的支持协作的看板系统。</p>
+<p><img src="https://wekan.github.io/wekan-markdown.png" alt="wekan 截图"></p>
+<p><strong>是否为 Ubuntu server 安装时默认安装的 snap</strong>：否</p>
+<p><strong>官方snap网页</strong>：<a href="https://snapcraft.io/wekan" target="_blank" rel="external">https://snapcraft.io/wekan</a></p>
+<p><strong>官方网站</strong>：<a href="https://wekan.github.io/" target="_blank" rel="external">https://wekan.github.io/</a></p>
+<h1 id="4-kata-containers"><a href="#4-kata-containers" class="headerlink" title="4. kata-containers"></a>4. kata-containers</h1><p><strong>简介</strong></p>
+<p>Kata Containers 是一个开源项目，致力于研发标准化的轻量虚拟机，力图使其与容器类似，但通过硬件虚拟技术能提供更强的负载隔离能力。</p>
+<p>kata-containers 是其研发的轻量虚拟机，可以无缝地插入容器生态。</p>
+<p><img src="https://katacontainers.io/images/kata-explained1@2x.png" alt="kata containers 截图"></p>
+<p><strong>是否为 Ubuntu server 安装时默认安装的 snap</strong>：是</p>
+<p><strong>官方snap网页</strong>：<a href="https://snapcraft.io/kata-containers" target="_blank" rel="external">https://snapcraft.io/kata-containers</a></p>
+<p><strong>官方网站</strong>：<a href="https://katacontainers.io/" target="_blank" rel="external">https://katacontainers.io/</a></p>
+<h1 id="5-docker"><a href="#5-docker" class="headerlink" title="5. docker"></a>5. docker</h1><p><strong>简介</strong></p>
+<p>Docker container runtime。这个 snap 是 <a href="https://canonical.com/" target="_blank" rel="external">Canonical</a>（Ubuntu母公司）根据 <a href="https://www.docker.com/" target="_blank" rel="external">Docker</a> 提供的源代码编译而成的，Docker 不负责发布或背书。</p>
+<p><strong>是否为 Ubuntu server 安装时默认安装的 snap</strong>：是</p>
+<p><strong>官方snap网页</strong>：<a href="https://snapcraft.io/docker" target="_blank" rel="external">https://snapcraft.io/docker</a></p>
+<h1 id="6-canonicall-livepatch"><a href="#6-canonicall-livepatch" class="headerlink" title="6. canonicall-livepatch"></a>6. canonicall-livepatch</h1><p><strong>简介</strong></p>
+<p>Canonical Livepatch Service 可以在不需重启的情况下给系统打好重要核心补丁，以减少系统停机时间，保持系统的安全与兼容。</p>
+<p>对个人用户（需要 Ubuntu One 账户）免费3个月；对于非个人用户，则作为 Ubuntu Advantage 的一部分发售。</p>
+<p><strong>是否为 Ubuntu server 安装时默认安装的 snap</strong>：否</p>
+<p><strong>官方snap网页</strong>：<a href="https://snapcraft.io/canonical-livepatch" target="_blank" rel="external">https://snapcraft.io/canonical-livepatch</a></p>
+<p><strong>官方网站</strong>：<a href="https://ubuntu.com/livepatch" target="_blank" rel="external">https://ubuntu.com/livepatch</a></p>
+<h1 id="7-rocketchat-server"><a href="#7-rocketchat-server" class="headerlink" title="7. rocketchat-server"></a>7. rocketchat-server</h1><p><strong>简介</strong></p>
+<p>Rocket.Chat 可以让我们搭建一个类似 Slack 的在线沟通工具，可以为office、群组、家庭等提供文件共享、视频会议等在线沟通手段；有 Web 及 移动客户端。</p>
+<p>Rocket.Chat 遵守 MIT licensed Open Source project 协议。</p>
+<p><img src="https://rocket.chat/images/index/devices.png" alt="rocket.chat 截图"></p>
+<p><strong>是否为 Ubuntu server 安装时默认安装的 snap</strong>：否</p>
+<p><strong>官方snap网页</strong>：<a href="https://snapcraft.io/rocketchat-server" target="_blank" rel="external">https://snapcraft.io/rocketchat-server</a></p>
+<p><strong>官方网站</strong>：<a href="https://rocket.chat/" target="_blank" rel="external">https://rocket.chat/</a></p>
+<h1 id="8-mosquitto"><a href="#8-mosquitto" class="headerlink" title="8. mosquitto"></a>8. mosquitto</h1><p><strong>简介</strong></p>
+<p>Eclipse Mosquitto 是一个 open source (EPL/EDL licensed) 的消息中间件，主要支持 MQTT 协议（5.0, 3.1.1 和 3.1）. MQTT 协议提供了一个发布/订阅模式（publish/subscribe）的消息传递方法；其主要特点是轻量：带宽占用少，部署方便。 这使得 MQTT 非常适于于大量使用低功率传感器与移动设备（如电话、嵌入式计算机或微控制器等）的物联网（Internet of Things）。</p>
+<p><img src="https://dashboard.snapcraft.io/site_media/appmedia/2018/06/mosquitto_dbIlbAp.png" alt="mosquitto 截图"></p>
+<p><strong>是否为 Ubuntu server 安装时默认安装的 snap</strong>：否</p>
+<p><strong>官方snap网页</strong>：<a href="https://snapcraft.io/mosquitto" target="_blank" rel="external">https://snapcraft.io/mosquitto</a></p>
+<p><strong>官方网站</strong>：<a href="https://mosquitto.org/" target="_blank" rel="external">https://mosquitto.org/</a></p>
+<h1 id="待续"><a href="#待续" class="headerlink" title="待续"></a>待续</h1><p>#9 - #16 见 Ubuntu 常用 snap 介绍 - 2</p>
+<p>#17 - #24 见 Ubuntu 常用 snap 介绍 - 3</p>
 
             </div>
-
-            <time class="deep-orange-link-context" datetime="2020-01-26T07:56:00.000Z"><a href="/2020/01/26/How-to-Use-Sublime-to-Write-Markdown-Files-02/">2020-01-26</a></time>
-
-            
-    <div class="tags-row">
-        
-            <a href="/tags/Sublime/" class="chip deep-orange">Sublime</a>
-        
-            <a href="/tags/Markdown/" class="chip deep-orange">Markdown</a>
-        
-    </div>
-
-
-
-            
-                <div class="entry deep-orange-link-context">
-                    <h1 id="如何解决本地图片预览问题"><a href="#如何解决本地图片预览问题" class="headerlink" title="如何解决本地图片预览问题"></a>如何解决本地图片预览问题</h1><p>原来在用 Sublime+Markdown Preview 来编辑 Markdown 文件的时候，一直遗留一个问题没有解决：无法以文+图的形式来进行 <em>预览</em> ，即文中的图片在没有上传之前在浏览器（firefox）中显示不出来。</p>
-<p>最近想这个问题应该普遍困扰大家，不应该是一个 feature ，而应该有办法解决。
-                </div>
-            
         </div>
-
-        
-        <div class="card-action deep-orange-link-context">
-            <a href="/2020/01/26/How-to-Use-Sublime-to-Write-Markdown-Files-02/">READ MORE</a>
-        </ div>
-        
     </div>
 </article>
 
-    
-        <article class="simple-article">
-    <div class="card">
-        <div class="card-content">
-            <div class="article-title">
-                
-    
-        <h1 class="indigo-link-context"><a href="/2017/12/10/Python-WebScraping-robotstxt/">Python网络爬取与robots.txt协议</a></h1>
-    
-
-
-            </div>
-
-            <time class="deep-orange-link-context" datetime="2017-12-10T11:00:00.000Z"><a href="/2017/12/10/Python-WebScraping-robotstxt/">2017-12-10</a></time>
-
-            
-    <div class="tags-row">
-        
-            <a href="/tags/Python/" class="chip deep-orange">Python</a>
-        
-            <a href="/tags/Web-scraping/" class="chip deep-orange">Web scraping</a>
-        
-            <a href="/tags/网络爬取/" class="chip deep-orange">网络爬取</a>
-        
-    </div>
 
 
 
-            
-                <div class="entry deep-orange-link-context">
-                    <h1 id="0-背景"><a href="#0-背景" class="headerlink" title="0. 背景"></a>0. 背景</h1><p>现在很多Python入门的教程、书籍，都是以网络爬虫程序为例；其普及之广直追大学里人人都写过的『图书馆管理系统』了。但是这些教程一般都只强调Python程序的简单、第三方库的强大，但很少有教程认真讲讲robots.txt协议（顺便提一句的都很少）。</p>
-<p>爬取网络信息而不遵守甚至不知道robots.txt协议 —— 说轻了，是闹个左刀右叉的礼仪笑话；说重了，有可能在不知不觉间就吃了官司呢<sup><a href="#user-content-note1">1</a></sup>。</p>
-<p>那我们今天就来讲讲什么是robots.txt协议，以及在Python中怎么使用robots.txt。
-                </div>
-            
-        </div>
 
-        
-        <div class="card-action deep-orange-link-context">
-            <a href="/2017/12/10/Python-WebScraping-robotstxt/">READ MORE</a>
-        </ div>
-        
-    </div>
-</article>
-
-    
-        <article class="simple-article">
-    <div class="card">
-        <div class="card-content">
-            <div class="article-title">
-                
-    
-        <h1 class="indigo-link-context"><a href="/2017/12/03/Python-grid-layout-104/">Python grid布局的简介与细节进阶 （4）</a></h1>
-    
-
-
-            </div>
-
-            <time class="deep-orange-link-context" datetime="2017-12-03T15:00:00.000Z"><a href="/2017/12/03/Python-grid-layout-104/">2017-12-03</a></time>
-
-            
-
-
-            
-                <div class="entry deep-orange-link-context">
-                    <p>前三节我们分别：</p>
-<ol>
-<li>介绍了<a href="https://zhangtao75.github.io/2017/04/23/Python-grid-layout-101/">tkinter库（Python标准GUI库）grid布局的基本概念</a></li>
-<li>通过一个样例程序，讲解了<a href="https://zhangtao75.github.io/2017/04/23/Python-grid-layout-102/">grid布局与frame部件的配合使用技巧</a></li>
-<li>讲解了<a href="https://zhangtao75.github.io/2017/04/23/Python-grid-layout-103/">grid_propagate()设置、控件/grid()方法的内外边距（ipad/pad）设置</a></li>
-</ol>
-<p>下面我们回到样例程序（CreateTagFiles），看看按照第三节中的方法设置了边距之后的情况
-                </div>
-            
-        </div>
-
-        
-        <div class="card-action deep-orange-link-context">
-            <a href="/2017/12/03/Python-grid-layout-104/">READ MORE</a>
-        </ div>
-        
-    </div>
-</article>
-
-    
-        <article class="simple-article">
-    <div class="card">
-        <div class="card-content">
-            <div class="article-title">
-                
-    
-        <h1 class="indigo-link-context"><a href="/2017/12/03/Python-grid-layout-103/">Python grid布局的简介与细节进阶 （3）</a></h1>
-    
-
-
-            </div>
-
-            <time class="deep-orange-link-context" datetime="2017-12-03T14:30:00.000Z"><a href="/2017/12/03/Python-grid-layout-103/">2017-12-03</a></time>
-
-            
-
-
-            
-                <div class="entry deep-orange-link-context">
-                    <p>前两节我们：</p>
-<ol>
-<li>介绍了<a href="https://zhangtao75.github.io/2017/04/23/Python-grid-layout-101/">tkinter库（Python标准GUI库）grid布局的基本概念</a></li>
-<li>通过一个样例程序，讲解了<a href="https://zhangtao75.github.io/2017/04/23/Python-grid-layout-102/">grid布局与frame部件的配合使用技巧</a></li>
-</ol>
-<p>接下来，我们继续演示grid布局相关的一些有用设置。
-                </div>
-            
-        </div>
-
-        
-        <div class="card-action deep-orange-link-context">
-            <a href="/2017/12/03/Python-grid-layout-103/">READ MORE</a>
-        </ div>
-        
-    </div>
-</article>
-
-    
-        <article class="simple-article">
-    <div class="card">
-        <div class="card-content">
-            <div class="article-title">
-                
-    
-        <h1 class="indigo-link-context"><a href="/2017/12/03/Python-grid-layout-102/">Python grid布局的简介与细节进阶 （2）</a></h1>
-    
-
-
-            </div>
-
-            <time class="deep-orange-link-context" datetime="2017-12-03T14:00:00.000Z"><a href="/2017/12/03/Python-grid-layout-102/">2017-12-03</a></time>
-
-            
-
-
-            
-                <div class="entry deep-orange-link-context">
-                    <p>上一节我们介绍了<a href="https://zhangtao75.github.io/2017/04/23/Python-grid-layout-101/">tkinter库（Python标准GUI库）grid布局的基本概念</a>。从本节开始，我们用一个很简单的样例程序，来演示grid布局的使用以及一些有意思的细节。
-                </div>
-            
-        </div>
-
-        
-        <div class="card-action deep-orange-link-context">
-            <a href="/2017/12/03/Python-grid-layout-102/">READ MORE</a>
-        </ div>
-        
-    </div>
-</article>
-
-    
-        <article class="simple-article">
-    <div class="card">
-        <div class="card-content">
-            <div class="article-title">
-                
-    
-        <h1 class="indigo-link-context"><a href="/2017/04/23/Python-grid-layout-101/">Python grid布局的简介与细节进阶 （1）</a></h1>
-    
-
-
-            </div>
-
-            <time class="deep-orange-link-context" datetime="2017-04-23T14:49:41.000Z"><a href="/2017/04/23/Python-grid-layout-101/">2017-04-23</a></time>
-
-            
-
-
-            
-                <div class="entry deep-orange-link-context">
-                    <h1 id="0-背景"><a href="#0-背景" class="headerlink" title="0. 背景"></a>0. 背景</h1><p>使用Python tkinter编写GUI程序有一段时间了，期间也遇到并解决了一些问题。为此，将过程中的心得与某些值得注意的地方总结记录下来，供（未来的）自己及同行参考。
-                </div>
-            
-        </div>
-
-        
-        <div class="card-action deep-orange-link-context">
-            <a href="/2017/04/23/Python-grid-layout-101/">READ MORE</a>
-        </ div>
-        
-    </div>
-</article>
-
-    
-        <article class="simple-article">
-    <div class="card">
-        <div class="card-content">
-            <div class="article-title">
-                
-    
-        <h1 class="indigo-link-context"><a href="/2016/11/13/ODM-Integration/">ODM规则引擎在银行中的整合应用</a></h1>
-    
-
-
-            </div>
-
-            <time class="deep-orange-link-context" datetime="2016-11-12T16:42:19.000Z"><a href="/2016/11/13/ODM-Integration/">2016-11-13</a></time>
-
-            
-
-
-            
-        </div>
-
-        
-    </div>
-</article>
-
-    
-        <article class="simple-article">
-    <div class="card">
-        <div class="card-content">
-            <div class="article-title">
-                
-    
-        <h1 class="indigo-link-context"><a href="/2016/10/01/Kanban-Yes-And-No/">看板非板 看板有板 看板限板 —— 看板方法的是是非非</a></h1>
-    
-
-
-            </div>
-
-            <time class="deep-orange-link-context" datetime="2016-10-01T12:41:19.000Z"><a href="/2016/10/01/Kanban-Yes-And-No/">2016-10-01</a></time>
-
-            
-
-
-            
-                <div class="entry deep-orange-link-context">
-                    <p>第一次接触到看板这个词，还是在今年8月2日敏捷开发模式交流的技术沙龙上。听质量团队的同事在台上侃侃而谈，我觉得看板应该是一个比较不错的敏捷开发模式；虽然有心学而应用之，但苦于目前的项目并不适用于敏捷，因此听完也就完了，并没有打算立刻进行深入的研究。但是没过几天，在读《软技能:代码之外的生存指南》（Sonmez，2014）这本书时，又看到作者在”我的私房‘生产力提升计划’”（My personal productivity plan）这一章中又提到了Kanban（即看板<sup><a href="#note1">1</a></sup>），于是下决心打算仔细学习一下看板方法。即使现在暂时用不到项目上，但是没准可以应用到自己的工作学习中；而且谁知道以后有没有可能带敏捷的项目呢？知识嘛，达时可兼济天下，穷时可独善己身，就是这个道理。
-                </div>
-            
-        </div>
-
-        
-        <div class="card-action deep-orange-link-context">
-            <a href="/2016/10/01/Kanban-Yes-And-No/">READ MORE</a>
-        </ div>
-        
-    </div>
-</article>
-
-    
-
-    <ul class="pagination center-align">
-    <li class="disabled">
-        <a href="/"><i class="fa fa-angle-left"></i></a>
-    </li>
-    
-    
-        <li class="active deep-orange"><a href="/">1</a></li>
-    
-        <li class="waves-effect"><a href="/page/2">2</a></li>
-    
-    
-    <li class="">
-        <a href="/page/2/"><i class="fa fa-angle-right"></i></a>
-    </li>
- </ul>
 
 </div>
 
