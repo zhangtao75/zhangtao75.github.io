@@ -7,15 +7,16 @@
 
     
 
-    <title>Ubuntu 常用 snap 介绍 - 2 | Tao Zhang&#39;s Blog</title>
+    <title>安装Ubuntu Server | Tao Zhang&#39;s Blog</title>
     <meta name="author" content="Tao Zhang">
     
-    <meta name="description" content="本文继续介绍 Ubuntu server 安装时推荐的 snaps，#9 - #16。">
+    <meta name="description" content="1. 下载从 Ubuntu 官网下载：https://ubuntu.com/#download
+目前的 Server 的长期支持版为：ubuntu-18.04.3-live-server-amd64.iso。">
     
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <meta property="og:title" content="Ubuntu 常用 snap 介绍 - 2"/>
+    <meta property="og:title" content="安装Ubuntu Server"/>
     <meta property="og:site_name" content="Tao Zhang&#39;s Blog"/>
 
     
@@ -64,7 +65,7 @@
                     </li>
                 
                     <li>
-                        <a class="menu-category category-menu" href="javascript:;" data-activates="category-menu" >
+                        <a class="menu-category " href="/tags" >
                             <i class="fa fa-bookmark "></i>
                             
                             分类
@@ -124,7 +125,7 @@
             </li>
         
             <li class="no-padding">
-                <a class="waves-effect menu-category category-menu" href="javascript:;" data-activates="category-menu" >
+                <a class="waves-effect menu-category " href="/tags" >
                     <i class="fa fa-bookmark "></i>
                     
                     分类
@@ -197,78 +198,64 @@
             <div class="article-title">
                 
     
-        <h1>Ubuntu 常用 snap 介绍 - 2</h1>
+        <h1>安装Ubuntu Server</h1>
     
 
 
             </div>
-            <time class="deep-orange-link-context" datetime="2020-01-27T08:02:00.000Z"><a href="/2020/01/27/Ubuntu-snaps-intro-2/">2020-01-27</a></time>
+            <time class="deep-orange-link-context" datetime="2020-01-31T06:00:00.000Z"><a href="/2020/01/31/Install-Ubuntu-server/">2020-01-31</a></time>
 
             
     <div class="tags-row">
         
             <a href="/tags/ubuntu/" class="chip deep-orange">ubuntu</a>
         
-            <a href="/tags/snap/" class="chip deep-orange">snap</a>
-        
     </div>
 
 
             <div class="toc deep-orange-link-context hide-on-med-and-down">
-    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#9-etcd"><span class="section table-of-contents-text">9. etcd</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#10-powershell"><span class="section table-of-contents-text">10. powershell</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#11-stress-ng"><span class="section table-of-contents-text">11. stress-ng</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#12-sabnzbd"><span class="section table-of-contents-text">12. sabnzbd</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#13-wormhole"><span class="section table-of-contents-text">13. wormhole</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#14-aws-cli"><span class="section table-of-contents-text">14. aws-cli</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#15-google-cloud-sdk"><span class="section table-of-contents-text">15. google-cloud-sdk</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#16-slcli"><span class="section table-of-contents-text">16. slcli</span></a></li></ol>
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#1-下载"><span class="section table-of-contents-text">1. 下载</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#2-制作启动盘"><span class="section table-of-contents-text">2. 制作启动盘</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#3-安装"><span class="section table-of-contents-text">3. 安装</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#3-1-网络连接"><span class="section table-of-contents-text">3.1 网络连接</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#3-2-选择Featured-Server-Snaps"><span class="section table-of-contents-text">3.2 选择Featured Server Snaps</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#3-3-结束安装"><span class="section table-of-contents-text">3.3 结束安装</span></a></li></ol></li></ol>
 </div>
 
 
             <div class="entry deep-orange-link-context">
-                <p>本文继续介绍 Ubuntu server 安装时推荐的 snaps，#9 - #16。<a id="more"></a></p>
-<p>#1 - #8 见 Ubuntu 常用 snap 介绍 - 1</p>
-<p>#17 - #24 见 Ubuntu 常用 snap 介绍 - 3</p>
-<p>Snap 的一些基本使用方法，可以参见 <a href="https://zhangtao75.github.io/2020/01/27/Snaps/" title="Snap 简介" target="_blank" rel="external">Snap 简介</a> 一文。</p>
-<h1 id="9-etcd"><a href="#9-etcd" class="headerlink" title="9. etcd"></a>9. etcd</h1><p><strong>简介</strong></p>
-<p>Etcd 是一个高可用的分布式 key-value 存储，使用 RAFT 分布式一致性算法来处理集群中的故障切换，作为一个分布式应用中的小型共享存储，etcd 深受 Docker 社区的欢迎。</p>
-<p><strong>是否为 Ubuntu server 安装时默认安装的 snap</strong>：否</p>
-<p><strong>官方snap网页</strong>：<a href="https://snapcraft.io/etcd" target="_blank" rel="external">https://snapcraft.io/etcd</a></p>
-<h1 id="10-powershell"><a href="#10-powershell" class="headerlink" title="10. powershell"></a>10. powershell</h1><p><strong>简介</strong></p>
-<p>微软出品的 PowerShell 是一个跨平台命令行 shell，并且提供了对应的脚本语言支持。</p>
-<p><img src="https://dashboard.snapcraft.io/site_media/appmedia/2018/06/UbuntuSnapWithGetHelp.png" alt="power shell in ubuntu 截图"></p>
-<p><strong>是否为 Ubuntu server 安装时默认安装的 snap</strong>：否</p>
-<p><strong>官方snap网页</strong>：<a href="https://snapcraft.io/powershell" target="_blank" rel="external">https://snapcraft.io/powershell</a></p>
-<p><strong>官方网站</strong>：<a href="https://github.com/powershell/powershell" target="_blank" rel="external">https://github.com/powershell/powershell</a></p>
-<p><strong>微软官方文档</strong>：<a href="https://docs.microsoft.com/zh-cn/powershell/" target="_blank" rel="external">中文版</a>，<a href="https://docs.microsoft.com/en-us/powershell/" target="_blank" rel="external">英文版</a></p>
-<h1 id="11-stress-ng"><a href="#11-stress-ng" class="headerlink" title="11. stress-ng"></a>11. stress-ng</h1><p><strong>简介</strong></p>
-<p>Stree-ng 是一个给计算机系统做压测、跑分的工具，它可以对CPU、缓存、磁盘、内存、网络接口、管道IO等计算机子系统进行压测。</p>
-<p><img src="https://dashboard.snapcraft.io/site_media/appmedia/2016/07/large_1.png" alt="stress-ng 截图"></p>
-<p><strong>是否为 Ubuntu server 安装时默认安装的 snap</strong>：否</p>
-<p><strong>官方snap网页</strong>：<a href="https://snapcraft.io/stress-ng" target="_blank" rel="external">https://snapcraft.io/stress-ng</a></p>
-<p><strong>官方网站</strong>：<a href="http://kernel.ubuntu.com/~cking/stress-ng" target="_blank" rel="external">http://kernel.ubuntu.com/~cking/stress-ng</a></p>
-<h1 id="12-sabnzbd"><a href="#12-sabnzbd" class="headerlink" title="12. sabnzbd"></a>12. sabnzbd</h1><p><strong>简介</strong></p>
-<p>sabnzbd 是一个 <a href="http://en.wikipedia.org/wiki/Usenet" target="_blank" rel="external">Usenet</a> 的自动下载工具。</p>
-<p><img src="https://dashboard.snapcraft.io/site_media/appmedia/2018/11/file-lists.png" alt="sabnzbd 截图"></p>
-<p><strong>是否为 Ubuntu server 安装时默认安装的 snap</strong>：否</p>
-<p><strong>官方snap网页</strong>：<a href="https://snapcraft.io/sabnzbd" target="_blank" rel="external">https://snapcraft.io/sabnzbd</a></p>
-<p><strong>官方网站</strong>：<a href="https://sabnzbd.org/" target="_blank" rel="external">https://sabnzbd.org/</a></p>
-<h1 id="13-wormhole"><a href="#13-wormhole" class="headerlink" title="13. wormhole"></a>13. wormhole</h1><p><strong>简介</strong></p>
-<p>wormhole 提供了在计算机之间传输任意大小文件或目录的命令行工具以及相关库。</p>
-<p><img src="https://dashboard.snapcraft.io/site_media/appmedia/2018/07/Screenshot_from_2018-07-02_14-23-15.png" alt="wormhole 截图"></p>
-<p><strong>是否为 Ubuntu server 安装时默认安装的 snap</strong>：否</p>
-<p><strong>官方snap网页</strong>：<a href="https://snapcraft.io/wormhole" target="_blank" rel="external">https://snapcraft.io/wormhole</a></p>
-<h1 id="14-aws-cli"><a href="#14-aws-cli" class="headerlink" title="14. aws-cli"></a>14. aws-cli</h1><p><strong>简介</strong></p>
-<p>aws-cli 是用来与 AWS（Amazon Web Services）交互的通用命令行接口。经过非常简单的设置，就可以通过 aws-cli 来使用 AWS 管理台的所有功能。</p>
-<p><img src="https://dashboard.snapcraft.io/site_media/appmedia/2017/06/Screen_Shot_2017-06-07_at_8.16.09_AM.png" alt="aws-cli 截图"></p>
-<p><strong>是否为 Ubuntu server 安装时默认安装的 snap</strong>：否</p>
-<p><strong>官方snap网页</strong>：<a href="https://snapcraft.io/aws-cli" target="_blank" rel="external">https://snapcraft.io/aws-cli</a></p>
-<p><strong>官方网站</strong>：<a href="https://aws.amazon.com/cli/" target="_blank" rel="external">https://aws.amazon.com/cli/</a></p>
-<h1 id="15-google-cloud-sdk"><a href="#15-google-cloud-sdk" class="headerlink" title="15. google-cloud-sdk"></a>15. google-cloud-sdk</h1><p><strong>简介</strong></p>
-<p>google-cloud-sdk 是用来访问 Google 云平台相关产品与服务的命令行接口。</p>
-<p><strong>是否为 Ubuntu server 安装时默认安装的 snap</strong>：否</p>
-<p><strong>官方snap网页</strong>：<a href="https://snapcraft.io/google-cloud-sdk" target="_blank" rel="external">https://snapcraft.io/google-cloud-sdk</a></p>
-<p><strong>官方网站</strong>：<a href="https://cloud.google.com/sdk/docs/" target="_blank" rel="external">https://cloud.google.com/sdk/docs/</a></p>
-<h1 id="16-slcli"><a href="#16-slcli" class="headerlink" title="16. slcli"></a>16. slcli</h1><p><strong>简介</strong></p>
-<p>slcli 是用来调用 SoftLayer（IBM Cloud）相关产品与服务的 Python 库。</p>
-<p><img src="https://dashboard.snapcraft.io/site_media/appmedia/2018/02/Screenshot_from_2018-02-16_18-40-24.png" alt="slcli 截图"></p>
-<p><strong>是否为 Ubuntu server 安装时默认安装的 snap</strong>：否</p>
-<p><strong>官方snap网页</strong>：<a href="https://snapcraft.io/slcli" target="_blank" rel="external">https://snapcraft.io/slcli</a></p>
-<p><strong>官方网站</strong>：<a href="https://github.com/softlayer/softlayer-python" target="_blank" rel="external">https://github.com/softlayer/softlayer-python</a></p>
+                <h1 id="1-下载"><a href="#1-下载" class="headerlink" title="1. 下载"></a>1. 下载</h1><p>从 Ubuntu 官网下载：<a href="https://ubuntu.com/#download" target="_blank" rel="external">https://ubuntu.com/#download</a></p>
+<p>目前的 Server 的长期支持版为：ubuntu-18.04.3-live-server-amd64.iso。<a id="more"></a></p>
+<p>Ubuntu 版本号中的 yy.mm 为发布年月，即本版为18年4月发布。Ubuntu 目前给其 LTS（Long Term Support，长期支持版）5 年的支持，Ubuntu 将支持本版到2023年4月。具体各版本发布、支持时间表见下图：</p>
+<p><img src="images/UI_Ubuntu_LTS.png" alt="Ubuntu LTS schedule"></p>
+<p>大家也可以在装完系统后使用 <code>ubuntu-support-status</code> 命令自行查询 Ubuntu 的支持时间：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">$ ubuntu-support-status</div><div class="line">Support status summary of <span class="string">'tz_ubuntu'</span>:</div><div class="line"></div><div class="line">You have 509 packages (100.0%) supported until April 2023 (Canonical - 5y)</div><div class="line"></div><div class="line">You have 0 packages (0.0%) that can not/no-longer be downloaded</div><div class="line">You have 0 packages (0.0%) that are unsupported</div><div class="line"></div><div class="line"></div><div class="line">Run with \--show-unsupported, \--show-supported or \--show-all to see more details</div></pre></td></tr></table></figure>
+<h1 id="2-制作启动盘"><a href="#2-制作启动盘" class="headerlink" title="2. 制作启动盘"></a>2. 制作启动盘</h1><p>使用工具 Rufus 制作启动盘（注：原来U盘是Ubuntu Desktop的安装盘）。</p>
+<p><img src="images/UI_make_bootable_usb_disk_Rufus.png" alt="Rufus"></p>
+<p>这个 Rufus 有点老了，所以自动提示需要下载两个新文件：</p>
+<p><img src="images/UI_make_bootable_usb_disk_Rufus_updates.png" alt="Rufus updates"></p>
+<p>其实可以到<a href="https://rufus.ie/" target="_blank" rel="external">Rufus的官网</a>上下载最新的 Rufus。</p>
+<p>提示完信息擦除之后，Rufus 开始制作启动盘：</p>
+<p><img src="images/UI_make_bootable_usb_disk_Rufus_making.png" alt="Rufus making the bootable USB disk"></p>
+<h1 id="3-安装"><a href="#3-安装" class="headerlink" title="3. 安装"></a>3. 安装</h1><p>使用启动盘启动，然后按照说明一路走下来就行。没有太多需要注意的，仅就其中三点做一下说明：</p>
+<h2 id="3-1-网络连接"><a href="#3-1-网络连接" class="headerlink" title="3.1 网络连接"></a>3.1 网络连接</h2><p>由于很多组件需要从 Internet 上下载，但 Ubuntu 安装时系统不带无线网络连接，所以必须用网线连接路由器以太网口。网络地址选择 Auto-DHCP 就行。</p>
+<p>注意，如果遇到 timeout 的问题不用慌张，应该是路由器的延时，多等几秒就好了。</p>
+<h2 id="3-2-选择Featured-Server-Snaps"><a href="#3-2-选择Featured-Server-Snaps" class="headerlink" title="3.2 选择Featured Server Snaps"></a>3.2 选择Featured Server Snaps</h2><p>什么是 Snap，可以参见 <a href="https://zhangtao75.github.io/2020/01/27/Snaps/" title="Snap 简介" target="_blank" rel="external">Snap 简介</a> 一文。</p>
+<p>Ubuntu server 18.04.3 安装时就带了很多 snap，之前的几篇 Blog 对其做了一个非常简单的介绍，以便大家进行选择：</p>
+<ol>
+<li><a href="https://zhangtao75.github.io/2020/01/28/Ubuntu-snaps-intro-1/" title="Ubuntu 常用 snap 介绍 - 1" target="_blank" rel="external">常用 snap 介绍 - 1</a></li>
+<li><a href="https://zhangtao75.github.io/2020/01/29/Ubuntu-snaps-intro-2/" title="Ubuntu 常用 snap 介绍 - 2" target="_blank" rel="external">常用 snap 介绍 - 2</a></li>
+<li><a href="https://zhangtao75.github.io/2020/01/30/Ubuntu-snaps-intro-3/" title="Ubuntu 常用 snap 介绍 - 3" target="_blank" rel="external">常用 snap 介绍 - 3</a></li>
+</ol>
+<p>我本次安装选择了如下几个 snaps：</p>
+<ul>
+<li>microk8s（参见<a href="https://zhangtao75.github.io/2020/01/28/Ubuntu-snaps-intro-1/" title="Ubuntu 常用 snap 介绍 - 1" target="_blank" rel="external">常用 snap 介绍 - 1</a>）</li>
+<li>nextcloud（参见<a href="https://zhangtao75.github.io/2020/01/28/Ubuntu-snaps-intro-1/" title="Ubuntu 常用 snap 介绍 - 1" target="_blank" rel="external">常用 snap 介绍 - 1</a>）</li>
+<li>wekan（参见<a href="https://zhangtao75.github.io/2020/01/28/Ubuntu-snaps-intro-1/" title="Ubuntu 常用 snap 介绍 - 1" target="_blank" rel="external">常用 snap 介绍 - 1</a>）</li>
+<li>kata-containers（参见<a href="https://zhangtao75.github.io/2020/01/28/Ubuntu-snaps-intro-1/" title="Ubuntu 常用 snap 介绍 - 1" target="_blank" rel="external">常用 snap 介绍 - 1</a>）</li>
+<li>docker（参见<a href="https://zhangtao75.github.io/2020/01/28/Ubuntu-snaps-intro-1/" title="Ubuntu 常用 snap 介绍 - 1" target="_blank" rel="external">常用 snap 介绍 - 1</a>）</li>
+<li>powershell（参见<a href="https://zhangtao75.github.io/2020/01/29/Ubuntu-snaps-intro-2/" title="Ubuntu 常用 snap 介绍 - 2" target="_blank" rel="external">常用 snap 介绍 - 2</a>）</li>
+<li>wormhole（参见<a href="https://zhangtao75.github.io/2020/01/29/Ubuntu-snaps-intro-2/" title="Ubuntu 常用 snap 介绍 - 2" target="_blank" rel="external">常用 snap 介绍 - 2</a>）</li>
+</ul>
+<h2 id="3-3-结束安装"><a href="#3-3-结束安装" class="headerlink" title="3.3 结束安装"></a>3.3 结束安装</h2><p>当安装结束提示 Reboot 时，先不要着急拔出U盘；安装程序结束后，系统还要执行U盘上的一些内容，不过很快就执行完了。完成后，系统进行关机重启过程，在系统重新读取引导信息前将U盘移出就好。</p>
+<p>从我的PC（192.168.1.105）访问新装好的 Ubuntu Linux Server（192.168.1.102），美滋滋。</p>
+<p><img src="images/UI_login.png" alt="PuTTY 登录截图"></p>
+<p>对了，别忘了在路由器中将服务器的MAC地址与IP地址绑定，以固定服务器IP :)</p>
 
             </div>
         </div>

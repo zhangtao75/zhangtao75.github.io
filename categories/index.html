@@ -7,21 +7,13 @@
 
     
 
-    <title>Python grid布局的简介与细节进阶 （4） | Tao Zhang&#39;s Blog</title>
+    <title>分类 | Tao Zhang&#39;s Blog</title>
     <meta name="author" content="Tao Zhang">
-    
-    <meta name="description" content="前三节我们分别：
-
-介绍了tkinter库（Python标准GUI库）grid布局的基本概念
-通过一个样例程序，讲解了grid布局与frame部件的配合使用技巧
-讲解了grid_propagate()设置、控件/grid()方法的内外边距（ipad/pad）设置
-
-下面我们回到样例程序（CreateTagFiles），看看按照第三节中的方法设置了边距之后的情况">
     
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <meta property="og:title" content="Python grid布局的简介与细节进阶 （4）"/>
+    <meta property="og:title" content="分类"/>
     <meta property="og:site_name" content="Tao Zhang&#39;s Blog"/>
 
     
@@ -203,102 +195,22 @@
             <div class="article-title">
                 
     
-        <h1>Python grid布局的简介与细节进阶 （4）</h1>
+        <h1>分类</h1>
     
 
 
             </div>
-            <time class="deep-orange-link-context" datetime="2017-12-03T15:00:00.000Z"><a href="/2017/12/03/Python-grid-layout-104/">2017-12-03</a></time>
+            <time class="deep-orange-link-context" datetime="2020-01-31T06:37:57.000Z"><a href="/categories/index.html">2020-01-31</a></time>
 
             
-    <div class="tags-row">
-        
-            <a href="/tags/python/" class="chip deep-orange">python</a>
-        
-    </div>
-
 
             <div class="toc deep-orange-link-context hide-on-med-and-down">
-    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#1-通过grid-方法的sticky设置，调整部件对齐"><span class="section table-of-contents-text">1. 通过grid()方法的sticky设置，调整部件对齐</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#附1-tkinter及grid布局的推荐学习资源"><span class="section table-of-contents-text">附1. tkinter及grid布局的推荐学习资源</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#附2-完整CreateTagFiles程序"><span class="section table-of-contents-text">附2. 完整CreateTagFiles程序</span></a></li></ol>
+    
 </div>
 
 
             <div class="entry deep-orange-link-context">
-                <p>前三节我们分别：</p>
-<ol>
-<li>介绍了<a href="https://zhangtao75.github.io/2017/04/23/Python-grid-layout-101/" target="_blank" rel="external">tkinter库（Python标准GUI库）grid布局的基本概念</a></li>
-<li>通过一个样例程序，讲解了<a href="https://zhangtao75.github.io/2017/04/23/Python-grid-layout-102/" target="_blank" rel="external">grid布局与frame部件的配合使用技巧</a></li>
-<li>讲解了<a href="https://zhangtao75.github.io/2017/04/23/Python-grid-layout-103/" target="_blank" rel="external">grid_propagate()设置、控件/grid()方法的内外边距（ipad/pad）设置</a></li>
-</ol>
-<p>下面我们回到样例程序（CreateTagFiles），看看按照第三节中的方法设置了边距之后的情况<a id="more"></a>：</p>
-<p>修改后的代码如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> tkinter <span class="keyword">as</span> tk</div><div class="line"></div><div class="line"><span class="comment"># 主窗口</span></div><div class="line">frm_root = tk.Frame()</div><div class="line">frm_root.grid()</div><div class="line">frm_root.grid(padx=<span class="number">15</span>, pady=<span class="number">15</span>)</div><div class="line"></div><div class="line"><span class="comment"># 主窗口第0行第0列 - 用户输入frame</span></div><div class="line">frm_input = tk.Frame(frm_root)</div><div class="line">frm_input.grid(row=<span class="number">0</span>, padx=<span class="number">5</span>, pady=<span class="number">5</span>)</div><div class="line"></div><div class="line"><span class="comment"># 主窗口第1行第0列 - 用户按钮frame</span></div><div class="line">frm_button = tk.Frame(frm_root)</div><div class="line">frm_button.grid(row=<span class="number">1</span>, ipadx=<span class="number">5</span>, ipady=<span class="number">5</span>)</div><div class="line"></div><div class="line"><span class="comment"># 用户输入frame内容</span></div><div class="line"><span class="comment"># 用户输入frame的第0行第0列 - Tags标签</span></div><div class="line">lbl_tags = tk.Label(frm_input, text=<span class="string">"Tags"</span>)</div><div class="line">lbl_tags.grid(row=<span class="number">0</span>, column=<span class="number">0</span>, padx=<span class="number">5</span>)</div><div class="line"><span class="comment"># 用户输入frame的第0行第1列 - Tags输入框</span></div><div class="line">txt_tags = tk.Text(frm_input, width=<span class="number">27</span>, height=<span class="number">10</span>)</div><div class="line">txt_tags.grid(row=<span class="number">0</span>, column=<span class="number">1</span>)</div><div class="line"><span class="comment"># 用户输入frame的第0行第2列 - Tags输入框的滚动条</span></div><div class="line">srb_tags = tk.Scrollbar(frm_input)</div><div class="line">srb_tags.grid(row=<span class="number">0</span>, column=<span class="number">2</span>)</div><div class="line"><span class="comment"># 用户输入frame的第1行第0列 - Path标签</span></div><div class="line">lbl_path = tk.Label(frm_input, text=<span class="string">"Directory"</span>)</div><div class="line">lbl_path.grid(row=<span class="number">1</span>, column=<span class="number">0</span>, padx=<span class="number">5</span>, pady=<span class="number">5</span>)</div><div class="line"><span class="comment"># 用户输入frame的第1行第1、2列 - Path输入框</span></div><div class="line">etr_path = tk.Entry(frm_input, width=<span class="number">30</span>)</div><div class="line">etr_path.grid(row=<span class="number">1</span>, column=<span class="number">1</span>, columnspan=<span class="number">2</span>, pady=<span class="number">5</span>)</div><div class="line"></div><div class="line"><span class="comment"># 按钮frame内容</span></div><div class="line"><span class="comment"># 按钮frame的第0行第0列 - “Create”按钮</span></div><div class="line">btn_create = tk.Button(frm_button, text=<span class="string">'Create'</span>, width=<span class="number">5</span>)</div><div class="line">btn_create.grid(row=<span class="number">0</span>, column=<span class="number">0</span>, padx=<span class="number">30</span>)</div><div class="line"><span class="comment"># 按钮frame的第0行第1列 - “Close”按钮</span></div><div class="line">btn_close = tk.Button(frm_button, text=<span class="string">'Close'</span>, width=<span class="number">5</span>)</div><div class="line">btn_close.grid(row=<span class="number">0</span>, column=<span class="number">1</span>, padx=<span class="number">30</span>)</div><div class="line"></div><div class="line"><span class="comment"># 启动界面</span></div><div class="line">frm_root.mainloop()</div></pre></td></tr></table></figure>
-<p>运行结果如下：</p>
-<p><img src="/images/tmp05.png" alt="设置好ipad/pad后的样例程序"></p>
-<p>和设计稿比对，我们发现至少有如下几处地方还需要优化：</p>
-<p><img src="/images/tmp05-upd.png" alt="设置好ipad/pad，但仍需优化的地方"></p>
-<ol>
-<li>Tags这个标签需要靠左对齐（当然Directory标签也要靠左对齐）；</li>
-<li>Tags输入框的滚动条需要拉伸到和输入框一样长；</li>
-<li>Tags输入框和其滚动条应该靠得再紧一些</li>
-</ol>
-<p>这些都可以通过修改部件grid()方法的sticky设置来实现。</p>
-<h1 id="1-通过grid-方法的sticky设置，调整部件对齐"><a href="#1-通过grid-方法的sticky设置，调整部件对齐" class="headerlink" title="1. 通过grid()方法的sticky设置，调整部件对齐"></a>1. 通过grid()方法的sticky设置，调整部件对齐</h1><p>grid()方法的sticky设置可以指定部件靠紧其所在格子的哪一边。</p>
-<p>其基本取值可以为：</p>
-<ul>
-<li>tkinter.N：靠上</li>
-<li>tkinter.E：靠右</li>
-<li>tkinter.S：靠下</li>
-<li>tkinter.W：靠左</li>
-</ul>
-<p>也就是标准地图方位的上北下南、左西右东啦。</p>
-<p>如果是要靠某个角，那么也很简单，自然是两个方位相加：</p>
-<ul>
-<li>tkinter.NW：靠左上角</li>
-<li>tkinter.NE：靠右上角</li>
-<li>tkinter.SE：靠右下角</li>
-<li>tkinter.SW：靠左下角</li>
-</ul>
-<p>sticky甚至还可以取三个方位的相加，如：</p>
-<ul>
-<li>tk.W+tk.N+tk.S</li>
-</ul>
-<p>这个设置会将该部件向左（W）上（N）下（S）三个方向同时扯动，使其：</p>
-<ol>
-<li>垂直方向上，该部件将充满其所在格子；</li>
-<li>水平方向上，向左对齐</li>
-</ol>
-<p>哦，这不正是我们想让Tags输入框滚动条所达到的布局效果吗？</p>
-<p>经sticky设置后的程序如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> tkinter <span class="keyword">as</span> tk</div><div class="line"></div><div class="line"><span class="comment"># 主窗口</span></div><div class="line">frm_root = tk.Frame()</div><div class="line">frm_root.grid()</div><div class="line">frm_root.grid(padx=<span class="number">15</span>, pady=<span class="number">15</span>)</div><div class="line"></div><div class="line"><span class="comment"># 主窗口第0行第0列 - 用户输入frame</span></div><div class="line">frm_input = tk.Frame(frm_root)</div><div class="line">frm_input.grid(row=<span class="number">0</span>, padx=<span class="number">5</span>, pady=<span class="number">5</span>)</div><div class="line"></div><div class="line"><span class="comment"># 主窗口第1行第0列 - 用户按钮frame</span></div><div class="line">frm_button = tk.Frame(frm_root)</div><div class="line">frm_button.grid(row=<span class="number">1</span>, ipadx=<span class="number">5</span>, ipady=<span class="number">5</span>)</div><div class="line"></div><div class="line"><span class="comment"># 用户输入frame内容</span></div><div class="line"><span class="comment"># 用户输入frame的第0行第0列 - Tags标签</span></div><div class="line">lbl_tags = tk.Label(frm_input, text=<span class="string">"Tags"</span>)</div><div class="line">lbl_tags.grid(row=<span class="number">0</span>, column=<span class="number">0</span>, sticky=tk.NW, padx=<span class="number">5</span>)</div><div class="line"><span class="comment"># 用户输入frame的第0行第1列 - Tags输入框</span></div><div class="line">txt_tags = tk.Text(frm_input, width=<span class="number">27</span>, height=<span class="number">10</span>)</div><div class="line">txt_tags.grid(row=<span class="number">0</span>, column=<span class="number">1</span>, sticky=tk.E)</div><div class="line"><span class="comment"># 用户输入frame的第0行第2列 - Tags输入框的滚动条</span></div><div class="line">srb_tags = tk.Scrollbar(frm_input)</div><div class="line">srb_tags.grid(row=<span class="number">0</span>, column=<span class="number">2</span>, sticky=tk.W+tk.N+tk.S)</div><div class="line"><span class="comment"># 用户输入frame的第1行第0列 - Path标签</span></div><div class="line">lbl_path = tk.Label(frm_input, text=<span class="string">"Directory"</span>)</div><div class="line">lbl_path.grid(row=<span class="number">1</span>, column=<span class="number">0</span>, sticky=tk.NW, padx=<span class="number">5</span>, pady=<span class="number">5</span>)</div><div class="line"><span class="comment"># 用户输入frame的第1行第1、2列 - Path输入框</span></div><div class="line">etr_path = tk.Entry(frm_input, width=<span class="number">30</span>)</div><div class="line">etr_path.grid(row=<span class="number">1</span>, column=<span class="number">1</span>, columnspan=<span class="number">2</span>, pady=<span class="number">5</span>)</div><div class="line"></div><div class="line"><span class="comment"># 按钮frame内容</span></div><div class="line"><span class="comment"># 按钮frame的第0行第0列 - “Create”按钮</span></div><div class="line">btn_create = tk.Button(frm_button, text=<span class="string">'Create'</span>, width=<span class="number">5</span>)</div><div class="line">btn_create.grid(row=<span class="number">0</span>, column=<span class="number">0</span>, sticky=tk.W, padx=<span class="number">30</span>)</div><div class="line"><span class="comment"># 按钮frame的第0行第1列 - “Close”按钮</span></div><div class="line">btn_close = tk.Button(frm_button, text=<span class="string">'Close'</span>, width=<span class="number">5</span>)</div><div class="line">btn_close.grid(row=<span class="number">0</span>, column=<span class="number">1</span>, sticky=tk.E, padx=<span class="number">30</span>)</div><div class="line"></div><div class="line"><span class="comment"># 启动界面</span></div><div class="line">frm_root.mainloop()</div></pre></td></tr></table></figure>
-<p>其运行结果如下：</p>
-<p><img src="/images/tmp06.png" alt="设置好界面的样例程序"></p>
-<p>至此，程序界面已经完美实现了设计方案。『Python grid布局的简介与细节』系列文章至此结束，希望能给大家一些帮助。</p>
-<p>如有任何相关问题，欢迎发送电邮至我的个人邮箱：zhangtao75@gmail.com。</p>
-<h1 id="附1-tkinter及grid布局的推荐学习资源"><a href="#附1-tkinter及grid布局的推荐学习资源" class="headerlink" title="附1. tkinter及grid布局的推荐学习资源"></a>附1. tkinter及grid布局的推荐学习资源</h1><p>针对系统、完整的Python tkinter介绍，我推荐<a href="http://infohost.nmt.edu/tcc/help/pubs/tkinter/web/index.html" target="_blank" rel="external">Tkinter 8.5 reference: a GUI for Python</a>。</p>
-<p>其他参考资料包括：</p>
-<ul>
-<li><p><a href="http://www.effbot.org/tkinterbook/grid.htm" target="_blank" rel="external">The Tkinter Grid Geometry Manager</a></p>
-</li>
-<li><p><a href="http://www.java2s.com/Code/Python/GUI-Tk/Layoutcomponentsingrid.htm" target="_blank" rel="external">Layout components in grid : Layout « GUI Tk « Python</a></p>
-</li>
-<li><p><a href="http://www.java2s.com/Code/Python/GUI-Tk/Usingthegridgeometrymanager.htm" target="_blank" rel="external">Using the grid geometry manager : Layout « GUI Tk « Python</a></p>
-</li>
-<li><p><a href="http://stackoverflow.com/questions/15530392/python-tkinter-grid-geometry-sticky-setting-not-effective" target="_blank" rel="external">Python Tkinter grid-geometry sticky setting not effective</a></p>
-</li>
-<li><p><a href="http://ego008.blog.163.com/blog/static/13155144200811411263455/" target="_blank" rel="external">Python-Tkinter连载第一章：几何布局管理</a></p>
-</li>
-<li><p><a href="http://www.python-course.eu/tkinter_layout_management.php" target="_blank" rel="external">Python Course - Layout Managers / Geometry Manager</a></p>
-</li>
-</ul>
-<h1 id="附2-完整CreateTagFiles程序"><a href="#附2-完整CreateTagFiles程序" class="headerlink" title="附2. 完整CreateTagFiles程序"></a>附2. 完整CreateTagFiles程序</h1><p>完整的CreateTagFiles程序在GitHub上的地址是：<a href="https://github.com/zhangtao75/CreateTagFiles" target="_blank" rel="external">https://github.com/zhangtao75/CreateTagFiles</a></p>
-<p>其中包括：</p>
-<ul>
-<li>CreateTagFiles.gui：样例程序的GUI设计，使用GUI Design Studio（Freeware）查看/编辑</li>
-<li>CreateTagFiles.pyw：完整的样例程序，包括相关处理逻辑（在Windows7-Python2.7下执行通过）</li>
-<li>CreateTagFiles.3.6.pyw：CreateTagFiles.pyw的Python 3版本（在Windows7-Python3.6下执行通过）</li>
-</ul>
-
+                
             </div>
         </div>
     </div>
