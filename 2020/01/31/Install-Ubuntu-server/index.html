@@ -65,7 +65,7 @@
                     </li>
                 
                     <li>
-                        <a class="menu-category category-menu" href="javascript:;" data-activates="category-menu" >
+                        <a class="menu-category " href="/tags" >
                             <i class="fa fa-bookmark "></i>
                             
                             分类
@@ -125,7 +125,7 @@
             </li>
         
             <li class="no-padding">
-                <a class="waves-effect menu-category category-menu" href="javascript:;" data-activates="category-menu" >
+                <a class="waves-effect menu-category " href="/tags" >
                     <i class="fa fa-bookmark "></i>
                     
                     分类
@@ -222,16 +222,16 @@
                 <h1 id="1-下载"><a href="#1-下载" class="headerlink" title="1. 下载"></a>1. 下载</h1><p>从 Ubuntu 官网下载：<a href="https://ubuntu.com/#download" target="_blank" rel="external">https://ubuntu.com/#download</a></p>
 <p>目前的 Server 的长期支持版为：ubuntu-18.04.3-live-server-amd64.iso。<a id="more"></a></p>
 <p>Ubuntu 版本号中的 yy.mm 为发布年月，即本版为18年4月发布。Ubuntu 目前给其 LTS（Long Term Support，长期支持版）5 年的支持，Ubuntu 将支持本版到2023年4月。具体各版本发布、支持时间表见下图：</p>
-<p><img src="images/UI_Ubuntu_LTS.png" alt="Ubuntu LTS schedule"></p>
+<p><img src="/images/UI_Ubuntu_LTS.png" alt="Ubuntu LTS schedule"></p>
 <p>大家也可以在装完系统后使用 <code>ubuntu-support-status</code> 命令自行查询 Ubuntu 的支持时间：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">$ ubuntu-support-status</div><div class="line">Support status summary of <span class="string">'tz_ubuntu'</span>:</div><div class="line"></div><div class="line">You have 509 packages (100.0%) supported until April 2023 (Canonical - 5y)</div><div class="line"></div><div class="line">You have 0 packages (0.0%) that can not/no-longer be downloaded</div><div class="line">You have 0 packages (0.0%) that are unsupported</div><div class="line"></div><div class="line"></div><div class="line">Run with \--show-unsupported, \--show-supported or \--show-all to see more details</div></pre></td></tr></table></figure>
 <h1 id="2-制作启动盘"><a href="#2-制作启动盘" class="headerlink" title="2. 制作启动盘"></a>2. 制作启动盘</h1><p>使用工具 Rufus 制作启动盘（注：原来U盘是Ubuntu Desktop的安装盘）。</p>
-<p><img src="images/UI_make_bootable_usb_disk_Rufus.png" alt="Rufus"></p>
+<p><img src="/images/UI_make_bootable_usb_disk_Rufus.png" alt="Rufus"></p>
 <p>这个 Rufus 有点老了，所以自动提示需要下载两个新文件：</p>
-<p><img src="images/UI_make_bootable_usb_disk_Rufus_updates.png" alt="Rufus updates"></p>
+<p><img src="/images/UI_make_bootable_usb_disk_Rufus_updates.png" alt="Rufus updates"></p>
 <p>其实可以到<a href="https://rufus.ie/" target="_blank" rel="external">Rufus的官网</a>上下载最新的 Rufus。</p>
 <p>提示完信息擦除之后，Rufus 开始制作启动盘：</p>
-<p><img src="images/UI_make_bootable_usb_disk_Rufus_making.png" alt="Rufus making the bootable USB disk"></p>
+<p><img src="/images/UI_make_bootable_usb_disk_Rufus_making.png" alt="Rufus making the bootable USB disk"></p>
 <h1 id="3-安装"><a href="#3-安装" class="headerlink" title="3. 安装"></a>3. 安装</h1><p>使用启动盘启动，然后按照说明一路走下来就行。没有太多需要注意的，仅就其中三点做一下说明：</p>
 <h2 id="3-1-网络连接"><a href="#3-1-网络连接" class="headerlink" title="3.1 网络连接"></a>3.1 网络连接</h2><p>由于很多组件需要从 Internet 上下载，但 Ubuntu 安装时系统不带无线网络连接，所以必须用网线连接路由器以太网口。网络地址选择 Auto-DHCP 就行。</p>
 <p>注意，如果遇到 timeout 的问题不用慌张，应该是路由器的延时，多等几秒就好了。</p>
@@ -254,7 +254,7 @@
 </ul>
 <h2 id="3-3-结束安装"><a href="#3-3-结束安装" class="headerlink" title="3.3 结束安装"></a>3.3 结束安装</h2><p>当安装结束提示 Reboot 时，先不要着急拔出U盘；安装程序结束后，系统还要执行U盘上的一些内容，不过很快就执行完了。完成后，系统进行关机重启过程，在系统重新读取引导信息前将U盘移出就好。</p>
 <p>从我的PC（192.168.1.105）访问新装好的 Ubuntu Linux Server（192.168.1.102），美滋滋。</p>
-<p><img src="images/UI_login.png" alt="PuTTY 登录截图"></p>
+<p><img src="/images/UI_login.png" alt="PuTTY 登录截图"></p>
 <p>对了，别忘了在路由器中将服务器的MAC地址与IP地址绑定，以固定服务器IP :)</p>
 
             </div>
