@@ -7,13 +7,15 @@
 
     
 
-    <title>归档：2020/2 | Tao Zhang&#39;s Blog</title>
+    <title>PuTTY 颜色主题设置 2 | Tao Zhang&#39;s Blog</title>
     <meta name="author" content="Tao Zhang">
+    
+    <meta name="description" content="上文（PuTTY 颜色主题设置 1）说到 Linux shell 支持多种颜色，那么我们在 PuTTY 中怎么设定呢？">
     
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    
+    <meta property="og:title" content="PuTTY 颜色主题设置 2"/>
     <meta property="og:site_name" content="Tao Zhang&#39;s Blog"/>
 
     
@@ -175,46 +177,97 @@
 
     <main>
         <div class="container main-container">
-    
-
-<nav class="page-nav hide-on-small-only">
+    <nav class="page-nav hide-on-small-only">
     <div class="nav-wrapper blue darken-4">
-        <span class="breadcrumb">当前位置（归档）</span>
+        <span class="breadcrumb">当前位置（分类目录）</span>
+        
+            
+
         
 
         
     </div>
 </nav>
 
+<article>
+    <div class="card">
+        <div class="card-content">
+            
+
+            <div class="article-title">
+                
+    
+        <h1>PuTTY 颜色主题设置 2</h1>
+    
 
 
-    <ul class="collapsible mt-0" data-collapsible="accordion">
+            </div>
+            <time class="deep-orange-link-context" datetime="2020-02-01T08:00:00.000Z"><a href="/2020/02/01/PuTTY-Color-Themes2/">2020-02-01</a></time>
+
+            
+    <div class="tags-row">
         
+            <a href="/tags/putty/" class="chip deep-orange">putty</a>
         
-            <li>
-                <div class="collapsible-header active">
-                    <i class="fa fa-archive"></i>2020
-                </div>
-                <div class="collapsible-body">
-                    <div class="collection">
-                        
-                            <a href="/2020/02/01/PuTTY-Color-Themes1/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2020-02-01T10:00:00.000Z">2020-02-01</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                PuTTY 颜色主题设置 1
-                            </a>
-                        
-                            <a href="/2020/02/01/PuTTY-Color-Themes2/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2020-02-01T08:00:00.000Z">2020-02-01</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                PuTTY 颜色主题设置 2
-                            </a>
-                        
-                    </div>
-                </div>
-            </li>
+            <a href="/tags/shell/" class="chip deep-orange">shell</a>
         
-    </ul>
+    </div>
+
+
+            <div class="toc deep-orange-link-context hide-on-med-and-down">
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#4-PuTTY-支持的颜色"><span class="section table-of-contents-text">4. PuTTY 支持的颜色</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#5-PuTTY-的颜色批量配置方法"><span class="section table-of-contents-text">5. PuTTY 的颜色批量配置方法</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#6-PuTTY颜色主题"><span class="section table-of-contents-text">6. PuTTY颜色主题</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#6-1-mbadolato-iTerm2-Color-Schemes"><span class="section table-of-contents-text">6.1  mbadolato/iTerm2-Color-Schemes</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#6-2-AlexAkulov-putty-color-themes"><span class="section table-of-contents-text">6.2 AlexAkulov/putty-color-themes</span></a></li></ol></li></ol>
+</div>
+
+
+            <div class="entry deep-orange-link-context">
+                <p>上文（<a href="https://zhangtao75.github.io/2020/02/01/PuTTY-Color-Themes1/" target="_blank" rel="external">PuTTY 颜色主题设置 1</a>）说到 Linux shell 支持多种颜色，那么我们在 PuTTY 中怎么设定呢？<a id="more"></a></p>
+<h1 id="4-PuTTY-支持的颜色"><a href="#4-PuTTY-支持的颜色" class="headerlink" title="4. PuTTY 支持的颜色"></a>4. PuTTY 支持的颜色</h1><p>在上文中，我们提到 Linux shell 支持8种背景色、8种前景色的设置，PuTTY 本身还支持以下6种颜色的设定：</p>
+<ol>
+<li>缺省前景色（Default Foreground）</li>
+<li>缺省加粗前景色（Default Bold Foreground）</li>
+<li>缺省背景色（Default Background）</li>
+<li>缺省加粗背景色（Default Bold Background）</li>
+<li>光标选中文字色（Cursor Text）</li>
+<li>光标颜色（Cursor Colour）</li>
+</ol>
+<p>因此，PuTTY 一共支持 <code>8 + 8 + 6 = 22</code> 种颜色的设置。</p>
+<p>如果我们只想调1、2种颜色，可以使用 <a href="https://zhangtao75.github.io/2020/02/01/PuTTY-Color-Themes1/" target="_blank" rel="external">前文</a> 第一节中所述方法：</p>
+<p><img src="/images/PuttyTheme_SetColor1.png" alt="PuTTY Set Color"></p>
+<p>但要是22个颜色都这么一个一个手工在对话框中输入RGB数值来配置，可不是程序员干的。</p>
+<h1 id="5-PuTTY-的颜色批量配置方法"><a href="#5-PuTTY-的颜色批量配置方法" class="headerlink" title="5. PuTTY 的颜色批量配置方法"></a>5. PuTTY 的颜色批量配置方法</h1><p>PuTTY 的颜色设置是挂在 Session 属性下面的，这在 <a href="https://zhangtao75.github.io/2020/02/01/PuTTY-Color-Themes1/" target="_blank" rel="external">前文</a> 第一节中已经说明：</p>
+<p><img src="/images/PuttyTheme_SetColor2.png" alt="PuTTY Save Session"></p>
+<p>而这些 Session 的属性是存在注册表中 [HKEY_CURRENT_USER\Software\SimonTatham\PuTTY\Sessions\<em>SessionName</em>] 项下的。</p>
+<p>说到这里，聪明的程序员就应该可以推导出，我们可以写一个 .reg 文件，将相关注册信息批量导入到注册表中。</p>
+<p>注册表文件样例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">Windows Registry Editor Version 5.00</div><div class="line"></div><div class="line">[HKEY_CURRENT_USER\Software\SimonTatham\PuTTY\Sessions\Tango]</div><div class="line">&quot;Colour0&quot;=&quot;211,215,207&quot;</div><div class="line">&quot;Colour1&quot;=&quot;238,238,236&quot;</div><div class="line">&quot;Colour2&quot;=&quot;46,52,54&quot;</div><div class="line">&quot;Colour3&quot;=&quot;85,87,83&quot;</div><div class="line">&quot;Colour4&quot;=&quot;211,215,207&quot;</div><div class="line">&quot;Colour5&quot;=&quot;238,238,236&quot;</div><div class="line">&quot;Colour6&quot;=&quot;46,52,54&quot;</div><div class="line">&quot;Colour7&quot;=&quot;85,87,83&quot;</div><div class="line">&quot;Colour8&quot;=&quot;204,0,0&quot;</div><div class="line">&quot;Colour9&quot;=&quot;239,41,41&quot;</div><div class="line">&quot;Colour10&quot;=&quot;78,154,6&quot;</div><div class="line">&quot;Colour11&quot;=&quot;138,226,52&quot;</div><div class="line">&quot;Colour12&quot;=&quot;196,160,0&quot;</div><div class="line">&quot;Colour13&quot;=&quot;252,233,79&quot;</div><div class="line">&quot;Colour14&quot;=&quot;52,101,164&quot;</div><div class="line">&quot;Colour15&quot;=&quot;114,159,207&quot;</div><div class="line">&quot;Colour16&quot;=&quot;117,80,123&quot;</div><div class="line">&quot;Colour17&quot;=&quot;173,127,168&quot;</div><div class="line">&quot;Colour18&quot;=&quot;6,152,154&quot;</div><div class="line">&quot;Colour19&quot;=&quot;52,226,226&quot;</div><div class="line">&quot;Colour20&quot;=&quot;211,215,207&quot;</div><div class="line">&quot;Colour21&quot;=&quot;238,238,236&quot;</div></pre></td></tr></table></figure>
+<p>Bingo，问题解决了。</p>
+<p>但，程序员不是美工，有没有现成的颜色主题呢？当然有。</p>
+<h1 id="6-PuTTY颜色主题"><a href="#6-PuTTY颜色主题" class="headerlink" title="6. PuTTY颜色主题"></a>6. PuTTY颜色主题</h1><p>PuTTY颜色主题嘛，全球最大 <del>同性交友</del> <a href="https://github.com/" target="_blank" rel="external">代码库 github</a> 上肯定有。</p>
+<p>下面就是我找到的两个 Repositories：</p>
+<h2 id="6-1-mbadolato-iTerm2-Color-Schemes"><a href="#6-1-mbadolato-iTerm2-Color-Schemes" class="headerlink" title="6.1  mbadolato/iTerm2-Color-Schemes"></a>6.1  <a href="https://github.com/mbadolato/iTerm2-Color-Schemes" target="_blank" rel="external">mbadolato/iTerm2-Color-Schemes</a></h2><p>这个库虽然叫 iTerm Color Schemes，但也为 Terminal，PuTTY，Visual Studio 等工具提供了颜色主题。</p>
+<p>针对每一个主题，还都给出了预览，如这个叫 <strong>Github</strong> 的主题:</p>
+<p><img src="/images/PuttyTheme_GithubThemeGithub1.png" alt="Github Theme Preview"></p>
+<p>为了读懂这幅预览图，我们在前文 <a href="https://zhangtao75.github.io/2020/02/01/PuTTY-Color-Themes1/" target="_blank" rel="external">PuTTY 颜色主题设置 1</a> 中介绍的前导知识就用上了。</p>
+<ul>
+<li>每一行是一种前景色，<code>m</code> 行是缺省前景色，<code>32m</code> 行是绿色前景色，<code>1;32m</code> 行是高亮绿色前景色，等等；</li>
+<li>每一列是一种背景色，未标注的列是缺省背景色，<code>40m</code> 列是黑色背景色，<code>41m</code> 列是深红色背景色，等等。 </li>
+</ul>
+<p>有了预览，大家就可以选择自己喜欢的主题下载了。</p>
+<p>另外，这个 repository 还提供了一个 shell 程序（<a href="https://github.com/mbadolato/iTerm2-Color-Schemes/blob/master/tools/screenshotTable.sh" target="_blank" rel="external">screenshotTable.sh</a>），用以生成上面的预览图。有兴趣的朋友可以试试。</p>
+<p>下面是我运行的结果：</p>
+<p><img src="/images/PuttyTheme_ScreenshotTable1.png" alt="My Screenshot Table"></p>
+<h2 id="6-2-AlexAkulov-putty-color-themes"><a href="#6-2-AlexAkulov-putty-color-themes" class="headerlink" title="6.2 AlexAkulov/putty-color-themes"></a>6.2 <a href="https://github.com/AlexAkulov/putty-color-themes" target="_blank" rel="external">AlexAkulov/putty-color-themes</a></h2><p>大家可以在其 <a href="https://github.com/AlexAkulov/putty-color-themes/tree/master/images" target="_blank" rel="external">images 目录</a>下预览各种主题效果。</p>
+<p><img src="/images/PuttyTheme_PuttyColorThemes.png" alt="Putty Color Themes"></p>
+<p>祝大家找到自己喜欢的颜色主题！</p>
+
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
 
 
 </div>

@@ -286,7 +286,13 @@
 <li><code>\e[47m</code>：白色 </li>
 </ol>
 <p>所以在上面的例子中，第一个 hello 是白底<code>\e[47m</code>红字<code>\e[31m</code>，第二个 hello 是蓝底<code>\e[44m</code>黄字<code>\e[33m</code>。</p>
-<p>写着写着就这么长了，后面还有些内容，我们在 <a href="">PuTTY 颜色主题设置 2</a> 中再介绍吧。</p>
+<p>除了这 16 种颜色之外，<code>echo</code> 还支持更丰富的输出控制转义。完整详细的介绍超出了本文的范围，感兴趣的同学可以自行搜索研究。本文仅介绍一个“高亮”控制转义：<code>\e[1m</code>。 </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">echo</span> <span class="_">-e</span> <span class="string">"\e[33m\e[44mhello\e[0m"</span>;<span class="built_in">echo</span> <span class="_">-e</span> <span class="string">"\e[1;33m\e[44mhello\e[0m"</span></div></pre></td></tr></table></figure>
+<p>多个 <code>\e[?m</code> 控制转义符可以用;连接写在一起，所以 <code>\e[1;33m</code> 的意思就是高亮黄色前景的意思。</p>
+<p>上述语句的输出如下：</p>
+<p><img src="/images/PuttyTheme_EchoEffect2.png" alt="Shell Echo Effect 2"></p>
+<p>可见高亮黄色和黄色还是有明显区别的。</p>
+<p>为什么单独要介绍一下“高亮”控制转义 <code>\e[1m</code> 呢？哎呀，写着写着就这么长了，快超过网页适宜长度了（太长的话，大多数读者就没耐心读完）；那么我们在 <a href="">PuTTY 颜色主题设置 2</a> 中再介绍这个问题吧。</p>
 
             </div>
         </div>
