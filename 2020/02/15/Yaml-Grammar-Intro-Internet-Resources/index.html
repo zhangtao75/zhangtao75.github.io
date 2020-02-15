@@ -7,16 +7,16 @@
 
     
 
-    <title>Yaml 语法简介与网上资源汇总 | Tao Zhang&#39;s Blog</title>
+    <title>Yaml 语法简介、PyYAML演示以及网上资源汇总 | Tao Zhang&#39;s Blog</title>
     <meta name="author" content="Tao Zhang">
     
     <meta name="description" content="1. YAML 是什么意思YAML 是 “YAML Ain’t a Markup Language” 的递归缩写。不过，在正式发布之前的开发过程中，内部人员则称 YAML 为 “Yet Another Markup Language“。
-“YAML Ain’t a Markup Language” ">
+“YAML Ain’t a Markup Language” 中的 Markup Language 主要指 XML，这句话也体现出 YAML 想要追求的与XML不同的目标（Goals of YAML）">
     
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <meta property="og:title" content="Yaml 语法简介与网上资源汇总"/>
+    <meta property="og:title" content="Yaml 语法简介、PyYAML演示以及网上资源汇总"/>
     <meta property="og:site_name" content="Tao Zhang&#39;s Blog"/>
 
     
@@ -198,7 +198,7 @@
             <div class="article-title">
                 
     
-        <h1>Yaml 语法简介与网上资源汇总</h1>
+        <h1>Yaml 语法简介、PyYAML演示以及网上资源汇总</h1>
     
 
 
@@ -220,7 +220,7 @@
 
             <div class="entry deep-orange-link-context">
                 <h1 id="1-YAML-是什么意思"><a href="#1-YAML-是什么意思" class="headerlink" title="1. YAML 是什么意思"></a>1. YAML 是什么意思</h1><p>YAML 是 “YAML Ain’t a Markup Language” 的递归缩写。不过，在正式发布之前的开发过程中，内部人员则称 YAML 为 “<a href="https://yaml.org/spec/history/2001-12-10.html" title="Yet Another Markup Language" target="_blank" rel="external">Yet Another Markup Language</a>“。</p>
-<p>“YAML Ain’t a Markup Language” 中的 Markup Language 主要指 XML，这句话也体现出 YAML 想要追求的与XML不同的目标（<a href="https://yaml.org/spec/1.2/spec.html#id2708649" title="Goals of YAML" target="_blank" rel="external">Goals of YAML</a>）：</p>
+<p>“YAML Ain’t a Markup Language” 中的 Markup Language 主要指 XML，这句话也体现出 YAML 想要追求的与XML不同的目标（<a href="https://yaml.org/spec/1.2/spec.html#id2708649" title="Goals of YAML" target="_blank" rel="external">Goals of YAML</a>）<a id="more"></a>：</p>
 <ol>
 <li>YAML is easily readable by humans.</li>
 <li>YAML data is portable between programming languages.</li>
@@ -274,27 +274,27 @@
 <p>YAML 中的纯量有以下几种：</p>
 <h3 id="2-3-1-字符串"><a href="#2-3-1-字符串" class="headerlink" title="2.3.1 字符串"></a>2.3.1 字符串</h3><p>字符串默认不使用引号表示，如：<code>这是一个字符串</code>，<code>Hello World</code> 都是字符串。</p>
 <p>在 Python idle 中执行如下代码，得到的结果是 <code>Hello World</code>。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">d = yaml.load(<span class="string">"a: Hello World"</span>)</div><div class="line">d[<span class="string">"a"</span>]</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">d = yaml.safe_load(<span class="string">"a: Hello World"</span>)</div><div class="line">d[<span class="string">"a"</span>]</div></pre></td></tr></table></figure>
 <p>在上述例子中，YAML 解释器能够理解 <code>Hello World</code> 是一个字符串，所以我们无需用引号。但当某些情况下，就需要引号来帮助解释器识别字符串了；比如说，字符串中有特殊符号：<code>b: &#39;Hello: World&#39;</code>。</p>
 <p>另外 YAML 还支持多行字符串。</p>
 <p>在 Python idle 中执行如下代码，得到的结果是 <code>&#39;Hello\nWorld\n&#39;</code>。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> yaml</div><div class="line">str = <span class="string">'''</span></div><div class="line">a: |</div><div class="line">  Hello</div><div class="line">  World</div><div class="line">'''</div><div class="line">d = yaml.load(str, Loader=<span class="keyword">None</span>)</div><div class="line">d[<span class="string">"a"</span>]</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">str = <span class="string">'''</span></div><div class="line">a: |</div><div class="line">  Hello</div><div class="line">  World</div><div class="line">'''</div><div class="line">d = yaml.safe_load(str)</div><div class="line">d[<span class="string">"a"</span>]</div></pre></td></tr></table></figure>
 <h3 id="2-3-2-布尔值"><a href="#2-3-2-布尔值" class="headerlink" title="2.3.2 布尔值"></a>2.3.2 布尔值</h3><p>YAML 用 <code>true</code> 与 <code>false</code> 表示。</p>
 <p>在 Python idle 中执行如下代码，得到的结果是 <code>[True, False]</code>。注意 true 变为 True，这意味着是布尔值”真”，而非字符串。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> yaml</div><div class="line">str = <span class="string">'''</span></div><div class="line">a: true</div><div class="line">b: false'''</div><div class="line">d = yaml.load(str, Loader=<span class="keyword">None</span>)</div><div class="line">list(d.values())</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">str = <span class="string">'''</span></div><div class="line">a: true</div><div class="line">b: false'''</div><div class="line">d = yaml.safe_load(str)</div><div class="line">list(d.values())</div></pre></td></tr></table></figure>
 <h3 id="2-3-3-数值"><a href="#2-3-3-数值" class="headerlink" title="2.3.3 数值"></a>2.3.3 数值</h3><p>YAML 中的数值直接以字面量的形式表示即可。</p>
 <p>在 Python idle 中执行如下代码，得到的结果是 <code>5.140000000000001</code>。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> yaml</div><div class="line">str = <span class="string">'''</span></div><div class="line">a: 2</div><div class="line">b: 3.14'''</div><div class="line">d = yaml.load(str, Loader=<span class="keyword">None</span>)</div><div class="line">d[<span class="string">"a"</span>]+d[<span class="string">"b"</span>]</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">str = <span class="string">'''</span></div><div class="line">a: 2</div><div class="line">b: 3.14'''</div><div class="line">d = yaml.safe_load(str)</div><div class="line">d[<span class="string">"a"</span>]+d[<span class="string">"b"</span>]</div></pre></td></tr></table></figure>
 <h3 id="2-3-4-Null"><a href="#2-3-4-Null" class="headerlink" title="2.3.4 Null"></a>2.3.4 Null</h3><p>YAML 用 <code>~</code> 表示 Null。</p>
 <p>在 Python idle 中执行如下代码，得到的结果是 <code>True</code>。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> yaml</div><div class="line">str = <span class="string">"a: ~"</span></div><div class="line">d = yaml.load(str, Loader=<span class="keyword">None</span>)</div><div class="line">d[<span class="string">"a"</span>] <span class="keyword">is</span> <span class="keyword">None</span></div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">str = <span class="string">"a: ~"</span></div><div class="line">d = yaml.safe_load(str)</div><div class="line">d[<span class="string">"a"</span>] <span class="keyword">is</span> <span class="keyword">None</span></div></pre></td></tr></table></figure>
 <h3 id="2-3-5-日期与时间"><a href="#2-3-5-日期与时间" class="headerlink" title="2.3.5 日期与时间"></a>2.3.5 日期与时间</h3><p>YAML 中的日期、时间使用ISO 8601格式：</p>
 <ul>
 <li>日期为：<code>yyyy-MM-dd</code>;</li>
 <li>时间为：<code>yyyy-MM-ddThh:mm:ss+hh:mm</code>，<code>T</code> 后面跟着的是时间，<code>+</code> 或 <code>-</code> 后面跟着的是时区（偏移）。</li>
 </ul>
 <p>在 Python idle 中执行如下代码，得到的结果是 <code>[datetime.date(2020, 2, 15), datetime.datetime(2020, 2, 15, 13, 30, tzinfo=datetime.timezone(datetime.timedelta(-1, 57600)))]</code>。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> yaml</div><div class="line">str = <span class="string">'''</span></div><div class="line">a: 2020-02-15</div><div class="line">b: 2020-02-15T13:30:00-08:00'''</div><div class="line">d = yaml.load(str, Loader=<span class="keyword">None</span>)</div><div class="line">list(d.values())</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">str = <span class="string">'''</span></div><div class="line">a: 2020-02-15</div><div class="line">b: 2020-02-15T13:30:00-08:00'''</div><div class="line">d = yaml.safe_load(str)</div><div class="line">list(d.values())</div></pre></td></tr></table></figure>
 <p>介绍到这里，对于一般使用来说应该足够了；说那么复杂的，十年八年用不上，也记不住。如果遇到更复杂的情况，我们直接上网找 References 就好了。</p>
 <h1 id="3-网络资源"><a href="#3-网络资源" class="headerlink" title="3. 网络资源"></a>3. 网络资源</h1><ul>
 <li><a href="https://yaml.org/" title="YAML 官方网站" target="_blank" rel="external">YAML 官方网站</a>：官方网站是必须要去的，其远比一般介绍性文章更权威；</li>
