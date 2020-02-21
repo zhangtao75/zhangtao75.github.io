@@ -222,8 +222,8 @@
 
             <div class="entry deep-orange-link-context">
                 <ul>
-<li>前一篇文章（<a href="https://netplan.io/reference" title="Ubuntu Server 18.04 无线网络接入配置 - 1" target="_blank" rel="external">Ubuntu Server 18.04 无线网络接入配置 - 1</a>）介绍了配置前的准备工作以及一部分预配置工作；</li>
-<li>后一篇文章（<a href="https://netplan.io/reference" title="Ubuntu Server 18.04 无线网络接入配置 - 3" target="_blank" rel="external">Ubuntu Server 18.04 无线网络接入配置 - 3</a>）将介绍让配置文件生效的方法。</li>
+<li>前一篇文章（<a href="https://zhangtao75.github.io/2020/02/14/Ubuntu-WiFi-Configure-1/" title="Ubuntu Server 18.04 无线网络接入配置 - 1" target="_blank" rel="external">Ubuntu Server 18.04 无线网络接入配置 - 1</a>）介绍了配置前的准备工作以及一部分预配置工作；</li>
+<li>后一篇文章（<a href="https://zhangtao75.github.io/2020/02/21/Ubuntu-WiFi-Configure-3/" title="Ubuntu Server 18.04 无线网络接入配置 - 3" target="_blank" rel="external">Ubuntu Server 18.04 无线网络接入配置 - 3</a>）将介绍让配置文件生效的方法。</li>
 </ul>
 <p>本篇文章主要介绍 Ubuntu Server 网络配置核心 - netplan 配置文件。<a id="more"></a></p>
 <h1 id="6-使用-netplan-配置无线网络接入"><a href="#6-使用-netplan-配置无线网络接入" class="headerlink" title="6. 使用 netplan 配置无线网络接入"></a>6. 使用 netplan 配置无线网络接入</h1><h2 id="6-1-netplan-简介"><a href="#6-1-netplan-简介" class="headerlink" title="6.1 netplan 简介"></a>6.1 netplan 简介</h2><p>Ubuntu Server 18.04 采用 netplan 进行网络配置，官方文档见 <a href="https://netplan.io/reference" title="Netplan Reference" target="_blank" rel="external">Netplan Reference</a>。</p>
@@ -284,7 +284,7 @@
 <h3 id="nameservers-mapping"><a href="#nameservers-mapping" class="headerlink" title="nameservers (mapping)"></a>nameservers (mapping)</h3><p>用以设置 DNS 服务器以及搜索域。例子足以说明一切：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">ethernets:</div><div class="line">  id0:</div><div class="line">    [...]</div><div class="line">    nameservers:</div><div class="line">      search: [lab, home]</div><div class="line">      addresses: [8.8.8.8, &quot;FEDC::1&quot;]</div></pre></td></tr></table></figure>
 <h3 id="optional-bool"><a href="#optional-bool" class="headerlink" title="optional (bool)"></a>optional (bool)</h3><p>设置此设备是否为启动可选。如果设置为 <em>false</em>（非可选），networkd 将在系统启动时等待此设备；若设置为 <em>true</em>（可选），则启动时不等待。</p>
-<p>目前，只有 networkd 渲染器/呈现器（renderer）支持此选项（networkd、渲染器/呈现器 相关内容见 <a href="https://netplan.io/reference" title="Ubuntu Server 18.04 无线网络接入配置 - 1" target="_blank" rel="external">Ubuntu Server 18.04 无线网络接入配置 - 1</a>）。此选项的默认值为 <em>false</em>（非可选）。</p>
+<p>目前，只有 networkd 渲染器/呈现器（renderer）支持此选项（networkd、渲染器/呈现器 相关内容见 <a href="https://zhangtao75.github.io/2020/02/14/Ubuntu-WiFi-Configure-1/" title="Ubuntu Server 18.04 无线网络接入配置 - 1" target="_blank" rel="external">Ubuntu Server 18.04 无线网络接入配置 - 1</a>）。此选项的默认值为 <em>false</em>（非可选）。</p>
 <p>以上介绍的属性，是对于所有类型的网络设备（如 ethernet，wifi）都通用的属性，下面讲适用于 wifi 类型网络设备的专门属性。</p>
 <h3 id="access-points-mapping"><a href="#access-points-mapping" class="headerlink" title="access-points (mapping)"></a>access-points (mapping)</h3><p><em>access-points</em> 这一属性的结构如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">access-points:</div><div class="line">    &lt;SSID&gt;:</div><div class="line">        password: &lt;password&gt;</div><div class="line">        mode: &quot;infrastructure|ap|adhoc&quot;</div></pre></td></tr></table></figure>
@@ -307,7 +307,7 @@
 <li>我让路由器使用 DHCP 给计算机提供 IP 等网络配置（当然，我会在路由器上做静态地址设置）；而网参版在 yaml 文件中配置了服务器的静态 IP 地址。</li>
 </ul>
 <p>有了上面的说明，以及这两个例子，99% 的读者应该能依据自己的实际情况配置相应的 network yaml 文件了。</p>
-<p>剩下要做的，是让这些配置生效，具体方法详见下一篇：<a href="https://netplan.io/reference" title="Ubuntu Server 18.04 无线网络接入配置 - 3" target="_blank" rel="external">Ubuntu Server 18.04 无线网络接入配置 - 3 - 配置文件生效</a>。</p>
+<p>剩下要做的，是让这些配置生效，具体方法详见下一篇：<a href="https://zhangtao75.github.io/2020/02/21/Ubuntu-WiFi-Configure-3/" title="Ubuntu Server 18.04 无线网络接入配置 - 3" target="_blank" rel="external">Ubuntu Server 18.04 无线网络接入配置 - 3 - 配置文件生效</a>。</p>
 
             </div>
         </div>

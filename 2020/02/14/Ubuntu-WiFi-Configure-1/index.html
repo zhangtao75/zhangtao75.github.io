@@ -230,8 +230,8 @@ Ubuntu Server 18.04 安装包并不能自动把无线网络配上，需要安装
 <p>增加了这些内容之后，原本一篇文章的长度无以容纳；不得已拆成了三篇，分别是：</p>
 <ul>
 <li>Ubuntu Server 18.04 无线网络接入配置 - 1 - 配置前的准备工作；</li>
-<li><a href="https://netplan.io/reference" title="Ubuntu Server 18.04 无线网络接入配置 - 2 - netplan 配置文件" target="_blank" rel="external">Ubuntu Server 18.04 无线网络接入配置 - 2 - netplan 配置文件</a>；</li>
-<li><a href="https://netplan.io/reference" title="Ubuntu Server 18.04 无线网络接入配置 - 3 - 配置文件生效" target="_blank" rel="external">Ubuntu Server 18.04 无线网络接入配置 - 3 - 配置文件生效</a></li>
+<li><a href="https://zhangtao75.github.io/2020/02/18/Ubuntu-WiFi-Configure-2/" title="Ubuntu Server 18.04 无线网络接入配置 - 2 - netplan 配置文件" target="_blank" rel="external">Ubuntu Server 18.04 无线网络接入配置 - 2 - netplan 配置文件</a>；</li>
+<li><a href="https://zhangtao75.github.io/2020/02/21/Ubuntu-WiFi-Configure-3/" title="Ubuntu Server 18.04 无线网络接入配置 - 3 - 配置文件生效" target="_blank" rel="external">Ubuntu Server 18.04 无线网络接入配置 - 3 - 配置文件生效</a></li>
 </ul>
 <p>希望这一系列文章能够让大家对 Ubuntu Server 的无线网络配置，乃至通用网络配置，有一个知其然也知其所以然的理解。</p>
 <h1 id="1-检查当前网络连接情况"><a href="#1-检查当前网络连接情况" class="headerlink" title="1. 检查当前网络连接情况"></a>1. 检查当前网络连接情况</h1><p>命令 <a href="http://manpages.ubuntu.com/manpages/trusty/man8/ifconfig.8.html" title="Ubuntu 官方文档 - ifconfig" target="_blank" rel="external"><code>ifconfig</code></a> 用来配置网络连接（configure a network interface）。</p>
@@ -254,7 +254,16 @@ Ubuntu Server 18.04 安装包并不能自动把无线网络配上，需要安装
 </ul>
 <h1 id="5-查看-启动无线网络设备"><a href="#5-查看-启动无线网络设备" class="headerlink" title="5. 查看/启动无线网络设备"></a>5. 查看/启动无线网络设备</h1><p>命令 <a href="http://manpages.ubuntu.com/manpages/bionic/en/man8/ip.8.html" title="Ubuntu 官方文档 - ip" target="_blank" rel="external"><code>ip</code></a> 用以显示/操控路由、网络设备、接口以及通道（show / manipulate routing, network devices, interfaces and tunnels）。</p>
 <p>我们使用 <code>ip link show &lt;dev_name&gt;</code> 命令形式来查看特定网络设备。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">zhexen@tz_ubuntu:/etc/network$ ip link show wlp3s0</div><div class="line">3: wlp3s0: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000</div><div class="line">    link/ether ec:55:f9:3d:cc:f8 brd ff:ff:ff:ff:ff:ff</div><div class="line"></div><div class="line">``` </div><div class="line"></div><div class="line">怎么解读 `ip link show` 命令的返回值呢？ 尖括号中的内容，即 `&lt;XXX,XXX&gt;`，是设备的状态信息；而其后则是一对一对的 `设置项 设置值`。从上面命令的返回值中，我们可以发现：</div><div class="line"></div><div class="line">- 状态中没有 *UP*；</div><div class="line">- *state* 为 *DOWN*</div><div class="line"></div><div class="line">至于其他设置项则都是网络底层的，比如 mtu（最大传输单位）、qlen（传输队列长度）等等，非特殊情况我们可以不去管这些设置项。感兴趣的同学可以参考 [果冻想 - Linux ip命令详解][8]。Ubuntu 的官方文档嘛，我是没找到对这些输出项的解释。</div><div class="line"></div><div class="line">我们需要先把无线网卡启动（UP）起来。</div><div class="line"></div><div class="line">我们使用 `sudo ifconfig &lt;dev_name&gt; up` 命令形式来启动 **wlp3s0** 设备。</div><div class="line"></div><div class="line">```bash</div><div class="line">zhexen@tz_ubuntu:/etc/network$ sudo ifconfig wlp3s0 up</div><div class="line">[sudo] password <span class="keyword">for</span> zhexen:</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">zhexen@tz_ubuntu:/etc/network$ ip link show wlp3s0</div><div class="line">3: wlp3s0: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000</div><div class="line">    link/ether ec:55:f9:3d:cc:f8 brd ff:ff:ff:ff:ff:ff</div></pre></td></tr></table></figure>
+<p>怎么解读 <code>ip link show</code> 命令的返回值呢？ 尖括号中的内容，即 <code>&lt;XXX,XXX&gt;</code>，是设备的状态信息；而其后则是一对一对的 <code>设置项 设置值</code>。从上面命令的返回值中，我们可以发现：</p>
+<ul>
+<li>状态中没有 <em>UP</em>；</li>
+<li><em>state</em> 为 <em>DOWN</em></li>
+</ul>
+<p>至于其他设置项则都是网络底层的，比如 mtu（最大传输单位）、qlen（传输队列长度）等等，非特殊情况我们可以不去管这些设置项。感兴趣的同学可以参考 <a href="https://www.jellythink.com/archives/469" title="果冻想 - Linux ip命令详解" target="_blank" rel="external">果冻想 - Linux ip命令详解</a>。Ubuntu 的官方文档嘛，我是没找到对这些输出项的解释。</p>
+<p>我们需要先把无线网卡启动（UP）起来。</p>
+<p>我们使用 <code>sudo ifconfig &lt;dev_name&gt; up</code> 命令形式来启动 <strong>wlp3s0</strong> 设备。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">zhexen@tz_ubuntu:/etc/network$ sudo ifconfig wlp3s0 up</div><div class="line">[sudo] password <span class="keyword">for</span> zhexen:</div></pre></td></tr></table></figure>
 <p>OK，命令本身没有返回任何信息，我们再用 <code>ip link show &lt;dev_name&gt;</code> 来看看。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">zhexen@tz_ubuntu:/etc/network$ ip link show wlp3s0</div><div class="line">3: wlp3s0: &lt;NO-CARRIER,BROADCAST,MULTICAST,UP&gt; mtu 1500 qdisc noqueue state DOWN mode DEFAULT group default qlen 1000</div><div class="line">    link/ether ec:55:f9:3d:cc:f8 brd ff:ff:ff:ff:ff:ff</div></pre></td></tr></table></figure>
 <p>从上面结果可见：</p>
@@ -263,7 +272,7 @@ Ubuntu Server 18.04 安装包并不能自动把无线网络配上，需要安装
 <li><em>state</em> 还是 <em>DOWN</em></li>
 </ul>
 <p>到此，所有准备工作以及一部分预配置工作已经完成；接下来我们要配置 Ubuntu Server 的网络管理核心 netplan。</p>
-<p>具体详情请见 <a href="https://netplan.io/reference" title="Ubuntu Server 18.04 无线网络接入配置 - 2 - netplan 配置文件" target="_blank" rel="external">Ubuntu Server 18.04 无线网络接入配置 - 2 - netplan 配置文件</a>。</p>
+<p>具体详情请见 <a href="https://zhangtao75.github.io/2020/02/18/Ubuntu-WiFi-Configure-2/" title="Ubuntu Server 18.04 无线网络接入配置 - 2 - netplan 配置文件" target="_blank" rel="external">Ubuntu Server 18.04 无线网络接入配置 - 2 - netplan 配置文件</a>。</p>
 
             </div>
         </div>
