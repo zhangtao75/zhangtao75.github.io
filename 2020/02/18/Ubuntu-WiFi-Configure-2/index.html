@@ -1,0 +1,597 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    
+
+    <title>Ubuntu Server 18.04 无线网络接入配置 - 2 | Tao Zhang&#39;s Blog</title>
+    <meta name="author" content="Tao Zhang">
+    
+    <meta name="description" content="前一篇文章（Ubuntu Server 18.04 无线网络接入配置 - 1）介绍了配置前的准备工作以及一部分预配置工作；
+后一篇文章（Ubuntu Server 18.04 无线网络接入配置 - 3）将介绍让配置文件生效的方法。
+
+本篇文章主要介绍 Ubuntu Server 网络配置核心 - netplan 配置文件。">
+    
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta property="og:title" content="Ubuntu Server 18.04 无线网络接入配置 - 2"/>
+    <meta property="og:site_name" content="Tao Zhang&#39;s Blog"/>
+
+    
+    <meta property="og:image" content="undefined"/>
+    
+
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="alternate" href="/atom.xml" title="Tao Zhang&#39;s Blog" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/lib/materialize.min.css">
+    <link rel="stylesheet" href="/css/lib/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+
+    
+        <link rel="stylesheet" href="/css/lib/prettify-tomorrow-night-eighties.css" type="text/css">
+    
+    <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+
+
+<body>
+    <img src="/weixin_favicon.png" style="position: absolute; left: -9999px; opacity: 0; filter: alpha(opacity=0);">
+
+    <nav class="blue darken-4">
+    <div class="nav-wrapper">
+        <a href="#" data-activates="main-menu" class="button-collapse">
+            <i class="fa fa-navicon"></i>
+        </a>
+        <div class="">
+            <a href="/" class="brand-logo hide-on-med-and-down">Tao Zhang&#39;s Blog</a>
+            <ul class="right hide-on-med-and-down">
+                
+                    <li>
+                        <a class="menu-home " href="/" >
+                            <i class="fa fa-home "></i>
+                            
+                            首页
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-archive " href="/archives" >
+                            <i class="fa fa-archive "></i>
+                            
+                            归档
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-category " href="/tags" >
+                            <i class="fa fa-bookmark "></i>
+                            
+                            分类
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-about " href="/about" >
+                            <i class="fa fa-user "></i>
+                            
+                            关于
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-search modal-trigger " href="#search" >
+                            <i class="fa fa-search "></i>
+                            
+                            搜索
+                        </a>
+                    </li>
+                
+            </ul>
+            <div>
+    <ul class="side-nav blue darken-4" id="main-menu">
+        
+        <li class="side-user">
+            <div class="row">
+                <div class="col s4 no-padding">
+                    <img class="avatar-image circle responsive-img" src="http://ww2.sinaimg.cn/large/53aa8487jw1e436g8svuzj205005074e.jpg" alt="User Avatar">
+                </div>
+                <div class="info col s8 valign-wrapper no-padding">
+                    <div class="valign">
+                        <p class="name">Tao Zhang / 张涛</p>
+                        <p class="desc">数据处理专家/系统架构师/项目经理</p>
+                    </div>
+                </div>
+            </div>
+        </li>
+        
+
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-home " href="/" >
+                    <i class="fa fa-home "></i>
+                    
+                    首页
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-archive " href="/archives" >
+                    <i class="fa fa-archive "></i>
+                    
+                    归档
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-category " href="/tags" >
+                    <i class="fa fa-bookmark "></i>
+                    
+                    分类
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-about " href="/about" >
+                    <i class="fa fa-user "></i>
+                    
+                    关于
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-search modal-trigger " href="#search" >
+                    <i class="fa fa-search "></i>
+                    
+                    搜索
+                </a>
+            </li>
+        
+    </ul>
+
+    <ul class="side-nav blue darken-4" id="category-menu">
+    
+
+            
+
+    </ul>
+</div>
+
+        </div>
+    </div>
+</nav>
+
+<div id="search" class="modal search-modal">
+    <div class="row">
+        <div class="input-field col s12">
+              <input id="search-input" type="text">
+              <label for="search-input">搜索</label>
+        </div>
+
+    </div>
+    <div id="search-result" class="search-result col s12">
+
+    </div>
+</div>
+
+
+    <main>
+        <div class="container main-container">
+    <nav class="page-nav hide-on-small-only">
+    <div class="nav-wrapper blue darken-4">
+        <span class="breadcrumb">当前位置（分类目录）</span>
+        
+            
+
+        
+
+        
+    </div>
+</nav>
+
+<article>
+    <div class="card">
+        <div class="card-content">
+            
+
+            <div class="article-title">
+                
+    
+        <h1>Ubuntu Server 18.04 无线网络接入配置 - 2</h1>
+    
+
+
+            </div>
+            <time class="deep-orange-link-context" datetime="2020-02-18T14:00:00.000Z"><a href="/2020/02/18/Ubuntu-WiFi-Configure-2/">2020-02-18</a></time>
+
+            
+    <div class="tags-row">
+        
+            <a href="/tags/ubuntu/" class="chip deep-orange">ubuntu</a>
+        
+    </div>
+
+
+            <div class="toc deep-orange-link-context hide-on-med-and-down">
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#6-使用-netplan-配置无线网络接入"><span class="section table-of-contents-text">6. 使用 netplan 配置无线网络接入</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#6-1-netplan-简介"><span class="section table-of-contents-text">6.1 netplan 简介</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#6-2-netplan-配置文件概述"><span class="section table-of-contents-text">6.2 netplan 配置文件概述</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#6-3-netplan-相关属性设置"><span class="section table-of-contents-text">6.3 netplan 相关属性设置</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#dev-id-mapping"><span class="section table-of-contents-text">dev_id (mapping)</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#match-mapping"><span class="section table-of-contents-text">match (mapping)</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#dhcp4-bool"><span class="section table-of-contents-text">dhcp4 (bool)</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#addresses-sequence-of-scalars"><span class="section table-of-contents-text">addresses (sequence of scalars)</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#gateway4-gateway6-scalar"><span class="section table-of-contents-text">gateway4, gateway6 (scalar)</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#nameservers-mapping"><span class="section table-of-contents-text">nameservers (mapping)</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#optional-bool"><span class="section table-of-contents-text">optional (bool)</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#access-points-mapping"><span class="section table-of-contents-text">access-points (mapping)</span></a></li></ol></li></ol></li></ol>
+</div>
+
+
+            <div class="entry deep-orange-link-context">
+                <ul>
+<li>前一篇文章（<a href="https://netplan.io/reference" title="Ubuntu Server 18.04 无线网络接入配置 - 1" target="_blank" rel="external">Ubuntu Server 18.04 无线网络接入配置 - 1</a>）介绍了配置前的准备工作以及一部分预配置工作；</li>
+<li>后一篇文章（<a href="https://netplan.io/reference" title="Ubuntu Server 18.04 无线网络接入配置 - 3" target="_blank" rel="external">Ubuntu Server 18.04 无线网络接入配置 - 3</a>）将介绍让配置文件生效的方法。</li>
+</ul>
+<p>本篇文章主要介绍 Ubuntu Server 网络配置核心 - netplan 配置文件。<a id="more"></a></p>
+<h1 id="6-使用-netplan-配置无线网络接入"><a href="#6-使用-netplan-配置无线网络接入" class="headerlink" title="6. 使用 netplan 配置无线网络接入"></a>6. 使用 netplan 配置无线网络接入</h1><h2 id="6-1-netplan-简介"><a href="#6-1-netplan-简介" class="headerlink" title="6.1 netplan 简介"></a>6.1 netplan 简介</h2><p>Ubuntu Server 18.04 采用 netplan 进行网络配置，官方文档见 <a href="https://netplan.io/reference" title="Netplan Reference" target="_blank" rel="external">Netplan Reference</a>。</p>
+<p>系统启动时，netplan 的渲染器/呈现器（renderer）将从 <code>/{lib,etc,run}/netplan/*.yaml</code> 配置文件中读取相关配置信息，将配置写到 <code>/run</code> 中，再把网络设备的控制交给相关网络守护进程。</p>
+<p>其流转示意图如下：</p>
+<p><img src="/images/UWiFi_netplan_design_overview.png" alt="netplan design overview"></p>
+<ul>
+<li>systemd-networkd 是默认的渲染器/呈现器（renderer），NetworkManager 是另外一种可以选用的渲染器/呈现器（renderer）；</li>
+<li>不被网络配置覆盖的设备将被忽略；</li>
+<li>initramfs 中可用；</li>
+<li>除 yaml 配置文件外，生成的配置不进行持久化；</li>
+<li>支持多配置文件</li>
+</ul>
+<h2 id="6-2-netplan-配置文件概述"><a href="#6-2-netplan-配置文件概述" class="headerlink" title="6.2 netplan 配置文件概述"></a>6.2 netplan 配置文件概述</h2><p>netplan 配置文件使用 yaml 格式。想快速了解 yaml 文件格式，可以看这里：<a href="https://zhangtao75.github.io/2020/02/15/Yaml-Grammar-Intro-Internet-Resources" title="Yaml 语法简介、PyYAML演示以及网上资源汇总" target="_blank" rel="external">Yaml 语法简介、PyYAML演示以及网上资源汇总</a>。</p>
+<p>在 <code>/{lib,etc,run}/netplan/</code> 目录下的所有 yaml 文件都将被加载。无论 yaml 文件在哪一个目录下，统一按照文件名称的字典顺序加载；后加载文件中的配置信息增补/覆盖之前加载的配置信息。不同路径中的同名 yaml 文件，按照 <code>lib,etc,run</code> 的顺序加载，遵循<strong>后</strong>覆盖<strong>前</strong>的规则。</p>
+<p>netplan 使用的 yaml 文件的基本结构如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">network:</div><div class="line">    version: 2</div><div class="line">    ethernets:</div><div class="line">        &lt;dev_id&gt;:</div><div class="line">            &lt;property_name&gt;: &lt;property_value&gt;</div><div class="line">    wifis:</div><div class="line">        &lt;dev_id&gt;:</div><div class="line">            &lt;property_name&gt;: &lt;property_value&gt;</div></pre></td></tr></table></figure>
+<p>上面的例子中只列出了 <em>ethernet（以太网）</em> 与 <em>wifi（无线网络）</em> ，实际上 netplan 还支持 bridge，bond，tunnel，vlan 等网络设备类型。</p>
+<p>我们最关心的当然是 wifis 无线网络这一节，那么赶紧去看看相关的属性。</p>
+<h2 id="6-3-netplan-相关属性设置"><a href="#6-3-netplan-相关属性设置" class="headerlink" title="6.3 netplan 相关属性设置"></a>6.3 netplan 相关属性设置</h2><h3 id="dev-id-mapping"><a href="#dev-id-mapping" class="headerlink" title="dev_id (mapping)"></a>dev_id (mapping)</h3><p>首先，这里的 <em>dev_id</em> 与我们用 <code>iw dev</code> 命令找到的 <em>wlp3s0 (dev_name)</em> 在含义上并不相同。 <em>dev_id</em> 是我们 <strong>在配置文件此节</strong> 中给 <strong>某一类型的网络设备</strong> 中 <strong>适配同样属性</strong> 的 <strong>某个或某组设备</strong> 起的一个代号而已。<em>dev_id</em> 可以随便起，只要不重名就行。</p>
+<p>其次，再说明一下：这里 netplan 通过固定的配置文件结构，借助 YAML 的层次化含义简化了配置的写法；我们不用 <code>dev_id = &lt;dev_id&gt;</code> 的方式来写，而是直接把你命名的 <em>dev_id</em> 写在这里就行。netplan 知道在 <em>ethernets</em>、<em>wifis</em> 等网络设备类型节下的 <strong>第一层</strong> 就是各 <em>dev_id</em> 分组。</p>
+<p>举例来说：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">wifis:</div><div class="line">    wifi_group1:</div><div class="line">        &lt;property_name&gt;: &lt;property_value&gt;</div><div class="line">        ...</div><div class="line">    wifi_group2:</div><div class="line">        &lt;property_name&gt;: &lt;property_value&gt;</div><div class="line">        ...</div></pre></td></tr></table></figure></p>
+<p>这里的 <em>wifi_group1</em> 和 <em>wifi_group2</em> 就是两个 <em>dev_id</em>。</p>
+<p>从这种结构也可以看出，所有的网络配置都是属于某一个 <em>dev_id</em> 的。</p>
+<p>再次，<em>dev_id (mapping)</em> 中的 <em>mapping</em>，表示 <em>dev_id</em> 是 YAML 中的 <em>mapping</em> 类型。至于什么是 <em>mapping</em> 类型，推荐尚不清楚的小伙伴去阅读 <a href="https://zhangtao75.github.io/2020/02/15/Yaml-Grammar-Intro-Internet-Resources" title="Yaml 语法简介、PyYAML演示以及网上资源汇总" target="_blank" rel="external">Yaml 语法简介、PyYAML演示以及网上资源汇总</a> 一文。下文使用类似的方式来介绍各属性的类型（与官方文档 <a href="https://netplan.io/reference" title="Netplan Reference" target="_blank" rel="external">Netplan Reference</a> 保持一致），不再赘述。</p>
+<p>每一个 <em>dev_id</em> 分组包括了哪个或哪几个网络设备则由其下的 <em>match</em> 属性指定。</p>
+<h3 id="match-mapping"><a href="#match-mapping" class="headerlink" title="match (mapping)"></a>match (mapping)</h3><p><em>match</em> 依靠其三个子属性来确定本组包括哪些设备：</p>
+<ul>
+<li><em>name</em> (scalar)</li>
+<li><em>macaddress</em> (scalar)</li>
+<li><em>driver</em> (scalar)</li>
+</ul>
+<p>其中 <em>name</em> 和 <em>driver</em> 都支持通配符；而 <em>macaddress</em> 的格式要求为 <em>XX:XX:XX:XX:XX:XX</em>，且不支持通配符。</p>
+<p>例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">match:</div><div class="line">    name: enp2*</div></pre></td></tr></table></figure>
+<p>指的是设备名以 enp2 开头的网络设备。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">match:</div><div class="line">    macaddress: 11:22:33:AA:BB:FF</div></pre></td></tr></table></figure>
+<p>指的是 MAC 地址为 <em>11:22:33:AA:BB:FF</em> 的网络设备。</p>
+<p>如果 <em>match</em> 中指定了多个属性，则这些属性是”且”的关系：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">match:</div><div class="line">    driver: ixgbe</div><div class="line">    name: en*s0</div></pre></td></tr></table></figure>
+<p>上述 <em>match</em> 指的是第一块使用 <em>ixgbe</em> 驱动的网卡。</p>
+<p>如果当此 <em>dev_id</em> 节只针对 <strong>一个</strong> 网络设备，且使用 <strong>特定名字（name (scalar)）</strong> 来识别，那么 netplan 提供了一个简化的写法，即用该设备的 <em>dev_name</em> 作为 <em>dev_id</em>。</p>
+<p>所以，如下两段配置代码是等效的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">wifis:</div><div class="line">    wlp3s0:</div><div class="line">        &lt;other_property_name&gt;: &lt;property_value&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">wifis:</div><div class="line">    group1:</div><div class="line">        match:</div><div class="line">            name: wlp3s0</div><div class="line">        &lt;other_property_name&gt;: &lt;property_value&gt;</div></pre></td></tr></table></figure>
+<p>我们在实践中通常看到的是上面的简写形式；但请大家记住那只是简写形式，<em>dev_id</em> 与 <em>dev_name</em> 在本质上还是有区别的。</p>
+<p>Anyway 我们在准备阶段用 <code>iw dev</code> 命令获得的无线网络设备名（dev_name）<strong>wlp3s0</strong>，在这里就得用上了。</p>
+<h3 id="dhcp4-bool"><a href="#dhcp4-bool" class="headerlink" title="dhcp4 (bool)"></a>dhcp4 (bool)</h3><p>是否使用路由器的 DCHP 服务。默认为关闭 <code>false</code>。如果计划让路由器来分配 IP 地址，则需设置为 <code>true</code>。</p>
+<h3 id="addresses-sequence-of-scalars"><a href="#addresses-sequence-of-scalars" class="headerlink" title="addresses (sequence of scalars)"></a>addresses (sequence of scalars)</h3><p>先看例子，讲解起来更方便：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">addresses: [192.168.14.2/24, &quot;2001:1::1/64&quot;]</div></pre></td></tr></table></figure>
+<p>从上面例子中可见，我们可以通过 <em>addresses</em> 属性，为 <em>dev_id</em> 设置一个或多个静态地址。</p>
+<p>静态地址的形式为 <code>addr/prefixlen</code>。</p>
+<ul>
+<li><code>addr</code> 可以是 IPv4 或 IPv6 的地址；</li>
+<li><code>prefixlen</code> 是子网长度（bits），所以 24 就代表着我们常见的 <code>255.255.255.0</code> 这样的子网掩码。</li>
+</ul>
+<h3 id="gateway4-gateway6-scalar"><a href="#gateway4-gateway6-scalar" class="headerlink" title="gateway4, gateway6 (scalar)"></a>gateway4, gateway6 (scalar)</h3><p>我们通过这两个属性来设置默认网关。 例：<code>gateway4: 172.16.0.1</code>，<code>gateway6: &quot;2001:4::1&quot;</code>。</p>
+<h3 id="nameservers-mapping"><a href="#nameservers-mapping" class="headerlink" title="nameservers (mapping)"></a>nameservers (mapping)</h3><p>用以设置 DNS 服务器以及搜索域。例子足以说明一切：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">ethernets:</div><div class="line">  id0:</div><div class="line">    [...]</div><div class="line">    nameservers:</div><div class="line">      search: [lab, home]</div><div class="line">      addresses: [8.8.8.8, &quot;FEDC::1&quot;]</div></pre></td></tr></table></figure>
+<h3 id="optional-bool"><a href="#optional-bool" class="headerlink" title="optional (bool)"></a>optional (bool)</h3><p>设置此设备是否为启动可选。如果设置为 <em>false</em>（非可选），networkd 将在系统启动时等待此设备；若设置为 <em>true</em>（可选），则启动时不等待。</p>
+<p>目前，只有 networkd 渲染器/呈现器（renderer）支持此选项（networkd、渲染器/呈现器 相关内容见 <a href="https://netplan.io/reference" title="Ubuntu Server 18.04 无线网络接入配置 - 1" target="_blank" rel="external">Ubuntu Server 18.04 无线网络接入配置 - 1</a>）。此选项的默认值为 <em>false</em>（非可选）。</p>
+<p>以上介绍的属性，是对于所有类型的网络设备（如 ethernet，wifi）都通用的属性，下面讲适用于 wifi 类型网络设备的专门属性。</p>
+<h3 id="access-points-mapping"><a href="#access-points-mapping" class="headerlink" title="access-points (mapping)"></a>access-points (mapping)</h3><p><em>access-points</em> 这一属性的结构如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">access-points:</div><div class="line">    &lt;SSID&gt;:</div><div class="line">        password: &lt;password&gt;</div><div class="line">        mode: &quot;infrastructure|ap|adhoc&quot;</div></pre></td></tr></table></figure>
+<p><em>access-points</em> 这一节基本上也是不言自明的。</p>
+<p>mode 目前有三种类型：</p>
+<ul>
+<li>infrastructure：默认，我们一般的接入计算机选这种即可；</li>
+<li>ap：创建一个供其他设备连接的 access point；</li>
+<li>adhoc：用于无中心 access piont 的点对点网络；</li>
+</ul>
+<p>注意：官方文档在这里特意强调 networkd 并 <strong>不</strong> 原生支持wifi，因此如果我们使用默认的 networkd renderer，则需要安装 wpasupplicant。</p>
+<p>netplan 文件中还有很多属性可供配置，本文就不一一介绍了，为了配置 Ubuntu Server 的 WiFi 连接，咱们了解到这里就足够了。感兴趣的同学，可以去阅读官方 <a href="https://netplan.io/reference" title="Netplan Reference" target="_blank" rel="external">reference</a>。</p>
+<p>下面给出两个实例。</p>
+<p>第一个例子是我自己笔记本的配置文件 <code>50-cloud-init.yaml</code>：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">network:</div><div class="line">    wifis:</div><div class="line">        wlp3s0:</div><div class="line">            dhcp4: true</div><div class="line">            access-points:</div><div class="line">              &quot;XXXX&quot;:</div><div class="line">                password: &apos;XXXXXXXX&apos;</div><div class="line">    version: 2</div></pre></td></tr></table></figure></p>
+<p>第二个例子是我参考的网上例子（<a href="https://www.cnblogs.com/floud/p/10545924.html" title="Ubuntu-Server18.04开启无线网卡并配置静态ip" target="_blank" rel="external">Ubuntu-Server18.04开启无线网卡并配置静态ip</a>）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">network:</div><div class="line">    renderer: NetworkManager</div><div class="line">    wifis:</div><div class="line">        wls33:</div><div class="line">            dhcp4: no</div><div class="line">            addresses:</div><div class="line">            - 192.168.18.123/24</div><div class="line">            gateway4: 192.168.18.1</div><div class="line">            nameservers:</div><div class="line">                addresses:</div><div class="line">                - 8.8.8.8</div><div class="line">                - 8.8.4.4</div><div class="line">                search: []</div><div class="line">            access-points:</div><div class="line">                &quot;wifi_ssid&quot;:</div><div class="line">                    password: &apos;12345&apos;</div><div class="line">    version: 2</div></pre></td></tr></table></figure>
+<p>两者区别在于：</p>
+<ul>
+<li>我使用 netplan 体系默认的 networkd 作为 renderer（因此不需要明确指明）；而网参版指定 renderer 为 NetworkManager；</li>
+<li>我让路由器使用 DHCP 给计算机提供 IP 等网络配置（当然，我会在路由器上做静态地址设置）；而网参版在 yaml 文件中配置了服务器的静态 IP 地址。</li>
+</ul>
+<p>有了上面的说明，以及这两个例子，99% 的读者应该能依据自己的实际情况配置相应的 network yaml 文件了。</p>
+<p>剩下要做的，是让这些配置生效，具体方法详见下一篇：<a href="https://netplan.io/reference" title="Ubuntu Server 18.04 无线网络接入配置 - 3" target="_blank" rel="external">Ubuntu Server 18.04 无线网络接入配置 - 3 - 配置文件生效</a>。</p>
+
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+</div>
+
+        <div class="fixed-action-btn float-sitemap">
+    <a class="btn-floating btn-large deep-orange">
+      <i class="fa fa-caret-square-o-up"></i>
+    </a>
+    <ul>
+      <li><a class="btn-return-top btn-floating waves-effect green" title="回到顶部"><i class="fa fa-arrow-circle-o-up"></i></a></li>
+      <li><a class="btn-floating waves-effect button-collapse yellow darken-1"  data-activates="main-menu" title="menu"><i class="fa fa-navicon"></i></a></li>
+    </ul>
+  </div>
+
+    </main>
+    <footer class="page-footer blue darken-4 darken-1">
+    
+    <div class="container">
+        <div class="row">
+            
+            <div class="social-group col m3 s12">
+                <h5 class="white-text">社交</h5>
+                
+                    <a class="social-link" href="http://weibo.com/1403683975" target="_blank">
+                        <i class="fa fa-2x fa-weibo"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://github.com/zhangtao75" target="_blank">
+                        <i class="fa fa-2x fa-github"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://plus.google.com/u/0/108922458003185062440" target="_blank">
+                        <i class="fa fa-2x fa-google-plus"></i>
+                    </a>
+                
+            </div>
+            
+
+            
+            <div class="col m9 s12">
+                <h5 class="white-text">友情链接</h5>
+                
+                    <a class="social-link" href="http://raytaylorlin.com/" target="_blank">raytaylorism主题作者的技术博客</a>
+                
+                    <a class="social-link" href="https://github.com/raytaylorlin" target="_blank">Github地址（测试友情链接）</a>
+                
+            </div>
+            
+        </div>
+    </div>
+    
+
+    <div class="footer-copyright deep-orange-link-context">
+        <div class="container">
+            © 2016 example.com, All rights reserved.
+            <p class="right" style="margin-top: 0;">本博客由 <a href="https://hexo.io">Hexo</a> 强力驱动 | 主题 <a href="https://github.com/raytaylorlin/hexo-theme-raytaylorism">raytaylorism</a></p>
+        </div>
+    </div>
+</footer>
+
+
+    <noscript>
+    <div class="noscript">
+        <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+    </div>
+</noscript>
+<div class="noscript">
+    <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+</div>
+
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/materialize.min.js"></script>
+
+<script>
+    (function($) {
+        $(document).ready(function() {
+            // 隐藏禁用javascript（针对微信内置浏览器）的提示
+            $('.noscript').hide();
+
+            // 图片缩放效果
+            var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
+
+            // 给图片加上点击放大效果（materialbox插件）
+            $imgs.addClass('materialboxed').each(function(i, el) {
+                $(this).attr('data-caption', $(this).attr('alt') || ' ');
+            }).materialbox();
+
+            // 优化表格的显示
+            $('table').each(function() {
+                var $table = $(this);
+                // 除去多行代码的情况
+                if ($table.find('pre').length == 0) {
+                    $table.addClass('responsive-table striped bordered');
+                }
+            });
+
+            // 首页幻灯片
+            $('.slider').slider({indicators: true, full_width: true, interval: 8000});
+
+            $(".button-collapse").sideNav();
+            $(".category-menu").sideNav();
+
+            // 针对gallery post
+            $('.carousel').carousel({full_width: true});
+            $('.carousel-control.prev').click(function() {
+                $('.carousel').carousel('prev');
+            });
+            $('.carousel-control.next').click(function() {
+                $('.carousel').carousel('next');
+            });
+
+            // 文章目录
+            $('article').not('.simple-article').find('h1').add('h2').add('h3').add('h4').add('h5').add('h6').scrollSpy();
+            // 修正文章目录的left-border颜色
+            var color = $('.table-of-contents-text').css('color');
+            $('.table-of-contents-link').css('border-left-color', color);
+
+            // 针对移动端做的优化：FAB按钮点击一下收回
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                $('.fixed-action-btn').addClass('click-to-toggle');
+            }
+            // 回到顶部
+            $('.btn-return-top').click(function() {
+                $('body, html').animate({
+                    scrollTop: 0
+                }, 500);
+            });
+
+            // 重置读书页面的Tab标签页的颜色
+            $('li.tab a').hover(function() {
+                $(this).toggleClass('text-lighten-4');
+            });
+            $('.indicator').addClass('deep-orange lighten-2');
+
+            
+            // 添加new标签
+            $('').append('<span class="new badge deep-orange"></span>');
+            
+
+            // 搜索功能
+            $('.modal-trigger').leanModal({
+                // 打开搜索框时自动聚焦
+                ready: function() {
+                    if ($('#search').is(":visible")) {
+                        $('#search-input').focus();
+                    }
+                }
+            });
+            var searchXml = "";
+            if (searchXml.length == 0) {
+             	searchXml = "search.xml";
+            }
+            var searchPath = "/" + searchXml;
+            initSearch(searchPath, 'search-input', 'search-result');
+        });
+
+        // 初始化搜索与匹配函数
+        var initSearch = function(path, search_id, content_id) {
+            'use strict';
+            $.ajax({
+                url: path,
+                dataType: "xml",
+                success: function(xmlResponse) {
+                    // get the contents from search data
+                    var datas = $("entry", xmlResponse).map(function() {
+                        return {
+                            title: $("title", this).text(),
+                            content: $("content", this).text(),
+                            url: $("url", this).text()
+                        };
+                    }).get();
+                    var $input = document.getElementById(search_id);
+                    var $resultContent = document.getElementById(content_id);
+                    $input.addEventListener('input', function() {
+                        var str = '<ul class=\"search-result-list\">';
+                        var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                        $resultContent.innerHTML = "";
+                        if (this.value.trim().length <= 0) {
+                            return;
+                        }
+                        // perform local searching
+                        datas.forEach(function(data) {
+                            var isMatch = true;
+                            var content_index = [];
+                            var data_title = data.title.trim().toLowerCase();
+                            var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                            var data_url = data.url;
+                            var index_title = -1;
+                            var index_content = -1;
+                            var first_occur = -1;
+                            // only match artiles with not empty titles and contents
+                            if (data_title != '' && data_content != '') {
+                                keywords.forEach(function(keyword, i) {
+                                    index_title = data_title.indexOf(keyword);
+                                    index_content = data_content.indexOf(keyword);
+                                    if (index_title < 0 && index_content < 0) {
+                                        isMatch = false;
+                                    } else {
+                                        if (index_content < 0) {
+                                            index_content = 0;
+                                        }
+                                        if (i == 0) {
+                                            first_occur = index_content;
+                                        }
+                                    }
+                                });
+                            }
+                            // show search results
+                            if (isMatch) {
+                                keywords.forEach(function(keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    data_title = data_title.replace(regS, "<span class=\"search-keyword deep-orange lighten-2\">" + keyword + "</span>");
+                                });
+
+                                str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                                var content = data.content.trim().replace(/<[^>]+>/g, "");
+                                if (first_occur >= 0) {
+                                    // cut out 100 characters
+                                    var start = first_occur - 20;
+                                    var end = first_occur + 80;
+                                    if (start < 0) {
+                                        start = 0;
+                                    }
+                                    if (start == 0) {
+                                        end = 100;
+                                    }
+                                    if (end > content.length) {
+                                        end = content.length;
+                                    }
+                                    var match_content = content.substring(start, end);
+                                    // highlight all keywords
+                                    keywords.forEach(function(keyword) {
+                                        var regS = new RegExp(keyword, "gi");
+                                        match_content = match_content.replace(regS, "<span class=\"search-keyword deep-orange lighten-2\">" + keyword + "</span>");
+                                    });
+
+                                    str += "<p class=\"search-result\">..." + match_content + "...</p>"
+                                }
+                                str += "</li>";
+                            }
+                        });
+                        str += "</ul>";
+                        $resultContent.innerHTML = str;
+                    });
+                }
+            });
+        }
+    })(jQuery);
+</script>
+
+
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("pre").addClass("prettyprint");
+        prettyPrint();
+    });
+</script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript" async
+  src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+
+</body>
+</html>

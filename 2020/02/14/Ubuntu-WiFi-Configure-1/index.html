@@ -7,13 +7,16 @@
 
     
 
-    <title>ubuntu | Tao Zhang&#39;s Blog</title>
+    <title>Ubuntu Server 18.04 无线网络接入配置 - 1 | Tao Zhang&#39;s Blog</title>
     <meta name="author" content="Tao Zhang">
+    
+    <meta name="description" content="我的 Ubuntu Server 18.04 是安装在一个古旧的笔记本上的，这个笔记本买来的时候还是 Win XP 的天下；现在用它也干不了别的，装一个 Linux 也算是发挥点余热吧。既然是笔记本，那么最好能把 WiFi 配上，否则还得拖根网线，怪不方便的。
+Ubuntu Server 18.04 安装包并不能自动把无线网络配上，需要安装完毕后手工配置。">
     
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    
+    <meta property="og:title" content="Ubuntu Server 18.04 无线网络接入配置 - 1"/>
     <meta property="og:site_name" content="Tao Zhang&#39;s Blog"/>
 
     
@@ -175,72 +178,101 @@
 
     <main>
         <div class="container main-container">
-    
-
-<nav class="page-nav hide-on-small-only">
+    <nav class="page-nav hide-on-small-only">
     <div class="nav-wrapper blue darken-4">
-        <span class="breadcrumb">当前位置（标签）</span>
+        <span class="breadcrumb">当前位置（分类目录）</span>
         
+            
 
         
-            <a class="breadcrumb" href="/tags/ubuntu/">ubuntu</a>
+
         
     </div>
 </nav>
 
+<article>
+    <div class="card">
+        <div class="card-content">
+            
+
+            <div class="article-title">
+                
+    
+        <h1>Ubuntu Server 18.04 无线网络接入配置 - 1</h1>
+    
 
 
-    <div class="collection mt-0">
+            </div>
+            <time class="deep-orange-link-context" datetime="2020-02-14T14:00:00.000Z"><a href="/2020/02/14/Ubuntu-WiFi-Configure-1/">2020-02-14</a></time>
+
+            
+    <div class="tags-row">
         
-            <a href="/2020/02/21/Ubuntu-WiFi-Configure-3/" class="collection-item grey-text text-darken-1">
-                <time datetime="2020-02-21T14:00:00.000Z">2020-02-21</time>
-                <span>&nbsp;&nbsp;&nbsp;</span>
-                Ubuntu Server 18.04 无线网络接入配置 - 3
-            </a>
-        
-            <a href="/2020/02/18/Ubuntu-WiFi-Configure-2/" class="collection-item grey-text text-darken-1">
-                <time datetime="2020-02-18T14:00:00.000Z">2020-02-18</time>
-                <span>&nbsp;&nbsp;&nbsp;</span>
-                Ubuntu Server 18.04 无线网络接入配置 - 2
-            </a>
-        
-            <a href="/2020/02/14/Ubuntu-WiFi-Configure-1/" class="collection-item grey-text text-darken-1">
-                <time datetime="2020-02-14T14:00:00.000Z">2020-02-14</time>
-                <span>&nbsp;&nbsp;&nbsp;</span>
-                Ubuntu Server 18.04 无线网络接入配置 - 1
-            </a>
-        
-            <a href="/2020/01/31/Install-Ubuntu-server/" class="collection-item grey-text text-darken-1">
-                <time datetime="2020-01-31T06:00:00.000Z">2020-01-31</time>
-                <span>&nbsp;&nbsp;&nbsp;</span>
-                安装Ubuntu Server
-            </a>
-        
-            <a href="/2020/01/30/Ubuntu-snaps-intro-3/" class="collection-item grey-text text-darken-1">
-                <time datetime="2020-01-30T08:02:00.000Z">2020-01-30</time>
-                <span>&nbsp;&nbsp;&nbsp;</span>
-                Ubuntu 常用 snap 介绍 - 3
-            </a>
-        
-            <a href="/2020/01/29/Ubuntu-snaps-intro-2/" class="collection-item grey-text text-darken-1">
-                <time datetime="2020-01-29T08:02:00.000Z">2020-01-29</time>
-                <span>&nbsp;&nbsp;&nbsp;</span>
-                Ubuntu 常用 snap 介绍 - 2
-            </a>
-        
-            <a href="/2020/01/28/Ubuntu-snaps-intro-1/" class="collection-item grey-text text-darken-1">
-                <time datetime="2020-01-28T14:50:00.000Z">2020-01-28</time>
-                <span>&nbsp;&nbsp;&nbsp;</span>
-                Ubuntu 常用 snap 介绍 - 1
-            </a>
-        
-            <a href="/2020/01/27/Snaps/" class="collection-item grey-text text-darken-1">
-                <time datetime="2020-01-27T08:02:00.000Z">2020-01-27</time>
-                <span>&nbsp;&nbsp;&nbsp;</span>
-                Snap简介
-            </a>
+            <a href="/tags/ubuntu/" class="chip deep-orange">ubuntu</a>
         
     </div>
+
+
+            <div class="toc deep-orange-link-context hide-on-med-and-down">
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#1-检查当前网络连接情况"><span class="section table-of-contents-text">1. 检查当前网络连接情况</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#2-查看无线设备的名称与状态"><span class="section table-of-contents-text">2. 查看无线设备的名称与状态</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#3-查看无线网络设备的连接状态"><span class="section table-of-contents-text">3. 查看无线网络设备的连接状态</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#4-查看无线网络设备是否被关闭"><span class="section table-of-contents-text">4. 查看无线网络设备是否被关闭</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#5-查看-启动无线网络设备"><span class="section table-of-contents-text">5. 查看/启动无线网络设备</span></a></li></ol>
+</div>
+
+
+            <div class="entry deep-orange-link-context">
+                <p>我的 Ubuntu Server 18.04 是安装在一个古旧的笔记本上的，这个笔记本买来的时候还是 Win XP 的天下；现在用它也干不了别的，装一个 Linux 也算是发挥点余热吧。既然是笔记本，那么最好能把 WiFi 配上，否则还得拖根网线，怪不方便的。</p>
+<p>Ubuntu Server 18.04 安装包并不能自动把无线网络配上，需要安装完毕后手工配置。<a id="more"></a></p>
+<p>我基本上是按照<a href="https://www.cnblogs.com/floud/p/10545924.html" title="Ubuntu-Server18.04开启无线网卡并配置静态ip" target="_blank" rel="external">《Ubuntu-Server18.04开启无线网卡并配置静态ip》</a>这篇文章进行配置的。但本篇博文丰富了不少内容，主要包括：</p>
+<ul>
+<li>每一步配置动作前后逻辑关系的理解；</li>
+<li>对相关 Linux 命令的解释与演示；</li>
+<li>对 netplan 配置文件的解读</li>
+</ul>
+<p>增加了这些内容之后，原本一篇文章的长度无以容纳；不得已拆成了三篇，分别是：</p>
+<ul>
+<li>Ubuntu Server 18.04 无线网络接入配置 - 1 - 配置前的准备工作；</li>
+<li><a href="https://netplan.io/reference" title="Ubuntu Server 18.04 无线网络接入配置 - 2 - netplan 配置文件" target="_blank" rel="external">Ubuntu Server 18.04 无线网络接入配置 - 2 - netplan 配置文件</a>；</li>
+<li><a href="https://netplan.io/reference" title="Ubuntu Server 18.04 无线网络接入配置 - 3 - 配置文件生效" target="_blank" rel="external">Ubuntu Server 18.04 无线网络接入配置 - 3 - 配置文件生效</a></li>
+</ul>
+<p>希望这一系列文章能够让大家对 Ubuntu Server 的无线网络配置，乃至通用网络配置，有一个知其然也知其所以然的理解。</p>
+<h1 id="1-检查当前网络连接情况"><a href="#1-检查当前网络连接情况" class="headerlink" title="1. 检查当前网络连接情况"></a>1. 检查当前网络连接情况</h1><p>命令 <a href="http://manpages.ubuntu.com/manpages/trusty/man8/ifconfig.8.html" title="Ubuntu 官方文档 - ifconfig" target="_blank" rel="external"><code>ifconfig</code></a> 用来配置网络连接（configure a network interface）。</p>
+<p>我们使用 <code>ifconfig -a</code> 命令形式列出目前所有网络（display all interfaces which are currently available, even if down）。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">zhexen@tz_ubuntu:~$ ifconfig <span class="_">-a</span></div><div class="line">enp2s0: flags=4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;  mtu 1500</div><div class="line">        inet 192.168.1.102  netmask 255.255.255.0  broadcast 192.168.1.255</div><div class="line">        inet6 fe80::62eb:69ff:feeb:2f9a  prefixlen 64  scopeid 0x20&lt;link&gt;</div><div class="line">        ether 60:eb:69:eb:2f:9a  txqueuelen 1000  (Ethernet)</div><div class="line">        RX packets 15303  bytes 4546105 (4.5 MB)</div><div class="line">        RX errors 0  dropped 0  overruns 0  frame 0</div><div class="line">        TX packets 12453  bytes 1160004 (1.1 MB)</div><div class="line">        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0</div><div class="line">        device interrupt 16</div></pre></td></tr></table></figure>
+<p>可见目前只有以太网。</p>
+<h1 id="2-查看无线设备的名称与状态"><a href="#2-查看无线设备的名称与状态" class="headerlink" title="2. 查看无线设备的名称与状态"></a>2. 查看无线设备的名称与状态</h1><p>命令 <a href="http://manpages.ubuntu.com/manpages/bionic/en/man8/iw.8.html" title="Ubuntu 官方文档 - iw" target="_blank" rel="external"><code>iw</code></a> 用以显示/配置无线设备（show / manipulate wireless devices and their configuration）。</p>
+<p>我们使用 <code>iw dev</code> 命令形式列出所有无线网络设备（List all network interfaces for wireless hardware）。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">zhexen@tz_ubuntu:~$ iw dev</div><div class="line">phy<span class="comment">#0</span></div><div class="line">        Interface wlp3s0</div><div class="line">                ifindex 3</div><div class="line">                wdev 0x1</div><div class="line">                addr ec:55:f9:3d:cc:f8</div></pre></td></tr></table></figure>
+<p>可见本机的无线网络设备名（dev_name）为：<strong>wlp3s0</strong>。</p>
+<h1 id="3-查看无线网络设备的连接状态"><a href="#3-查看无线网络设备的连接状态" class="headerlink" title="3. 查看无线网络设备的连接状态"></a>3. 查看无线网络设备的连接状态</h1><p>我们使用 <code>iw dev wlp3s0 link</code> 命令形式来查看设备 <strong>wlp3s0</strong> 的连接状况。当时忘记记录命令执行结果了，反正是没连通。</p>
+<p>顺便提一句，Ubuntu 官网上 <a href="http://manpages.ubuntu.com/manpages/bionic/en/man8/iw.8.html" title="Ubuntu 官方文档 - iw" target="_blank" rel="external"><code>iw</code></a> 命令的文档并不详细。相反，<code>iw help</code> 命令可以给出更为详尽的说明。比如 <code>iw dev &lt;dev_name&gt; link</code> 形式在上述官网文档上没有提及，而 <code>iw help</code> 则给出了 “Print information about the current link, if any” 的说明。如果大家遇到其他语焉不详的文档时，也不妨用类似的方法（如 <code>man &lt;command&gt;</code>、<code>&lt;command&gt; help</code> 等）来找找说明。</p>
+<h1 id="4-查看无线网络设备是否被关闭"><a href="#4-查看无线网络设备是否被关闭" class="headerlink" title="4. 查看无线网络设备是否被关闭"></a>4. 查看无线网络设备是否被关闭</h1><p>命令 <a href="http://manpages.ubuntu.com/manpages/bionic/en/man8/rfkill.8.html" title="Ubuntu 官方文档 - rfkill" target="_blank" rel="external"><code>rfkill</code></a> 是开关无线网络设备的工具（tool for enabling and disabling wireless devices）。</p>
+<p>我们使用 <code>rfkill list all</code> 命令形式查看所有的无线网络设备。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">zhexen@tz_ubuntu:~$ rfkill list all</div><div class="line">0: acer-wireless: Wireless LAN</div><div class="line">        Soft blocked: no</div><div class="line">        Hard blocked: no</div><div class="line">1: phy0: Wireless LAN</div><div class="line">        Soft blocked: no</div><div class="line">        Hard blocked: no</div></pre></td></tr></table></figure>
+<p>好的，网络设备都没有被关闭。</p>
+<ul>
+<li>如果有硬关闭，则需通过计算机上相关硬件（比如某些笔记本上的飞行模式拨动开关）去调整；</li>
+<li>如果有软关闭，则通过 <code>ip link set &lt;dev_name&gt; up</code> 或 <code>ifconfig &lt;dev_name&gt; up</code> 命令来解除关闭</li>
+</ul>
+<h1 id="5-查看-启动无线网络设备"><a href="#5-查看-启动无线网络设备" class="headerlink" title="5. 查看/启动无线网络设备"></a>5. 查看/启动无线网络设备</h1><p>命令 <a href="http://manpages.ubuntu.com/manpages/bionic/en/man8/ip.8.html" title="Ubuntu 官方文档 - ip" target="_blank" rel="external"><code>ip</code></a> 用以显示/操控路由、网络设备、接口以及通道（show / manipulate routing, network devices, interfaces and tunnels）。</p>
+<p>我们使用 <code>ip link show &lt;dev_name&gt;</code> 命令形式来查看特定网络设备。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">zhexen@tz_ubuntu:/etc/network$ ip link show wlp3s0</div><div class="line">3: wlp3s0: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000</div><div class="line">    link/ether ec:55:f9:3d:cc:f8 brd ff:ff:ff:ff:ff:ff</div><div class="line"></div><div class="line">``` </div><div class="line"></div><div class="line">怎么解读 `ip link show` 命令的返回值呢？ 尖括号中的内容，即 `&lt;XXX,XXX&gt;`，是设备的状态信息；而其后则是一对一对的 `设置项 设置值`。从上面命令的返回值中，我们可以发现：</div><div class="line"></div><div class="line">- 状态中没有 *UP*；</div><div class="line">- *state* 为 *DOWN*</div><div class="line"></div><div class="line">至于其他设置项则都是网络底层的，比如 mtu（最大传输单位）、qlen（传输队列长度）等等，非特殊情况我们可以不去管这些设置项。感兴趣的同学可以参考 [果冻想 - Linux ip命令详解][8]。Ubuntu 的官方文档嘛，我是没找到对这些输出项的解释。</div><div class="line"></div><div class="line">我们需要先把无线网卡启动（UP）起来。</div><div class="line"></div><div class="line">我们使用 `sudo ifconfig &lt;dev_name&gt; up` 命令形式来启动 **wlp3s0** 设备。</div><div class="line"></div><div class="line">```bash</div><div class="line">zhexen@tz_ubuntu:/etc/network$ sudo ifconfig wlp3s0 up</div><div class="line">[sudo] password <span class="keyword">for</span> zhexen:</div></pre></td></tr></table></figure>
+<p>OK，命令本身没有返回任何信息，我们再用 <code>ip link show &lt;dev_name&gt;</code> 来看看。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">zhexen@tz_ubuntu:/etc/network$ ip link show wlp3s0</div><div class="line">3: wlp3s0: &lt;NO-CARRIER,BROADCAST,MULTICAST,UP&gt; mtu 1500 qdisc noqueue state DOWN mode DEFAULT group default qlen 1000</div><div class="line">    link/ether ec:55:f9:3d:cc:f8 brd ff:ff:ff:ff:ff:ff</div></pre></td></tr></table></figure>
+<p>从上面结果可见：</p>
+<ul>
+<li>设备状态为：启动（UP），但未连接（NO-CARRIER）；</li>
+<li><em>state</em> 还是 <em>DOWN</em></li>
+</ul>
+<p>到此，所有准备工作以及一部分预配置工作已经完成；接下来我们要配置 Ubuntu Server 的网络管理核心 netplan。</p>
+<p>具体详情请见 <a href="https://netplan.io/reference" title="Ubuntu Server 18.04 无线网络接入配置 - 2 - netplan 配置文件" target="_blank" rel="external">Ubuntu Server 18.04 无线网络接入配置 - 2 - netplan 配置文件</a>。</p>
+
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
 
 
 </div>

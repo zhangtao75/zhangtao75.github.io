@@ -7,13 +7,18 @@
 
     
 
-    <title>ubuntu | Tao Zhang&#39;s Blog</title>
+    <title>Ubuntu Server 18.04 无线网络接入配置 - 3 | Tao Zhang&#39;s Blog</title>
     <meta name="author" content="Tao Zhang">
+    
+    <meta name="description" content="本系列第一篇文章（Ubuntu Server 18.04 无线网络接入配置 - 1）介绍了配置前的准备工作以及一部分预配置工作；
+本系列第二篇文章（Ubuntu Server 18.04 无线网络接入配置 - 3）介绍了 Ubuntu Server 网络配置核心 - netplan 配置文件
+
+本文，也就是本系列最终章，介绍让配置文件生效的方法。">
     
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    
+    <meta property="og:title" content="Ubuntu Server 18.04 无线网络接入配置 - 3"/>
     <meta property="og:site_name" content="Tao Zhang&#39;s Blog"/>
 
     
@@ -175,72 +180,76 @@
 
     <main>
         <div class="container main-container">
-    
-
-<nav class="page-nav hide-on-small-only">
+    <nav class="page-nav hide-on-small-only">
     <div class="nav-wrapper blue darken-4">
-        <span class="breadcrumb">当前位置（标签）</span>
+        <span class="breadcrumb">当前位置（分类目录）</span>
         
+            
 
         
-            <a class="breadcrumb" href="/tags/ubuntu/">ubuntu</a>
+
         
     </div>
 </nav>
 
+<article>
+    <div class="card">
+        <div class="card-content">
+            
+
+            <div class="article-title">
+                
+    
+        <h1>Ubuntu Server 18.04 无线网络接入配置 - 3</h1>
+    
 
 
-    <div class="collection mt-0">
+            </div>
+            <time class="deep-orange-link-context" datetime="2020-02-21T14:00:00.000Z"><a href="/2020/02/21/Ubuntu-WiFi-Configure-3/">2020-02-21</a></time>
+
+            
+    <div class="tags-row">
         
-            <a href="/2020/02/21/Ubuntu-WiFi-Configure-3/" class="collection-item grey-text text-darken-1">
-                <time datetime="2020-02-21T14:00:00.000Z">2020-02-21</time>
-                <span>&nbsp;&nbsp;&nbsp;</span>
-                Ubuntu Server 18.04 无线网络接入配置 - 3
-            </a>
-        
-            <a href="/2020/02/18/Ubuntu-WiFi-Configure-2/" class="collection-item grey-text text-darken-1">
-                <time datetime="2020-02-18T14:00:00.000Z">2020-02-18</time>
-                <span>&nbsp;&nbsp;&nbsp;</span>
-                Ubuntu Server 18.04 无线网络接入配置 - 2
-            </a>
-        
-            <a href="/2020/02/14/Ubuntu-WiFi-Configure-1/" class="collection-item grey-text text-darken-1">
-                <time datetime="2020-02-14T14:00:00.000Z">2020-02-14</time>
-                <span>&nbsp;&nbsp;&nbsp;</span>
-                Ubuntu Server 18.04 无线网络接入配置 - 1
-            </a>
-        
-            <a href="/2020/01/31/Install-Ubuntu-server/" class="collection-item grey-text text-darken-1">
-                <time datetime="2020-01-31T06:00:00.000Z">2020-01-31</time>
-                <span>&nbsp;&nbsp;&nbsp;</span>
-                安装Ubuntu Server
-            </a>
-        
-            <a href="/2020/01/30/Ubuntu-snaps-intro-3/" class="collection-item grey-text text-darken-1">
-                <time datetime="2020-01-30T08:02:00.000Z">2020-01-30</time>
-                <span>&nbsp;&nbsp;&nbsp;</span>
-                Ubuntu 常用 snap 介绍 - 3
-            </a>
-        
-            <a href="/2020/01/29/Ubuntu-snaps-intro-2/" class="collection-item grey-text text-darken-1">
-                <time datetime="2020-01-29T08:02:00.000Z">2020-01-29</time>
-                <span>&nbsp;&nbsp;&nbsp;</span>
-                Ubuntu 常用 snap 介绍 - 2
-            </a>
-        
-            <a href="/2020/01/28/Ubuntu-snaps-intro-1/" class="collection-item grey-text text-darken-1">
-                <time datetime="2020-01-28T14:50:00.000Z">2020-01-28</time>
-                <span>&nbsp;&nbsp;&nbsp;</span>
-                Ubuntu 常用 snap 介绍 - 1
-            </a>
-        
-            <a href="/2020/01/27/Snaps/" class="collection-item grey-text text-darken-1">
-                <time datetime="2020-01-27T08:02:00.000Z">2020-01-27</time>
-                <span>&nbsp;&nbsp;&nbsp;</span>
-                Snap简介
-            </a>
+            <a href="/tags/ubuntu/" class="chip deep-orange">ubuntu</a>
         
     </div>
+
+
+            <div class="toc deep-orange-link-context hide-on-med-and-down">
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#7-安装-wpasupplicant"><span class="section table-of-contents-text">7 安装 wpasupplicant</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#8-安装-network-manager"><span class="section table-of-contents-text">8 安装 network-manager</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#9-生成配置，提交渲染器-呈现器处理"><span class="section table-of-contents-text">9 生成配置，提交渲染器/呈现器处理</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#10-重启，验证"><span class="section table-of-contents-text">10. 重启，验证</span></a></li></ol>
+</div>
+
+
+            <div class="entry deep-orange-link-context">
+                <ul>
+<li>本系列第一篇文章（<a href="https://netplan.io/reference" title="Ubuntu Server 18.04 无线网络接入配置 - 1" target="_blank" rel="external">Ubuntu Server 18.04 无线网络接入配置 - 1</a>）介绍了配置前的准备工作以及一部分预配置工作；</li>
+<li>本系列第二篇文章（<a href="https://netplan.io/reference" title="Ubuntu Server 18.04 无线网络接入配置 - 2" target="_blank" rel="external">Ubuntu Server 18.04 无线网络接入配置 - 3</a>）介绍了 Ubuntu Server 网络配置核心 - netplan 配置文件</li>
+</ul>
+<p>本文，也就是本系列最终章，介绍让配置文件生效的方法。<a id="more"></a></p>
+<h1 id="7-安装-wpasupplicant"><a href="#7-安装-wpasupplicant" class="headerlink" title="7 安装 wpasupplicant"></a>7 安装 wpasupplicant</h1><p><a href="https://netplan.io/reference" title="Ubuntu Server 18.04 无线网络接入配置 - 2" target="_blank" rel="external">前文</a> 提到，渲染器/呈现器（renderer）networkd 并 <strong>不</strong> 原生支持wifi，而且 Ubuntu Linux 内核对于 WPA 加密方式的支持不是很好，所以 Ubuntu 建议安装 wpasupplicant 以支持 WPA/WPA2 等类型的路由。</p>
+<p>安装很简单，<code>sudo apt install wpasupplicant</code> 就行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">zhexen@tz_ubuntu:/etc/netplan$ sudo apt install wpasupplicant</div><div class="line">Reading package lists... Done</div><div class="line">Building dependency tree</div><div class="line">Reading state information... Done</div><div class="line">The following additional packages will be installed:</div><div class="line">  libpcsclite1</div><div class="line">Suggested packages:</div><div class="line">  pcscd wpagui libengine-pkcs11-openssl</div><div class="line">The following NEW packages will be installed:</div><div class="line">  libpcsclite1 wpasupplicant</div><div class="line">0 upgraded, 2 newly installed, 0 to remove and 62 not upgraded.</div><div class="line">Need to get 976 kB of archives.</div><div class="line">After this operation, 2,825 kB of additional disk space will be used.</div><div class="line">Do you want to <span class="built_in">continue</span>? [Y/n] y</div><div class="line">Get:1 http://cn.archive.ubuntu.com/ubuntu bionic/main amd64 libpcsclite1 amd64 1.8.23-1 [21.3 kB]</div><div class="line">Get:2 http://cn.archive.ubuntu.com/ubuntu bionic-updates/main amd64 wpasupplicant amd64 2:2.6-15ubuntu2.5 [954 kB]</div><div class="line">... ...</div><div class="line">zhexen@tz_ubuntu:/etc/netplan$</div></pre></td></tr></table></figure>
+<h1 id="8-安装-network-manager"><a href="#8-安装-network-manager" class="headerlink" title="8 安装 network-manager"></a>8 安装 network-manager</h1><p>我自己 netplan 配置使用的是 networkd 渲染器/呈现器，所以并不需要 NetworkManager。不过作为一个相对完整的体验，我们也装一下 NetworkManager。</p>
+<p>依旧是 <code>sudo apt install network-manager</code> 方式：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">zhexen@tz_ubuntu:/etc/netplan$ sudo apt install network-manager</div><div class="line">Reading package lists... Done</div><div class="line">Building dependency tree</div><div class="line">Reading state information... Done</div><div class="line">The following additional packages will be installed:</div><div class="line">  iputils-arping libbluetooth3 libgudev-1.0-0 libjansson4 libmbim-glib4</div><div class="line">  libmbim-proxy libmm-glib0 libndp0 libnm0 libqmi-glib5 libqmi-proxy</div><div class="line">  libteamdctl0 modemmanager network-manager-pptp ppp pptp-linux usb-modeswitch</div><div class="line">  usb-modeswitch-data</div><div class="line">Suggested packages:</div><div class="line">  avahi-autoipd libteam-utils comgt wvdial</div><div class="line">The following NEW packages will be installed:</div><div class="line">  iputils-arping libbluetooth3 libgudev-1.0-0 libjansson4 libmbim-glib4</div><div class="line">  libmbim-proxy libmm-glib0 libndp0 libnm0 libqmi-glib5 libqmi-proxy</div><div class="line">  libteamdctl0 modemmanager network-manager network-manager-pptp ppp</div><div class="line">  pptp-linux usb-modeswitch usb-modeswitch-data</div><div class="line">0 upgraded, 19 newly installed, 0 to remove and 62 not upgraded.</div><div class="line">... ...</div><div class="line">zhexen@tz_ubuntu:/etc/netplan$</div></pre></td></tr></table></figure>
+<h1 id="9-生成配置，提交渲染器-呈现器处理"><a href="#9-生成配置，提交渲染器-呈现器处理" class="headerlink" title="9 生成配置，提交渲染器/呈现器处理"></a>9 生成配置，提交渲染器/呈现器处理</h1><p>我们使用 <code>netplan generate</code> 命令从 yaml 文件生成特定的配置文件（Generate backend specific configuration files from /etc/netplan/*.yaml）。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">zhexen@tz_ubuntu:/etc/netplan$ sudo netplan generate</div></pre></td></tr></table></figure>
+<p>此命令无返回值。</p>
+<p>我们使用 <code>netplan apply</code> 命令让配置生效（Apply current netplan config to running system）。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">zhexen@tz_ubuntu:/etc/netplan$ sudo netplan apply</div></pre></td></tr></table></figure>
+<p>此命令无返回值。</p>
+<h1 id="10-重启，验证"><a href="#10-重启，验证" class="headerlink" title="10. 重启，验证"></a>10. 重启，验证</h1><p>现在所有的配置都做好了（当然还包括在路由器上将一固定IP绑定到笔记本 MAC 地址上），我们重启系统看看是否生效。</p>
+<p><img src="/images/UWiFi_success.png" alt="WiFi connected successfully"></p>
+<p>Cool，连通！</p>
+
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
 
 
 </div>
